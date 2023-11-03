@@ -14,7 +14,6 @@ function Login(): JSX.Element {
 	const handleSubmit = useCallback(
 		async (event: React.FormEvent) => {
 			event.preventDefault();
-			// делаем диспатч санка
 			const dispatchResult = await dispatch(
 				login({
 					email,
@@ -24,7 +23,7 @@ function Login(): JSX.Element {
 			// проверяем, что санк login зарезолвился успешно
 			if (login.fulfilled.match(dispatchResult)) {
 				dispatch(getUser()); // подгрузит юзера
-				navigate('/'); // переведет на стартовую страницу
+				navigate('/tasks'); // переведет на стартовую страницу
 			}
 
 			// выводим в консоль ошибку если санк login зареджектился
@@ -56,7 +55,7 @@ function Login(): JSX.Element {
 
 	return (
 		<form className="auth-form" onSubmit={handleSubmit}>
-			<h2>Вход</h2>
+			<h2>Login</h2>
 			{error && (
 				<div className="invalid-feedback mb-3" style={{ display: 'block' }}>
 					{error}
@@ -64,7 +63,7 @@ function Login(): JSX.Element {
 			)}
 			<div className="mb-3">
 				<label htmlFor="name-input" className="form-label">
-					Имя
+					Email
 				</label>
 				<input
 					type="text"
@@ -77,7 +76,7 @@ function Login(): JSX.Element {
 			</div>
 			<div className="mb-3">
 				<label htmlFor="password-input" className="form-label">
-					Пароль
+					Password
 				</label>
 				<input
 					type="password"
@@ -89,7 +88,7 @@ function Login(): JSX.Element {
 				/>
 			</div>
 			<button type="submit" className="btn btn-primary">
-				Войти
+				Login
 			</button>
 		</form>
 	);

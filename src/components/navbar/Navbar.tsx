@@ -26,6 +26,8 @@ function Navbar(): JSX.Element {
 				<>
 					<NavLink to="/auth/login">Войти</NavLink>
 					<NavLink to="/auth/register">Регистрация</NavLink>
+					<NavLink to="/confirm">Подтверждение регистрации</NavLink>
+					<NavLink to="/tests">Тесты</NavLink>
 				</>
 			) : location.pathname === '/' ? (
 				user.role === 'ADMIN' ? (
