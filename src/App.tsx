@@ -1,3 +1,5 @@
+/* eslint-disable import/no-named-as-default */
+/* eslint-disable import/default */
 import './App.css';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { useEffect } from 'react';
@@ -5,11 +7,15 @@ import { getUser } from './features/auth/authSlice';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import Login from './features/auth/Login';
+// eslint-disable-next-line import/namespace
 import Register from './features/auth/Register';
 import { selectAuthChecked } from './features/auth/selectors';
 import AdminCabinet from './components/main/AdminCabinet';
 import Layout from './components/layouts/Layout';
 import Tasks from './features/tasks/Tasks';
+// eslint-disable-next-line import/namespace
+import Confirmation from './features/auth/Confirmation';
+import Tests from './features/tests/Tests';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -35,6 +41,8 @@ function App(): JSX.Element {
 					<Route path="/auth/login" element={<Login />} />
 					<Route path="/auth/register" element={<Register />} />
 					<Route path="/admin/tasks" element={<AdminCabinet />} />
+					<Route path="/confirm" element={<Confirmation />} />
+					<Route path="/tests" element={<Tests />} />
 				</Route>
 			</Routes>
 		</HashRouter>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import AuthState from './types/AuthState';
 import Credentials from './types/Credentials';
@@ -6,10 +7,19 @@ import RegisterData from './types/RegisterData';
 
 const initialState: AuthState = {
 	authChecked: false,
-	user: undefined,
+	user: null, //as User | ErrorMessage | null, //undefined
 	loginFormError: undefined,
 	registerFormError: undefined,
+	modal: {
+		showConfirmationModal: false,
+		showPasswordRequirementsModal: false,
+		showExistedUserModal: false,
+	},
 };
+
+/*interface ErrorMessage {
+	message: string;
+} */
 
 export const getUser = createAsyncThunk('api/users/my/profile', () => api.user());
 
@@ -33,8 +43,8 @@ export const register = createAsyncThunk('api/register', async (data: RegisterDa
 export const logout = createAsyncThunk('logout', api.logout);
 
 const authSlice = createSlice({
-	name: 'auth',
-	initialState,
+	name: 'auth', // имя фичи
+	initialState, // принимает начальное состояние
 	reducers: {
 		// 332 редьюсер для очистки ошибки
 		resetLoginFormError: (state) => {
@@ -65,7 +75,7 @@ const authSlice = createSlice({
 				state.authChecked = true;
 			})
 			.addCase(register.fulfilled, (state, action) => {
-				state.user = action.payload;
+				state.user = action.payload as any;
 				state.registerFormError = undefined;
 			})
 			.addCase(register.rejected, (state, action) => {
