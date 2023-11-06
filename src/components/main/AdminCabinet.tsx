@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { useCallback, useEffect, useState } from 'react';
@@ -6,8 +7,14 @@ import { loadTasksOfAll, deleteTask } from '../../features/tasks/tasksSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { TaskId } from '../../features/tasks/types/Task';
 import { selectError, selectTests } from '../../features/tests/selectors';
-import { createTest, deleteTest, loadTests, resetError } from '../../features/tests/testsSlice';
-import { TestId } from '../../features/tests/types/Test';
+import {
+	createTest,
+	deleteTest,
+	loadTests,
+	resetError,
+	updateTest,
+} from '../../features/tests/testsSlice';
+import Test, { TestId } from '../../features/tests/types/Test';
 
 export default function AdminCabinet(): JSX.Element {
 	const tasks = useAppSelector(selectTasks);
@@ -17,6 +24,11 @@ export default function AdminCabinet(): JSX.Element {
 	const [name, setName] = useState<string>('');
 	const [type, setType] = useState<string>('');
 	const [level, setLevel] = useState<string>('');
+	const [isEditing, setIsEditing] = useState<boolean>(false);
+	const [currentTest, setCurrentTest] = useState<Test | null>(null);
+	const [editName, setEditName] = useState<string>('');
+	const [editType, setEditType] = useState<string>('');
+	const [editLevel, setEditLevel] = useState<string>('');
 
 	useEffect(() => {
 		dispatch(loadTasksOfAll());
@@ -33,27 +45,60 @@ export default function AdminCabinet(): JSX.Element {
 		[dispatch]
 	);
 
-	const handleSubmit = useCallback(
-		async (event: React.FormEvent) => {
-			event.preventDefault();
-			const dispatchResult = await dispatch(createTest({ name, type, level }));
-			if (createTest.fulfilled.match(dispatchResult)) {
-				setLevel('');
-				setType('');
-				setName('');
-			}
-			if (createTest.rejected.match(dispatchResult)) {
-				dispatch(resetError());
-			}
-		},
-		[dispatch, level, type, name]
-	);
-
 	const handleTestRemove = useCallback(
 		(id: TestId) => {
 			dispatch(deleteTest(id));
 		},
 		[dispatch]
+	);
+
+	const startEditing = useCallback((test: Test) => {
+		setIsEditing(true);
+		setCurrentTest(test);
+		setEditName(test.name);
+		setEditType(test.type);
+		setEditLevel(test.level);
+	}, []);
+
+	const handleCreateTest = useCallback(
+		async (event: React.FormEvent<HTMLFormElement>) => {
+			event.preventDefault();
+			const dispatchResult = await dispatch(createTest({ name, type, level }));
+			if (createTest.fulfilled.match(dispatchResult)) {
+				setName('');
+				setType('');
+				setLevel('');
+			} else if (createTest.rejected.match(dispatchResult)) {
+				dispatch(resetError());
+			}
+		},
+		[dispatch, name, type, level, resetError]
+	);
+
+	const handleUpdateTest = useCallback(
+		async (event: React.FormEvent<HTMLFormElement>) => {
+			event.preventDefault();
+			if (currentTest) {
+				const dispatchResult = await dispatch(
+					updateTest({
+						...currentTest,
+						name: editName,
+						type: editType,
+						level: editLevel,
+					})
+				);
+				if (updateTest.fulfilled.match(dispatchResult)) {
+					setIsEditing(false);
+					setCurrentTest(null);
+					setEditName('');
+					setEditType('');
+					setEditLevel('');
+				} else if (updateTest.rejected.match(dispatchResult)) {
+					dispatch(resetError());
+				}
+			}
+		},
+		[dispatch, editName, editType, editLevel, currentTest, setIsEditing, resetError]
 	);
 
 	return (
@@ -70,14 +115,14 @@ export default function AdminCabinet(): JSX.Element {
 							onClick={() => handleTaskRemove(element.id)}
 							tabIndex={0}
 						>
-							удалить
+							Delete
 						</span>
 					</li>
 				))}
 			</ul>
 			<h1>Tests</h1>
 			<p>Add test</p>
-			<form className="mb-3" onSubmit={handleSubmit}>
+			<form className="mb-3" onSubmit={handleCreateTest}>
 				<div className="input-group">
 					<input
 						type="text"
@@ -107,7 +152,7 @@ export default function AdminCabinet(): JSX.Element {
 						onChange={(e) => setLevel(e.target.value)}
 					/>
 					<button type="submit" className="btn btn-primary">
-						add
+						Add
 					</button>
 				</div>
 				{error && (
@@ -116,18 +161,62 @@ export default function AdminCabinet(): JSX.Element {
 					</div>
 				)}
 			</form>
+			{isEditing && (
+				<form className="mb-3" onSubmit={handleUpdateTest}>
+					<div className="input-group">
+						<input
+							type="text"
+							className={`form-control ${error ? 'is-invalid' : ''}`}
+							placeholder="Title..."
+							aria-label="Title..."
+							name="testTitle"
+							value={editName}
+							onChange={(e) => setEditName(e.target.value)}
+						/>
+						<input
+							type="text"
+							className={`form-control ${error ? 'is-invalid' : ''}`}
+							placeholder="Type..."
+							aria-label="Type..."
+							name="testType"
+							value={editType}
+							onChange={(e) => setEditType(e.target.value)}
+						/>
+						<input
+							type="text"
+							className={`form-control ${error ? 'is-invalid' : ''}`}
+							placeholder="Level..."
+							aria-label="Level..."
+							name="testLevel"
+							value={editLevel}
+							onChange={(e) => setEditLevel(e.target.value)}
+						/>
+						<button type="submit" className="btn btn-primary">
+							{isEditing ? 'Update' : 'Add'}
+						</button>
+					</div>
+				</form>
+			)}
 			{tests?.map((test) => (
 				<li key={test.id}>
 					{test.name + ' '}
 					{test.type + ' '}
 					{test.level + ' '}
 					<span
-						className="badge bg-danger rounded-pill remove-task"
+						className="badge bg-primary rounded-pill edit-test"
+						role="button"
+						onClick={() => startEditing(test)}
+						tabIndex={0}
+					>
+						Edit
+					</span>
+					<span
+						className="badge bg-danger rounded-pill remove-test"
 						role="button"
 						onClick={() => handleTestRemove(test.id)}
 						tabIndex={0}
 					>
-						удалить
+						Delete
 					</span>
 				</li>
 			))}

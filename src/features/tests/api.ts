@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import Test, { TestId } from './types/Test';
 
 export async function getAllTests(): Promise<Test[]> {
@@ -41,8 +42,29 @@ export async function createTest(name: string, type: string, level: string): Pro
 	return res.json();
 }
 
-export async function deleteTest(test_id: TestId): Promise<void> {
-	const res = await fetch(`/tests/${test_id}`, {
+export async function updateTest(test: Test): Promise<Test> {
+	const res = await fetch(`/api/tests/${test.id}`, {
+		method: 'PUT',
+		body: JSON.stringify({
+			name: test.name,
+			type: test.type,
+			level: test.level,
+		}),
+		headers: {
+			'Content-Type': 'application/json',
+			accept: 'application/json',
+		},
+	});
+
+	if (!res.ok) {
+		throw new Error(`HTTP error! status: ${res.status}`);
+	}
+
+	return res.json();
+}
+
+export async function deleteTest(test_id: TestId): Promise<Test> {
+	const res = await fetch(`/api/tests/${test_id}`, {
 		method: 'DELETE',
 	});
 
