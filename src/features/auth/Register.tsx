@@ -15,6 +15,7 @@ import {
 	showExistedUserModal,
 	hideExistedUserModal,
 } from './modalSlice';
+// eslint-disable-next-line import/no-unresolved
 import Modal from 'react-modal';
 // eslint-disable-next-line import/no-unresolved
 
