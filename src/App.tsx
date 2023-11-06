@@ -15,7 +15,7 @@ import Layout from './components/layouts/Layout';
 import Tasks from './features/tasks/Tasks';
 // eslint-disable-next-line import/namespace
 import Confirmation from './features/auth/Confirmation';
-import Tests from './features/tests/Tests';
+//import Tests from './features/tests/Tests';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -41,8 +41,8 @@ function App(): JSX.Element {
 					<Route path="/auth/login" element={<Login />} />
 					<Route path="/auth/register" element={<Register />} />
 					<Route path="/admin/tasks" element={<AdminCabinet />} />
+					<Route path="/admin/tests" element={<AdminCabinet />} />
 					<Route path="/confirm" element={<Confirmation />} />
-					<Route path="/tests" element={<Tests />} />
 				</Route>
 			</Routes>
 		</HashRouter>

@@ -1,6 +1,6 @@
-import Test from './types/Test';
+import Test, { TestId } from './types/Test';
 
-export async function getAllTests(): Promise<{ tests: Test[] }> {
+export async function getAllTests(): Promise<Test[]> {
 	const result = await fetch('/api/tests');
 
 	interface Error {
@@ -25,6 +25,25 @@ export async function createTest(name: string, type: string, level: string): Pro
 		headers: {
 			'Content-Type': 'application/json',
 		},
+	});
+
+	interface Error {
+		message: string;
+		field: string;
+		rejectedValue: string;
+	}
+	if (res.status >= 400) {
+		const { errors }: { errors: Error[] } = await res.json();
+		errors.forEach((err) => {
+			throw new Error(`${err.field} ${err.rejectedValue} ${err.message}`);
+		});
+	}
+	return res.json();
+}
+
+export async function deleteTest(test_id: TestId): Promise<void> {
+	const res = await fetch(`/tests/${test_id}`, {
+		method: 'DELETE',
 	});
 
 	interface Error {

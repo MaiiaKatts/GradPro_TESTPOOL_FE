@@ -1,7 +1,6 @@
 // tasks/tasksSlice.ts
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 // import { logout } from '../auth/authSlice';
-// import Task, { TaskId } from './types/Task';
 import TasksState from './types/TasksState';
 import * as api from './api';
 import { TaskId } from './types/Task';

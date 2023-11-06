@@ -32,7 +32,8 @@ export default function Tasks(): JSX.Element {
 	// ниже код для редиректа, если нет прав доступа
 	const user = useAppSelector(selectUser);
 	// user // - что есть такой юзер
-	// user && user.role === 'ADMIN' // - есть юзер и он админ
+	// eslint-disable-next-line @typescript-eslint/no-unused-expressions
+	//user && user.role === 'ADMIN'; // - есть юзер и он админ
 	// user && user.role === 'USER'  // - есть юзер и он пользователь по роли
 	if (!user?.email) {
 		return <Navigate to={'/'} />;
