@@ -1,0 +1,73 @@
+.nav {
+  background-color: #ffffff;
+  background-position: 20px center;
+  background-size: auto 100%;
+  height: 80px;
+  position: sticky;
+  top: 5px;
+  align-items: center;
+  gap: 30px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+}
+.logoImage {
+  background-image: url('/src/images/testpool_logo_popart2.png');
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-position: 20px center;
+  background-size: auto 100%;
+  height: 80px;
+  width: 300px;
+}
+
+.link, .linkHome {
+  outline: none;
+  text-decoration: none;
+}
+
+.linkHomeLogoContainer {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.link:hover {
+  color: darkgreen;
+}
+
+.subText {
+  font-size: 12px;
+  margin-left: 5px;
+  opacity: 0.8;
+}
+
+.linkContainer {
+  padding-right: 40px;
+  display: flex;
+}
+
+.link {
+  color: rgb(11, 11, 11);
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    padding-left: 10px;
+  }
+
+  .link, .linkHomeLogoContainer {
+    margin-top: 10px;
+  }
+
+  .linkContainer {
+    padding-right: 20px;
+  }
+}

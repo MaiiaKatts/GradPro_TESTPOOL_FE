@@ -3,6 +3,7 @@ import authSlice from '../features/auth/authSlice';
 import tasksSlice from '../features/tasks/tasksSlice';
 import testsReducer from '../features/tests/testsSlice';
 import modalSlice from '../features/auth/modalSlice';
+import answerSlice from '../features/answers/answerSlice';
 
 export const store = configureStore({
 	reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
 		tasks: tasksSlice,
 		tests: testsReducer,
 		modal: modalSlice,
+		answers: answerSlice,
 	},
 });
 
