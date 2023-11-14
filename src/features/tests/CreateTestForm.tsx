@@ -8,7 +8,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { createTest, deleteTest, loadTests, resetError, updateTest } from './testsSlice';
+import {
+	createTest,
+	deleteTest,
+	loadTests,
+	resetError,
+	updateTest,
+} from './testsSlice';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { selectTasks } from '../tasks/selectors';
 import { loadTasksOfAll } from '../tasks/tasksSlice';
@@ -17,10 +23,18 @@ import { selectTests, selectError } from './selectors';
 import Test, { TestId } from './types/Test';
 import Question, { QuestionId } from '../questions/types/Question';
 import { selectQuestions, selectRandomQuestions } from '../questions/selectors';
-import { createQuestion, deleteQuestion, updateQuestion } from '../questions/questionsSlice';
+import {
+	createQuestion,
+	deleteQuestion,
+	updateQuestion,
+} from '../questions/questionsSlice';
 import { selectAnswers } from '../answers/selector';
 import Answer from '../answers/types/answer';
-import { createAnswer, removeAnswer, updateAnswerDetails } from '../answers/answersSlice';
+import {
+	createAnswer,
+	removeAnswer,
+	updateAnswerDetails,
+} from '../answers/answersSlice';
 import styles from './CreateTestForm.module.css';
 import QuestionsList from '../questions/QuestionsList';
 
@@ -45,8 +59,12 @@ export default function CreateTestFormSec() {
 	const [editType, setEditType] = useState<string>('');
 	const [editLevel, setEditLevel] = useState<string>('');
 	const questions = useAppSelector(selectQuestions);
-	const [createdQuestionId, setCreatedQuestionId] = useState<number | null>(null);
-	const [createdQuestions, setCreatedQuestions] = useState<QuestionWithAnswers[]>([]);
+	const [createdQuestionId, setCreatedQuestionId] = useState<number | null>(
+		null
+	);
+	const [createdQuestions, setCreatedQuestions] = useState<
+		QuestionWithAnswers[]
+	>([]);
 	const randomQuestions = useAppSelector(selectRandomQuestions);
 	const [testId, setTestId] = useState<number>(0);
 	const [question, setQuestion] = useState<string>('');
@@ -56,14 +74,18 @@ export default function CreateTestFormSec() {
 	const [isAddingQuestion, setIsAddingQuestion] = useState(false);
 	const answers = useAppSelector(selectAnswers);
 	const [answerTexts, setAnswerTexts] = useState(['', '', '', '']);
-	const [correctAnswerIndex, setCorrectAnswerIndex] = useState<number | null>(null);
+	const [correctAnswerIndex, setCorrectAnswerIndex] = useState<number | null>(
+		null
+	);
 	const [newAnswer, setNewAnswer] = useState<Answer>({
 		answer: '',
 		correct: false,
 		questionId: 0,
 	});
 	const [editingAnswerId, setEditingAnswerId] = useState<number | null>(null);
-	const [editingAnswerIndex, setEditingAnswerIndex] = useState<number | null>(null);
+	const [editingAnswerIndex, setEditingAnswerIndex] = useState<number | null>(
+		null
+	);
 
 	useEffect(() => {
 		dispatch(loadTests());
@@ -87,7 +109,9 @@ export default function CreateTestFormSec() {
 				console.error('Test ID is not set.');
 				return;
 			}
-			const dispatchResult = await dispatch(createQuestion({ testId, question }));
+			const dispatchResult = await dispatch(
+				createQuestion({ testId, question })
+			);
 			if (createQuestion.fulfilled.match(dispatchResult)) {
 				const newQuestionWithAnswers: QuestionWithAnswers = {
 					id: dispatchResult.payload.id,
@@ -95,7 +119,10 @@ export default function CreateTestFormSec() {
 					testId: dispatchResult.payload.testId,
 					answers: [],
 				};
-				setCreatedQuestions((prevQuestions) => [...prevQuestions, newQuestionWithAnswers]);
+				setCreatedQuestions((prevQuestions) => [
+					...prevQuestions,
+					newQuestionWithAnswers,
+				]);
 				setCreatedQuestionId(dispatchResult.payload.id);
 				setIsAddingQuestion(true);
 				setQuestion('');
@@ -129,7 +156,14 @@ export default function CreateTestFormSec() {
 				}
 			}
 		},
-		[dispatch, editTestId, editQuestion, currentQuestion, setIsEditing, resetError]
+		[
+			dispatch,
+			editTestId,
+			editQuestion,
+			currentQuestion,
+			setIsEditing,
+			resetError,
+		]
 	);
 
 	const selectTestForQuestions = (test: Test) => {
@@ -223,7 +257,9 @@ export default function CreateTestFormSec() {
 					question.id === questionId
 						? {
 								...question,
-								answers: question.answers.filter((answer) => answer.id !== answerId),
+								answers: question.answers.filter(
+									(answer) => answer.id !== answerId
+								),
 						  }
 						: question
 				)
@@ -240,7 +276,9 @@ export default function CreateTestFormSec() {
 	};*/
 
 	const handleAnswerTextChange = (index: number, text: string) => {
-		setAnswerTexts(answerTexts.map((answer, idx) => (idx === index ? text : answer)));
+		setAnswerTexts(
+			answerTexts.map((answer, idx) => (idx === index ? text : answer))
+		);
 	};
 
 	const handleCorrectAnswerIndexChange = (index: number) => {
@@ -271,7 +309,9 @@ export default function CreateTestFormSec() {
 			if (createAnswer.fulfilled.match(resultAction)) {
 				setCreatedQuestions((prevQuestions) =>
 					prevQuestions.map((q) =>
-						q.id === questionId ? { ...q, answers: [...q.answers, resultAction.payload] } : q
+						q.id === questionId
+							? { ...q, answers: [...q.answers, resultAction.payload] }
+							: q
 					)
 				);
 			} else if (createAnswer.rejected.match(resultAction)) {
@@ -286,10 +326,14 @@ export default function CreateTestFormSec() {
 	};
 
 	return (
-		<div className="test-container">
-			<h2>Test List</h2>
-			<div>
-				<select value={testId} onChange={(e) => setTestId(Number(e.target.value))}>
+		<div className="testContainer">
+			<h2 className={styles.testHeader}>Test List</h2>
+			<div className="selectContainer">
+				<select
+					className="testSelect"
+					value={testId}
+					onChange={(e) => setTestId(Number(e.target.value))}
+				>
 					<option value="">Select a test</option>
 					{tests.map((test) => (
 						<option key={test.id} value={test.id}>
@@ -299,20 +343,34 @@ export default function CreateTestFormSec() {
 				</select>
 			</div>
 			{testId && (
-				<div>
+				<div className="selectedTest">
 					<strong>Selected Test: </strong>
-					<span>{tests.find((test) => test.id === testId)?.name}</span>
-					<button onClick={() => setIsAddingQuestion(true)}>Add Question +</button>
+					<span className="selectedTestName">
+						{tests.find((test) => test.id === testId)?.name}
+					</span>
+					<button
+						className="addQuestionButton"
+						onClick={() => setIsAddingQuestion(true)}
+					>
+						Add Question +
+					</button>
 					{isAddingQuestion && (
-						<form onSubmit={handleCreateQuestion}>
+						<form className="questionForm" onSubmit={handleCreateQuestion}>
 							<input
+								className="questionInput"
 								type="text"
 								placeholder="Enter new question"
 								value={question}
 								onChange={(e) => setQuestion(e.target.value)}
 							/>
-							<button type="submit">Save Question</button>
-							<button type="button" onClick={() => setIsAddingQuestion(false)}>
+							<button className="saveQuestionButton" type="submit">
+								Save Question
+							</button>
+							<button
+								className="cancelButton"
+								type="button"
+								onClick={() => setIsAddingQuestion(false)}
+							>
 								Cancel
 							</button>
 						</form>
@@ -320,11 +378,12 @@ export default function CreateTestFormSec() {
 				</div>
 			)}
 			{createdQuestionId && isAddingQuestion && (
-				<div>
+				<div className="answersSection">
 					<h3>Answers for the new question</h3>
 					{Array.from({ length: 4 }).map((_, index) => (
-						<div key={index}>
+						<div key={index} className="answerInputContainer">
 							<input
+								className="answerInput"
 								type="text"
 								placeholder={`Answer ${index + 1}`}
 								value={answerTexts[index]}
@@ -332,22 +391,38 @@ export default function CreateTestFormSec() {
 								required
 							/>
 							<input
+								className="correctAnswerRadio"
 								type="radio"
 								name="correctAnswer"
 								checked={correctAnswerIndex === index}
 								onChange={() => setCorrectAnswerIndex(index)}
 							/>
-							<label>Correct</label>
+							<label className="correctAnswerLabel">Correct</label>
 						</div>
 					))}
-					<button onClick={() => handleCreateAnswers(createdQuestionId)}>Save Answers</button>
+					<button
+						className="saveAnswersButton"
+						onClick={() => handleCreateAnswers(createdQuestionId)}
+					>
+						Save Answers
+					</button>
 				</div>
 			)}
 			{createdQuestions.map((questionWithAnswers) => (
-				<div key={questionWithAnswers.id}>
-					<h4>{questionWithAnswers.question}</h4>
-					<button onClick={() => startEditingQuestion(questionWithAnswers)}>Edit</button>
-					<button onClick={() => handleQuestionRemove(questionWithAnswers.id)}>Delete</button>
+				<div key={questionWithAnswers.id} className="questionItem">
+					<h4 className="questionText">{questionWithAnswers.question}</h4>
+					<button
+						className="editQuestionButton"
+						onClick={() => startEditingQuestion(questionWithAnswers)}
+					>
+						Edit
+					</button>
+					<button
+						className="deleteQuestionButton"
+						onClick={() => handleQuestionRemove(questionWithAnswers.id)}
+					>
+						Delete
+					</button>
 					<ul>
 						{questionWithAnswers.answers.map((answer) => (
 							<li key={answer.id}>

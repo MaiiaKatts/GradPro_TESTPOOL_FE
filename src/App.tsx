@@ -1,21 +1,13 @@
-/* eslint-disable import/no-named-as-default */
-/* eslint-disable import/default */
 import './App.css';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { useEffect } from 'react';
 import { getUser } from './features/auth/authSlice';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { HashRouter, Route, Routes } from 'react-router-dom';
-
-// eslint-disable-next-line import/namespace
-
 import { selectAuthChecked } from './features/auth/selectors';
 import Layout from './components/layouts/Layout';
-// eslint-disable-next-line import/namespace
+
 import Confirmation from './features/auth/Confirmation';
 import AnswerList from './features/answers/AnswerList';
-import Home from './components/home/Home';
-
 import AboutUs from './components/footer/aboutUs/AboutUs';
 import Support from './components/footer/support/Support';
 import Login from './features/auth/Login';
@@ -26,8 +18,7 @@ import TestList from './components/user_tests/TestList';
 import AdminCabinet from './components/main/AdminCabinet';
 import Questions from './features/questions/Questions';
 import CreateTestForm from './features/tests/CreateTestForm';
-
-//import Tests from './features/tests/Tests';
+import Home from './components/Home/Home';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -55,7 +46,7 @@ function App(): JSX.Element {
 					<Route path="/auth/register" element={<Register />} />
 					<Route path="/confirm" element={<Confirmation />} />
 					{/* user */}
-					<Route path="/user/tests" element={<TestList />} />
+					<Route path="/user" element={<TestList />} />
 					{/* admin */}
 					<Route path="/admin_test" element={<AdminCabinet />} />
 					<Route path="/admin/questions" element={<Questions />} />

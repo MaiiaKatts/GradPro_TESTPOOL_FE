@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import styles from './TestList.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate } from 'react-router-dom';
+import { useAppSelector } from '../../app/hooks';
+import { selectUser } from '../../features/auth/selectors';
 
 interface Term {
 	id: number;
@@ -34,7 +36,7 @@ const techTerms: Term[] = [
 ];
 export default function TestList(): JSX.Element {
 	const [currentTermIndex, setCurrentTermIndex] = useState<number>(0);
-
+	const user = useAppSelector(selectUser);
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setCurrentTermIndex((prevIndex) => (prevIndex + 1) % techTerms.length);
@@ -44,6 +46,10 @@ export default function TestList(): JSX.Element {
 	}, []);
 
 	const currentTerm = techTerms[currentTermIndex];
+	console.log('user', user);
+	if (user?.role === 'ADMIN') {
+		return <Navigate to="/admin_test" />;
+	}
 	return (
 		<div className={styles.containerHome}>
 			<div className={styles.mainContainer}>
