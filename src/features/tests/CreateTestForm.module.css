@@ -1,0 +1,17 @@
+.test-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.test-list, .question-list, .answer-list {
+  margin-bottom: 20px;
+}
+
+.test-item, .question-item, .answer-item {
+  margin-bottom: 10px;
+}
+
+button {
+  margin-left: 10px;
+}

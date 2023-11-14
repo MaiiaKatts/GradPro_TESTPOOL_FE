@@ -31,19 +31,8 @@ export default function AdminCabinet(): JSX.Element {
 	const [editLevel, setEditLevel] = useState<string>('');
 
 	useEffect(() => {
-		dispatch(loadTasksOfAll());
-	}, [dispatch]);
-
-	useEffect(() => {
 		dispatch(loadTests());
 	}, [dispatch]);
-
-	const handleTaskRemove = useCallback(
-		(id: TaskId) => {
-			dispatch(deleteTask(id));
-		},
-		[dispatch]
-	);
 
 	const handleTestRemove = useCallback(
 		(id: TestId) => {
@@ -104,22 +93,6 @@ export default function AdminCabinet(): JSX.Element {
 	return (
 		<>
 			<div>Admin cabinet</div>
-			<h3>Все таски, без привязки к юзерам</h3>
-			<ul>
-				{tasks?.map((element) => (
-					<li key={element.id}>
-						{element.name} {element.description}
-						<span
-							className="badge bg-danger rounded-pill remove-task"
-							role="button"
-							onClick={() => handleTaskRemove(element.id)}
-							tabIndex={0}
-						>
-							Delete
-						</span>
-					</li>
-				))}
-			</ul>
 			<h1>Tests</h1>
 			<p>Add test</p>
 			<form className="mb-3" onSubmit={handleCreateTest}>
