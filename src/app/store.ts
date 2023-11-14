@@ -1,16 +1,18 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import authSlice from '../features/auth/authSlice';
 import tasksSlice from '../features/tasks/tasksSlice';
-import testsReducer from '../features/tests/testsSlice';
 import modalSlice from '../features/auth/modalSlice';
 import answerSlice from '../features/answers/answerSlice';
+import questionsSlice from '../features/questions/questionsSlice';
+import testsSlice from '../features/tests/testsSlice';
 
 export const store = configureStore({
 	reducer: {
 		auth: authSlice,
 		tasks: tasksSlice,
-		tests: testsReducer,
+		tests: testsSlice,
 		modal: modalSlice,
+		questions: questionsSlice,
 		answers: answerSlice,
 	},
 });

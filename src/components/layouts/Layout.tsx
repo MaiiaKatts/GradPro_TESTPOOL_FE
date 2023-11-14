@@ -1,12 +1,13 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from '../navbar/Navbar';
+import Footer from '../footer/Footer';
 
 function Main(): JSX.Element {
 	return (
 		<>
 			<Navbar />
 			<Outlet />
-			<footer>Здесь будет футер</footer>
+			<Footer /> {/* Это место, где Footer компонент добавлен */}
 		</>
 	);
 }

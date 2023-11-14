@@ -1,9 +1,11 @@
+import { TestId } from './types/Test';
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import TestsState from './types/TestsState';
 import * as api from './api';
-import Test, { TestId } from './types/Test';
+import Test from './types/Test';
 
-const initialState: TestsState = {
+export const initialState: TestsState = {
 	tests: [],
 	error: undefined,
 };
@@ -21,9 +23,14 @@ export const createTest = createAsyncThunk(
 
 export const loadTests = createAsyncThunk('tests/loadTests', () => api.getAllTests());
 
-export const deleteTest = createAsyncThunk('tests/deleteTest', async (test_id: TestId) => {
-	await api.deleteTest(test_id);
-	return test_id;
+export const deleteTest = createAsyncThunk('tests/deleteTest', async (id: TestId) => {
+	await api.deleteTest(id);
+	return id;
+});
+
+export const updateTest = createAsyncThunk('tests/updateTest', async (test: Test) => {
+	const updatedTest = await api.updateTest(test);
+	return updatedTest;
 });
 
 const testsSlice = createSlice({
@@ -49,11 +56,20 @@ const testsSlice = createSlice({
 				state.tests.push(action.payload);
 			})
 			.addCase(createTest.rejected, (state, action) => {
-				console.log('rejected action', action);
 				state.error = action.error.message;
 			})
 			.addCase(deleteTest.fulfilled, (state, action) => {
 				state.tests = state.tests.filter((test) => test.id !== action.payload);
+			})
+			.addCase(updateTest.fulfilled, (state, action) => {
+				state.tests = state.tests.map((test) => {
+					if (test.id === action.payload.id) {
+						return action.payload;
+					} else {
+						return test;
+					}
+					//test.id === action.payload.id ? action.payload : test
+				});
 			});
 	},
 });

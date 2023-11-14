@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { useCallback, useEffect, useState } from 'react';
 import { selectError, selectTasks } from './selectors';
 import { createTask, loadTasks, resetError } from './tasksSlice';
@@ -34,7 +35,7 @@ export default function Tasks(): JSX.Element {
 	// user // - что есть такой юзер
 	// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 	//user && user.role === 'ADMIN'; // - есть юзер и он админ
-	// user && user.role === 'USER'  // - есть юзер и он пользователь по роли
+	//user && user.role === 'USER'; // - есть юзер и он пользователь по роли
 	if (!user?.email) {
 		return <Navigate to={'/'} />;
 	}

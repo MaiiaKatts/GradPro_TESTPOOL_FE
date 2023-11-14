@@ -1,0 +1,113 @@
+.containerHome {
+	background-color: rgb(246, 246, 228);
+	padding-top: 40px;
+	min-height: 100vh; /* Используйте минимальную высоту вьюпорта, чтобы заполнить весь экран */
+	width: 100%; /* Ширина на 100% вьюпорта */
+	box-sizing: border-box; /* Убедитесь, что padding включен в ширину и высоту */
+	margin: 0; /* Убираем любые дефолтные отступы */
+}
+
+.mainContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+	height: 100%;
+}
+
+.leftContainer {
+	width: 30%;
+	padding-left: 20px;
+	justify-content: center;
+	align-items: center;
+}
+
+.testLink_BE {
+	background-image: url('/images/button_BE_test.png');
+}
+.testLink_FE {
+	background-image: url('/images/button_FE_test.png');
+}
+.testLink_QA {
+	background-image: url('/images/button_QA_test.png');
+}
+
+.testLink_BE,
+.testLink_FE,
+.testLink_QA {
+	width: 350px;
+	height: 150px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-color: rgb(246, 246, 228);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: transform 0.3s;
+	position: relative;
+	border: none;
+	outline: none;
+	margin-bottom: 50px;
+	background-attachment: scroll;
+}
+
+.testLink_BE:hover,
+.testLink_FE:hover,
+.testLink_QA:hover {
+	transform: scale(1.03);
+	z-index: 5;
+}
+
+.testLinks {
+	padding-top: 3%;
+	background-color: rgb(246, 246, 228);
+	display: flex;
+	flex-direction: column; /* Располагаем элементы в колонку */
+	align-items: center; /* Центрируем элементы по горизонтали */
+	justify-content: flex-start; /* Выравниваем элементы по началу контейнера */
+}
+.middleContainer {
+	width: 40%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+	padding-right: 20px;
+}
+.textContent {
+	font-size: 22px;
+	text-align: center;
+	text-align: justify;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.rightContainer {
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+	padding-left: 40px;
+	padding-right: 60px;
+}
+.textContent_news {
+	font-size: 18px;
+	font-family: monospace;
+	font-style: italic;
+	text-align: center;
+	text-align: justify;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.termNew {
+	font-size: 18px;
+	color: #333;
+	font-weight: bold;
+	margin: 10px 0;
+	text-align: center;
+}

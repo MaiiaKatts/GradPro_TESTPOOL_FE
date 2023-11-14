@@ -1,6 +1,8 @@
 export default interface Answer {
-	id?: number;
+	id?: number | null;
 	answer: string;
-	is_correct: boolean;
+	correct: boolean;
 	questionId: number;
+	question?: string;
+	difficultyLevel?: string;
 }

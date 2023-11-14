@@ -10,7 +10,7 @@ export async function getAllAnswers(): Promise<Answer[]> {
 	const res = await fetch('/api/answers', {
 		method: 'GET',
 		headers: {
-			'Content-Type': 'application/json',
+			accept: 'application/json',
 		},
 	});
 
@@ -27,14 +27,15 @@ export async function getAllAnswers(): Promise<Answer[]> {
 export async function addAnswer(
 	questionId: number,
 	answerText: string,
-	isCorrect: boolean
+	correct: boolean
 ): Promise<Answer> {
 	const res = await fetch(`/api/questions/${questionId}/answers`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
+			accept: 'application/json',
 		},
-		body: JSON.stringify({ answer: answerText, questionId, is_correct: isCorrect }),
+		body: JSON.stringify({ answer: answerText, questionId, correct }),
 	});
 
 	if (!res.ok) {
@@ -49,15 +50,15 @@ export async function addAnswer(
 
 export async function correctAnswer(answer: Answer): Promise<void> {
 	if (typeof answer.id === 'number' && typeof answer.questionId === 'number') {
-		const response = await fetch(`/questions/${answer.questionId}/answers/${answer.id}`, {
+		const response = await fetch(`/api/questions/${answer.questionId}/answers/${answer.id}`, {
 			method: 'POST',
 			body: JSON.stringify({
 				answer: answer.answer,
-				is_correct: answer.is_correct,
+				correct: answer.correct,
 				questionId: answer.questionId,
 			}),
 			headers: {
-				'Content-Type': 'application/json',
+				accept: 'application/json',
 			},
 		});
 
@@ -74,14 +75,15 @@ export async function updateAnswer(
 	questionId: number,
 	answerId: number,
 	answerText: string,
-	isCorrect: boolean
+	correct: boolean
 ): Promise<Answer> {
 	const response = await fetch(`/api/questions/${questionId}/answers/${answerId}`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
+			accept: 'application/json',
 		},
-		body: JSON.stringify({ answer: answerText, questionId, is_correct: isCorrect }),
+		body: JSON.stringify({ answer: answerText, questionId, correct }),
 	});
 
 	if (!response.ok) {

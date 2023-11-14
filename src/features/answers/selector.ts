@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { RootState } from '../../app/store';
 import Answer from './types/answer';
 
