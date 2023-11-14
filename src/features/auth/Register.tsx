@@ -3,6 +3,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useCallback, useState } from 'react';
+import styles from './Register.module.css';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+
 //import { useNavigate } from 'react-router-dom';
 import { register, resetRegisterFormError, login } from './authSlice';
 import { selectRegisterFormError } from './selectors';
@@ -26,24 +30,36 @@ function Register(): JSX.Element {
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
+
 	const [password, setPassword] = useState('');
 	const [passwordRepeat, setPasswordRepeat] = useState('');
+
+	const [passwordShown, setPasswordShown] = useState(false);
+	const [passwordRepeatShown, setPasswordRepeatShown] = useState(false);
+
 	const showErrorPassword = useAppSelector((state) => state.modal.showPasswordRequirementsModal);
 	const showExistedUser = useAppSelector((state) => state.modal.showExistedUserModal);
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 	const showConfirmation = useAppSelector((state) => state.modal.showConfirmationModal);
 	const [passwordIsValid, setPasswordIsValid] = useState(true);
 
+	const [isAgreed, setIsAgreed] = useState(false);
+	const [attemptedSubmit, setAttemptedSubmit] = useState(false);
+
 	const handleSubmit = useCallback(
 		async (event: React.FormEvent<HTMLFormElement>) => {
 			event.preventDefault();
+			setAttemptedSubmit(true);
 
 			if (!passwordIsValid) {
 				dispatch(showPasswordRequirementsModal());
 				return;
 			}
+			if (!isAgreed) {
+				return;
+			}
 
-			const response: any = await dispatch(
+			const response = await dispatch(
 				register({
 					firstName,
 					lastName,
@@ -69,9 +85,8 @@ function Register(): JSX.Element {
 				}
 			}
 		},
-		[dispatch, firstName, lastName, email, password, passwordRepeat, passwordIsValid, register]
+		[dispatch, firstName, lastName, email, password, passwordRepeat, passwordIsValid, isAgreed]
 	);
-
 	const handleFirstNameChange = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
 			setFirstName(event.target.value);
@@ -117,6 +132,13 @@ function Register(): JSX.Element {
 		[dispatch]
 	);
 
+	const togglePasswordVisibility = () => {
+		setPasswordShown(!passwordShown);
+	};
+
+	const togglePasswordRepeatVisibility = () => {
+		setPasswordRepeatShown(!passwordRepeatShown);
+	};
 	const handleModalClose = useCallback(() => {
 		dispatch(hideConfirmationModal());
 		dispatch(hidePasswordRequirementsModal());
@@ -129,115 +151,174 @@ function Register(): JSX.Element {
 	}, [dispatch]);
 
 	return (
-		<form className="auth-form" onSubmit={handleSubmit}>
-			<h2>Registration</h2>
-			{error && (
-				<div className="invalid-feedback mb-3" style={{ display: 'block' }}>
-					{error}
-				</div>
-			)}
-			<div className="mb-3">
-				<label htmlFor="name-input" className="form-label">
-					First Name
-				</label>
-				<input
-					type="text"
-					className={`form-control ${error ? 'is-invalid' : ''}`}
-					id="firstName-input"
-					name="username"
-					value={firstName}
-					onChange={handleFirstNameChange}
-				/>
+		<div className={styles.containerHome}>
+			<div className={styles.container}>
+				<form className={styles.authForm} onSubmit={handleSubmit}>
+					<h2 className={styles.title}>Registration</h2>
+					{error && <div className={styles.errorFeedback}>{error}</div>}
+					<div className={styles.inputGroup}>
+						<label htmlFor="firstName-input" className={styles.formLabel}>
+							First Name*
+						</label>
+						<input
+							type="text"
+							className={`${styles.inputField} ${error ? styles.inputInvalid : ''}`}
+							id="firstName-input"
+							name="firstName"
+							value={firstName}
+							onChange={handleFirstNameChange}
+						/>
+					</div>
+					<div className={styles.inputGroup}>
+						<label htmlFor="lastName-input" className={styles.formLabel}>
+							Last Name*
+						</label>
+						<input
+							type="text"
+							className={`${styles.inputField} ${error ? styles.inputInvalid : ''}`}
+							id="lastName-input"
+							name="lastName"
+							value={lastName}
+							onChange={handleLastNameChange}
+						/>
+					</div>
+					<div className={styles.inputGroup}>
+						<label htmlFor="email-input" className={styles.formLabel}>
+							Email*
+						</label>
+						<input
+							type="email"
+							className={`${styles.inputField} ${error ? styles.inputInvalid : ''}`}
+							id="email-input"
+							name="email"
+							value={email}
+							onChange={handleNameChange}
+						/>
+					</div>
+					<div className={styles.inputGroup}>
+						<label htmlFor="password-input" className={styles.formLabel}>
+							Password*
+						</label>
+						<div className={styles.passwordInputContainer}>
+							<input
+								type={passwordShown ? 'text' : 'password'}
+								className={`${styles.inputField} ${error ? styles.inputInvalid : ''}`}
+								id="password-input"
+								name="password"
+								value={password}
+								onChange={handlePasswordChange}
+							/>
+							{passwordShown ? (
+								<VisibilityIcon onClick={togglePasswordVisibility} className={styles.eyeIcon} />
+							) : (
+								<VisibilityOffIcon onClick={togglePasswordVisibility} className={styles.eyeIcon} />
+							)}
+						</div>
+					</div>
+					<div className={styles.inputGroup}>
+						<label htmlFor="password-repeat-input" className={styles.formLabel}>
+							Confirm password*
+						</label>
+						<div className={styles.passwordInputContainer}>
+							<input
+								type={passwordRepeatShown ? 'text' : 'password'}
+								className={`${styles.inputField} ${error ? styles.inputInvalid : ''}`}
+								id="password-repeat-input"
+								name="passwordRepeat"
+								value={passwordRepeat}
+								onChange={handlePasswordRepeatChange}
+							/>
+							{passwordRepeatShown ? (
+								<VisibilityIcon
+									onClick={togglePasswordRepeatVisibility}
+									className={styles.eyeIcon}
+								/>
+							) : (
+								<VisibilityOffIcon
+									onClick={togglePasswordRepeatVisibility}
+									className={styles.eyeIcon}
+								/>
+							)}
+						</div>
+					</div>
+					<div className={styles.inputGroup}>
+						<div></div>
+						<label htmlFor="terms-checkbox" className={styles.checkboxLabel}>
+							<input
+								type="checkbox"
+								id="terms-checkbox"
+								checked={isAgreed}
+								onChange={(e) => {
+									setIsAgreed(e.target.checked);
+									setAttemptedSubmit(false);
+								}}
+							/>
+							<div>I agree to the Terms and Conditions</div>
+						</label>
+						{attemptedSubmit && !isAgreed && (
+							<div className={styles.error}>
+								You must agree to the terms and conditions before registering.
+							</div>
+						)}
+					</div>
+
+					<div className={styles.submitButtonContainer}>
+						<button
+							type="submit"
+							aria-label="Register"
+							className={styles.submitButton}
+							disabled={!isAgreed}
+						></button>
+					</div>
+				</form>
+
+				<Modal
+					isOpen={showConfirmation}
+					onRequestClose={handleModalClose}
+					className={styles.modalContent}
+					overlayClassName={styles.modalOverlay}
+					ariaHideApp={false}
+				>
+					<h2>Registration Successful</h2>
+					<p>Please check your email.</p>
+					<button onClick={handleModalClose} className={styles.modalCloseButton}>
+						Close
+					</button>
+				</Modal>
+
+				<Modal
+					isOpen={showErrorPassword}
+					onRequestClose={handleModalClose}
+					className={styles.modalContent}
+					overlayClassName={styles.modalOverlay}
+					ariaHideApp={false}
+				>
+					<h2>Password Requirements</h2>
+					<p>
+						Password must be at least 8 characters long and contain at least one uppercase letter
+						and one symbol (@#$%^&+=!).
+					</p>
+					<button onClick={handleModalClose} className={styles.modalCloseButton}>
+						Close
+					</button>
+				</Modal>
+
+				<Modal
+					isOpen={showExistedUser}
+					onRequestClose={handleModalClose}
+					className={styles.modalContent}
+					overlayClassName={styles.modalOverlay}
+					ariaHideApp={false}
+				>
+					<h2>User Already Exists</h2>
+					<p>An account with this email already exists.</p>
+					<button onClick={handleModalClose} className={styles.modalCloseButton}>
+						Close
+					</button>
+				</Modal>
 			</div>
-			<div className="mb-3">
-				<label htmlFor="name-input" className="form-label">
-					Last Name
-				</label>
-				<input
-					type="text"
-					className={`form-control ${error ? 'is-invalid' : ''}`}
-					id="lastName-input"
-					name="username"
-					value={lastName}
-					onChange={handleLastNameChange}
-				/>
-			</div>
-			<div className="mb-3">
-				<label htmlFor="name-input" className="form-label">
-					Email
-				</label>
-				<input
-					type="text"
-					className={`form-control ${error ? 'is-invalid' : ''}`}
-					id="name-input"
-					name="username"
-					value={email}
-					onChange={handleNameChange}
-				/>
-			</div>
-			<div className="mb-3">
-				<label htmlFor="password-input" className="form-label">
-					Password
-				</label>
-				<input
-					type="password"
-					className={`form-control ${error ? 'is-invalid' : ''}`}
-					id="password-input"
-					name="password"
-					value={password}
-					onChange={handlePasswordChange}
-				/>
-			</div>
-			<div className="mb-3">
-				<label htmlFor="password-repeat-input" className="form-label">
-					Repeat password
-				</label>
-				<input
-					type="password"
-					className={`form-control ${error ? 'is-invalid' : ''}`}
-					id="password-repeat-input"
-					name="passwordRepeat"
-					value={passwordRepeat}
-					onChange={handlePasswordRepeatChange}
-				/>
-			</div>
-			<button type="submit" className="btn btn-primary">
-				Register
-			</button>
-			<Modal
-				isOpen={showConfirmation}
-				onRequestClose={handleModalClose}
-				contentLabel="Confirmation Modal"
-				ariaHideApp={false}
-			>
-				<h2>Registration Successful</h2>
-				<p>Please check your email.</p>
-				<button onClick={handleModalClose}>Close</button>
-			</Modal>
-			<Modal
-				isOpen={showErrorPassword}
-				onRequestClose={handleModalClose}
-				contentLabel="Password Requirements Modal"
-				ariaHideApp={false}
-			>
-				<h2>Password Requirements</h2>
-				<p>
-					Password must be at least 8 characters long and contain at least one capital letter and
-					one symbol (@#$%^&+=!).
-				</p>
-				<button onClick={handleModalClose}>Close</button>
-			</Modal>
-			<Modal
-				isOpen={showExistedUser}
-				onRequestClose={() => dispatch(hideExistedUserModal())}
-				contentLabel="Existing User Modal"
-				ariaHideApp={false}
-			>
-				<h2>User Already Exists</h2>
-				<p>An account with this email already exists.</p>
-				<button onClick={handleModalClose}>Close</button>
-			</Modal>
-		</form>
+		</div>
 	);
 }
+
 export default Register;

@@ -1,0 +1,139 @@
+.containerHome {
+  background-color: rgb(246, 246, 228);
+  padding-top: 20px;
+  min-height: 80vh;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+
+.container {
+  background-image: url('/images/test_page_registration_skrepka.png');
+  background-repeat: no-repeat;
+  background-size: 500px;
+  background-position: top left;
+  max-width: 700px;
+  max-height: auto;
+  overflow-y: auto;
+  margin: auto;
+  margin-top: 30px;
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);background-attachment: scroll; 
+}
+
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.inputField {
+  background-color: white;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1.5px solid #ddd;
+  border-radius: 4px;
+  flex-grow: 1;
+  padding-right: 40px;
+}
+.passwordInputContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.eyeIcon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;;
+  
+}
+
+.inputInvalid {
+  border-color: #e3342f;
+}
+
+.errorFeedback {
+  color: #e3342f;
+  margin-bottom: 15px;
+}
+.error {
+  color: #e3342f;
+  margin-top:  10px;
+  font-size: 2210px;
+}
+
+.checkboxLabel {
+  display: block;
+  margin-top: 20px;
+  color: #333;
+  cursor: pointer;
+  
+}
+.submitButton {
+  height: 90px;
+  width: 190px;
+  background-image: url('/images/button_Register.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+  position: relative;
+  border: none;
+  outline: none;
+  background-attachment: scroll;
+
+}
+
+.submitButton:hover {
+  transform: scale(1.03);
+  z-index: 5;
+}
+
+.submitButtonContainer {
+  padding-top: 3%;
+  
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+
+
+/* Modal related styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.modalCloseButton {
+  float: right;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}

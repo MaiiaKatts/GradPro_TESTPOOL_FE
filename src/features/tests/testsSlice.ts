@@ -5,7 +5,7 @@ import TestsState from './types/TestsState';
 import * as api from './api';
 import Test from './types/Test';
 
-const initialState: TestsState = {
+export const initialState: TestsState = {
 	tests: [],
 	error: undefined,
 };

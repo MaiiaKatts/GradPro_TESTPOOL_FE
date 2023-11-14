@@ -1,0 +1,145 @@
+.supportContainer {
+  background-color: rgb(246, 246, 228);
+  padding-top: 20px;
+  min-height: 80vh; 
+  width: 100%;
+  box-sizing: border-box; 
+  margin: 0; 
+ 
+}
+
+.container {
+  background-image: url('/images/test_page_registration_skrepka.png');
+  background-repeat: no-repeat;
+  background-size: 500px; 
+  background-position: top left; 
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: auto;
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);background-attachment: scroll; 
+}
+
+.authForm {
+  padding-top: 60px;
+}
+
+.inputField {
+  background-color: white;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1.5px solid #ddd;
+  border-radius: 4px;
+}
+
+.supportText {
+  color: #666;
+  margin-bottom: 22px;
+  margin-left: 50px;
+  margin-right: 50px;
+  text-align: center;
+}
+
+.supportTitle {
+  font-size: 26px;
+  color: rgb(209, 92, 83);
+  margin-bottom: 20px;
+}
+
+.supportLink {
+  height: 100px;
+  width: 250px;
+  background-image: url('/images/button_send.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+  position: relative;
+  border: none;
+  outline: none;
+  background-attachment: scroll;
+}
+.submitButtonContainer {
+  padding-top: 3%;
+  background-color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.supportLink:hover {
+  transform: scale(1.03);
+  z-index: 5;
+}
+
+.support::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 50px;
+  width: 100px;
+  height: 100px;
+  background-image: url('/images/test_page_registration_skrepka.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+  .supportContainer {
+    padding: 30px 10px;
+  }
+
+  .support {
+    padding: 30px;
+    margin: 10px;
+  }
+
+  .supportTitle {
+    font-size: 1.5em;
+  }
+
+  .supportText {
+    font-size: 0.9em;
+  }
+
+  .support::before {
+    top: -20px;
+    left: 30px;
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .supportContainer {
+    padding: 20px 5px;
+  }
+
+  .support {
+    padding: 20px;
+    margin: 5px;
+  }
+
+  .supportTitle {
+    font-size: 1.3em;
+  }
+
+  .supportText {
+    font-size: 0.8em;
+  }
+
+  .support::before {
+    top: -10px;
+    left: 20px;
+    width: 60px;
+    height: 60px;
+  }
+}

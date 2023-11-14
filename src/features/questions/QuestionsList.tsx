@@ -1,18 +1,28 @@
+<<<<<<< HEAD
 /* eslint-disable @typescript-eslint/no-redeclare */
+=======
+>>>>>>> fc05efba33f0aab7133a9954e5bb5ee654afde5c
 /* eslint-disable import/export */
 /* eslint-disable react/prop-types */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable import/default */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
+=======
+import React, { useEffect } from 'react';
+>>>>>>> fc05efba33f0aab7133a9954e5bb5ee654afde5c
 import { loadQuestions } from './questionsSlice';
 import { loadAllAnswers } from '../answers/answersSlice';
 import { selectQuestions } from './selectors';
 import { selectAnswers } from '../answers/selector';
 import { TestId } from '../tests/types/Test';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
+<<<<<<< HEAD
 import { loadTests } from '../tests/testsSlice';
 import { selectTests } from '../tests/selectors';
+=======
+>>>>>>> fc05efba33f0aab7133a9954e5bb5ee654afde5c
 
 type QuestionsListProps = {
 	testId: TestId;
@@ -26,12 +36,15 @@ export default function QuestionsList({ testId }: QuestionsListProps): JSX.Eleme
 	const filteredAnswers = answers.filter((a) =>
 		filteredQuestions.some((q) => q.id === a.questionId)
 	);
+<<<<<<< HEAD
 	const tests = useAppSelector(selectTests);
 	const [selectedTestId, setSelectedTestId] = useState<number | null>(null);
 
 	useEffect(() => {
 		dispatch(loadTests());
 	}, [dispatch]);
+=======
+>>>>>>> fc05efba33f0aab7133a9954e5bb5ee654afde5c
 
 	useEffect(() => {
 		if (testId) {
@@ -40,6 +53,7 @@ export default function QuestionsList({ testId }: QuestionsListProps): JSX.Eleme
 		}
 	}, [dispatch, testId]);
 
+<<<<<<< HEAD
 	const handleTestChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		setSelectedTestId(Number(event.target.value));
 	};
@@ -54,6 +68,10 @@ export default function QuestionsList({ testId }: QuestionsListProps): JSX.Eleme
 					</option>
 				))}
 			</select>
+=======
+	return (
+		<div className="questions-list">
+>>>>>>> fc05efba33f0aab7133a9954e5bb5ee654afde5c
 			{filteredQuestions.map((question) => (
 				<div key={question.id}>
 					<h4>{question.question}</h4>

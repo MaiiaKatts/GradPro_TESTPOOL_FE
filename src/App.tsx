@@ -1,21 +1,24 @@
-/* eslint-disable import/no-named-as-default */
-/* eslint-disable import/default */
 import './App.css';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { useEffect } from 'react';
 import { getUser } from './features/auth/authSlice';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { HashRouter, Route, Routes } from 'react-router-dom';
-import Login from './features/auth/Login';
-// eslint-disable-next-line import/namespace
-import Register from './features/auth/Register';
 import { selectAuthChecked } from './features/auth/selectors';
-import AdminCabinet from './components/main/AdminCabinet';
 import Layout from './components/layouts/Layout';
-import Tasks from './features/tasks/Tasks';
-// eslint-disable-next-line import/namespace
+
 import Confirmation from './features/auth/Confirmation';
-//import Tests from './features/tests/Tests';
+import AnswerList from './features/answers/AnswerList';
+import AboutUs from './components/footer/aboutUs/AboutUs';
+import Support from './components/footer/support/Support';
+import Login from './features/auth/Login';
+import Register from './features/auth/Register';
+import TermOfUse from './components/footer/terms/TermOfUse';
+import Policy from './components/footer/policy/Policy';
+import TestList from './components/user_tests/TestList';
+import AdminCabinet from './components/main/AdminCabinet';
+import Questions from './features/questions/Questions';
+import CreateTestForm from './features/tests/CreateTestForm';
+import Home from './components/Home/Home';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -37,12 +40,23 @@ function App(): JSX.Element {
 		<HashRouter>
 			<Routes>
 				<Route path="/" element={<Layout />}>
-					<Route path="/tasks" element={<Tasks />} />
+					<Route index element={<Home />} />
+					{/* NavBar */}
 					<Route path="/auth/login" element={<Login />} />
 					<Route path="/auth/register" element={<Register />} />
-					<Route path="/admin/tasks" element={<AdminCabinet />} />
-					<Route path="/admin/tests" element={<AdminCabinet />} />
 					<Route path="/confirm" element={<Confirmation />} />
+					{/* user */}
+					<Route path="/user" element={<TestList />} />
+					{/* admin */}
+					<Route path="/admin_test" element={<AdminCabinet />} />
+					<Route path="/admin/questions" element={<Questions />} />
+					<Route path="/admin/answers" element={<AnswerList />} />
+					<Route path="/admin/tests" element={<CreateTestForm />} />
+					{/* Footer */}
+					<Route path="/policy" element={<Policy />} />
+					<Route path="/about-us" element={<AboutUs />} />
+					<Route path="/support" element={<Support />} />
+					<Route path="/termOfUse" element={<TermOfUse />} />
 				</Route>
 			</Routes>
 		</HashRouter>
