@@ -1,12 +1,10 @@
-
-/* В файле стилей, например, TestComponent.module.css */
-
 .containerHome {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   background-color:rgb(246, 246, 228);
+
 }
 
 .testContainer {
@@ -14,6 +12,7 @@
   max-width: 600px;
   background-color: white;
   padding: 20px;
+
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -60,6 +59,7 @@
   border-radius: 4px;
 }
 .addQuestionButton{
+  
   background-color:rgb(76, 152, 150);
   color: white;
   padding: 10px 15px;
