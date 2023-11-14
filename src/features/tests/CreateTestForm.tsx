@@ -35,8 +35,8 @@ import {
 	removeAnswer,
 	updateAnswerDetails,
 } from '../answers/answersSlice';
-import styles from './CreateTestForm.module.css';
 import QuestionsList from '../questions/QuestionsList';
+import styles from './CreateTestForm.module.css';
 
 type QuestionWithAnswers = {
 	id: number;
@@ -326,114 +326,119 @@ export default function CreateTestFormSec() {
 	};
 
 	return (
-		<div className="testContainer">
-			<h2 className={styles.testHeader}>Test List</h2>
-			<div className="selectContainer">
-				<select
-					className="testSelect"
-					value={testId}
-					onChange={(e) => setTestId(Number(e.target.value))}
-				>
-					<option value="">Select a test</option>
-					{tests.map((test) => (
-						<option key={test.id} value={test.id}>
-							{test.level}, {test.type}, {test.name}
-						</option>
-					))}
-				</select>
-			</div>
-			{testId && (
-				<div className="selectedTest">
-					<strong>Selected Test: </strong>
-					<span className="selectedTestName">
-						{tests.find((test) => test.id === testId)?.name}
-					</span>
-					<button
-						className="addQuestionButton"
-						onClick={() => setIsAddingQuestion(true)}
+		<div className={styles.containerHome}>
+			<div className={styles.testContainer}>
+				<h2 className={styles.testHeader}>Test List</h2>
+				<div className={styles.selectContainer}>
+					<select
+						className={styles.testSelect}
+						value={testId}
+						onChange={(e) => setTestId(Number(e.target.value))}
 					>
-						Add Question +
-					</button>
-					{isAddingQuestion && (
-						<form className="questionForm" onSubmit={handleCreateQuestion}>
-							<input
-								className="questionInput"
-								type="text"
-								placeholder="Enter new question"
-								value={question}
-								onChange={(e) => setQuestion(e.target.value)}
-							/>
-							<button className="saveQuestionButton" type="submit">
-								Save Question
-							</button>
-							<button
-								className="cancelButton"
-								type="button"
-								onClick={() => setIsAddingQuestion(false)}
-							>
-								Cancel
-							</button>
-						</form>
-					)}
-				</div>
-			)}
-			{createdQuestionId && isAddingQuestion && (
-				<div className="answersSection">
-					<h3>Answers for the new question</h3>
-					{Array.from({ length: 4 }).map((_, index) => (
-						<div key={index} className="answerInputContainer">
-							<input
-								className="answerInput"
-								type="text"
-								placeholder={`Answer ${index + 1}`}
-								value={answerTexts[index]}
-								onChange={(e) => handleAnswerTextChange(index, e.target.value)}
-								required
-							/>
-							<input
-								className="correctAnswerRadio"
-								type="radio"
-								name="correctAnswer"
-								checked={correctAnswerIndex === index}
-								onChange={() => setCorrectAnswerIndex(index)}
-							/>
-							<label className="correctAnswerLabel">Correct</label>
-						</div>
-					))}
-					<button
-						className="saveAnswersButton"
-						onClick={() => handleCreateAnswers(createdQuestionId)}
-					>
-						Save Answers
-					</button>
-				</div>
-			)}
-			{createdQuestions.map((questionWithAnswers) => (
-				<div key={questionWithAnswers.id} className="questionItem">
-					<h4 className="questionText">{questionWithAnswers.question}</h4>
-					<button
-						className="editQuestionButton"
-						onClick={() => startEditingQuestion(questionWithAnswers)}
-					>
-						Edit
-					</button>
-					<button
-						className="deleteQuestionButton"
-						onClick={() => handleQuestionRemove(questionWithAnswers.id)}
-					>
-						Delete
-					</button>
-					<ul>
-						{questionWithAnswers.answers.map((answer) => (
-							<li key={answer.id}>
-								{answer.answer} - {answer.correct ? 'Correct' : 'Incorrect'}
-								<button type="button">Edit</button>
-								<button type="button">Delete</button>
-							</li>
+						<option value="">Select a test</option>
+						{tests.map((test) => (
+							<option key={test.id} value={test.id}>
+								{test.level}, {test.type}, {test.name}
+							</option>
 						))}
-					</ul>
+					</select>
 				</div>
-			))}
+				{testId && (
+					<div className={styles.selectedTest}>
+						<strong>Selected Test: </strong>
+						<span className={styles.electedTestName}>
+							{tests.find((test) => test.id === testId)?.name}
+						</span>
+						<button className={styles.addQuestionButton} onClick={() => setIsAddingQuestion(true)}>
+							Add Question
+						</button>
+						{isAddingQuestion && (
+							<form className={styles.questionForm} onSubmit={handleCreateQuestion}>
+								<input
+									className={styles.questionInput}
+									type="text"
+									placeholder="Enter new question"
+									value={question}
+									onChange={(e) => setQuestion(e.target.value)}
+								/>
+								<button className={styles.saveQuestionButton} type="submit">
+									Save Question
+								</button>
+								<button
+									className={styles.cancelButton}
+									type="button"
+									onClick={() => setIsAddingQuestion(false)}
+								>
+									Cancel
+								</button>
+							</form>
+						)}
+					</div>
+				)}
+				{createdQuestionId && isAddingQuestion && (
+					<div className={styles.answersSection}>
+						<h3>Answers for the new question</h3>
+						{Array.from({ length: 4 }).map((_, index) => (
+							<div key={index} className={styles.answerInputContainer}>
+								<input
+									className={styles.answerInput}
+									type="text"
+									placeholder={`Answer ${index + 1}`}
+									value={answerTexts[index]}
+									onChange={(e) =>
+										handleAnswerTextChange(index, e.target.value)
+									}
+									required
+								/>
+								<input
+									className={styles.correctAnswerRadio}
+									type="radio"
+									name="correctAnswer"
+									checked={correctAnswerIndex === index}
+									onChange={() => setCorrectAnswerIndex(index)}
+								/>
+								<label className={styles.correctAnswerLabel}>Correct</label>
+							</div>
+						))}
+						<button
+							className={styles.saveAnswersButton}
+							onClick={() => handleCreateAnswers(createdQuestionId)}
+						>
+							Save Answers
+						</button>
+					</div>
+				)}
+				{createdQuestions.map((questionWithAnswers) => (
+					<div key={questionWithAnswers.id} className={styles.questionItem}>
+						<h4 className={styles.questionText}>{questionWithAnswers.question}</h4>
+						<button
+							className={styles.editQuestionButton}
+							onClick={() => startEditingQuestion(questionWithAnswers)}
+						>
+							Edit
+						</button>
+						<button
+							className={styles.deleteQuestionButton}
+							onClick={() => handleQuestionRemove(questionWithAnswers.id)}
+						>
+							Delete
+						</button>
+						<ul className={styles.answerList}>
+							{questionWithAnswers.answers.map((answer) => (
+								<li key={answer.id} className={styles.answerItem}>
+									{answer.answer} - {answer.correct ? 'Correct' : 'Incorrect'}
+									<button className={styles.editAnswerButton} type="button">
+										Edit
+									</button>
+									<button className={styles.deleteAnswerButton} type="button">
+										Delete
+									</button>
+								</li>
+							))}
+						</ul>
+					</div>
+				))}
+			</div>
 		</div>
 	);
 }
