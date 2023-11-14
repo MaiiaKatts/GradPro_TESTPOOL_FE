@@ -12,6 +12,7 @@ function Login(): JSX.Element {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const error = useAppSelector(selectLoginFormError);
+	const {user} = useAppSelector(state => state.auth);
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -27,7 +28,8 @@ function Login(): JSX.Element {
 			// проверяем, что санк login зарезолвился успешно
 			if (login.fulfilled.match(dispatchResult)) {
 				dispatch(getUser()); // подгрузит юзера
-				navigate('/'); // переведет на стартовую страницу
+				console.log('User',user);
+				navigate('/user'); // переведет на стартовую страницу
 			}
 
 			// выводим в консоль ошибку если санк login зареджектился

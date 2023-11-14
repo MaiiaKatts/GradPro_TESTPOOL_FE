@@ -1,8 +1,14 @@
-.test-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.testContainer {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
 }
+
+.testHeader {
+  font-size: 1.5em;
+  color: #333;
+}
+
 
 .test-list, .question-list, .answer-list {
   margin-bottom: 20px;
