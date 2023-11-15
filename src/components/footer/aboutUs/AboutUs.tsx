@@ -4,6 +4,7 @@ import styles from './AboutUs.module.css';
 export default function AboutUs(): JSX.Element {
 	return (
 		<div className={styles.mainContainer}>
+			<h1 className={styles.header}>About Us</h1>
 			<div className={styles.teamSection}>
 				<div className={styles.team}>
 					<div className={styles.teamMember_1}>

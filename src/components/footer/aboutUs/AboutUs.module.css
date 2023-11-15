@@ -4,13 +4,20 @@
 	padding-bottom: 30px;
 	justify-content: center;
 }
-
+	
+.header {
+  color:rgb(76, 152, 150);
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 26px;
+  text-align: center;
+}
 .teamSection {
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
 	gap: 20px;
-	margin-bottom: 40px;
+	margin-bottom: 10px;
 	
 }
 
@@ -86,6 +93,7 @@ margin-top: 20px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	margin-left: 60px;
 	margin-right: 60px;
+	margin-bottom: 60px;
 }
 
 .lower_container h2 {

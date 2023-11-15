@@ -55,9 +55,9 @@ export default function TestList(): JSX.Element {
 			<div className={styles.mainContainer}>
 				<div className={styles.leftContainer}>
 					<div className={styles.testLinks}>
-						<NavLink to="/" className={styles.testLink_BE}></NavLink>
-						<NavLink to="/" className={styles.testLink_FE}></NavLink>
-						<NavLink to="/" className={styles.testLink_QA}></NavLink>
+						<NavLink to="/testBE" className={styles.testLink_BE}></NavLink>
+						<NavLink to="/testFE" className={styles.testLink_FE}></NavLink>
+						<NavLink to="/testQA" className={styles.testLink_QA}></NavLink>
 					</div>
 				</div>
 				<div className={styles.middleContainer}>

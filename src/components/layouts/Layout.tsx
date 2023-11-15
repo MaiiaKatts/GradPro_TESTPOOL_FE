@@ -7,7 +7,7 @@ function Main(): JSX.Element {
 		<>
 			<Navbar />
 			<Outlet />
-			<Footer /> {/* Это место, где Footer компонент добавлен */}
+			<Footer />
 		</>
 	);
 }

@@ -19,6 +19,11 @@ import AdminCabinet from './components/main/AdminCabinet';
 import Questions from './features/questions/Questions';
 import CreateTestForm from './features/tests/CreateTestForm';
 import Home from './components/Home/Home';
+import TestBE from './components/user_tests/TestBE';
+import TestQA from './components/user_tests/TestQA';
+import TestFE from './components/user_tests/TestFE';
+import FAQ from './components/footer/faq/FAQ';
+import More from './components/user_tests/More';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -47,6 +52,10 @@ function App(): JSX.Element {
 					<Route path="/confirm" element={<Confirmation />} />
 					{/* user */}
 					<Route path="/user" element={<TestList />} />
+					<Route path="/testBE" element={<TestBE />} />
+					<Route path="/testFE" element={<TestFE />} />
+					<Route path="/testQA" element={<TestQA />} />
+					<Route path="/more-info" element={<More />} />
 					{/* admin */}
 					<Route path="/admin_test" element={<AdminCabinet />} />
 					<Route path="/admin/questions" element={<Questions />} />
@@ -56,6 +65,7 @@ function App(): JSX.Element {
 					<Route path="/policy" element={<Policy />} />
 					<Route path="/about-us" element={<AboutUs />} />
 					<Route path="/support" element={<Support />} />
+					<Route path="/faq" element={<FAQ />} />
 					<Route path="/termOfUse" element={<TermOfUse />} />
 				</Route>
 			</Routes>

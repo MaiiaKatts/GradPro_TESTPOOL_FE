@@ -1,9 +1,11 @@
-.backgroundWrapper {
-  
-  
-  
+.containerHome {
+	background-color: rgb(246, 246, 228);
+	padding-top: 40px;
+	min-height: 100vh;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
 }
-
 .container {
   background-color: #FFFFFF;
   display: flex;
@@ -19,8 +21,8 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .container > * {
-  padding: 10px; /* Отступы для всех дочерних элементов */
-  width: calc(100% - 20px); /* Вычет отступов из ширины элемента */
+  padding: 10px;
+  width: calc(100% - 20px);
 }
 
 h1 {
@@ -118,6 +120,6 @@ th, td {
   }
 
   .button {
-    width: 70%; /* Меньшая ширина кнопки на мобильных устройствах */
+    width: 70%;
   }
 }

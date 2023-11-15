@@ -1,10 +1,8 @@
 .supportContainer {
   background-color: rgb(246, 246, 228);
-  padding-top: 20px;
-  min-height: 80vh; 
-  width: 100%;
-  box-sizing: border-box; 
-  margin: 0; 
+	padding-top: 30px;
+	padding-bottom: 30px;
+	justify-content: center;
  
 }
 
@@ -22,6 +20,7 @@
   border-radius: 8px;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);background-attachment: scroll; 
+  margin-bottom: 60px;
 }
 
 .authForm {

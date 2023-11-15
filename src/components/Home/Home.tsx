@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import styles from './Home.module.css';
+import { Link } from 'react-router-dom';
 
 export default function Home(): JSX.Element {
 	const [hoveredImage, setHoveredImage] = useState('');
@@ -18,24 +19,49 @@ export default function Home(): JSX.Element {
 		<div className={styles.containerHome}>
 			<div className={styles.mainContainer}>
 				<div className={styles.leftContainer}>
-					<img className={styles.mainImage} src="/images/image.jpg" alt="main image" />
+					<img
+						className={styles.mainImage}
+						src="/images/image.jpg"
+						alt="main image"
+					/>
 				</div>
 				<div className={styles.rightContainer}>
 					<div className={styles.textContent}>
 						<h4 className={styles.h4}>Unlock Your Potential – Start Today!</h4>
 						<p>
-							With over 100 questions in Frontend, Backend, and QA Testing, TESTPOOL turns your
-							interview prep from daunting to confident. Our platform is designed to bring you //
-							eslint-disable-next-line react/no-unescaped-entities closer to your IT career goals.
-							With each question, you'll become more precise, compelling, and ready. Preparation is
-							key, and TESTPOOL ensures it’s efficient and focused. We constantly update our
-							questions to reflect the latest industry trends, helping you stay current and ahead of
-							the curve. Our detailed explanations deepen your understanding, making your responses
-							in the interview not just rehearsed answers but demonstrations of your problem-solving
-							prowess. Join TESTPOOL and make the commitment that sets you apart in your next tech
-							interview. Your potential awaits, and with TESTPOOL, you're one step closer to
-							realizing it. Let’s begin this journey together, today.
+							Testpool offers a unique experience in preparing for technical
+							interviews in the fields of frontend, backend, and software
+							testing. Our platform is equipped with everything you need for
+							effective preparation and skill enhancement before your important
+							interview.
 						</p>
+						<p className={styles.p}>Features of Our Site:</p>
+						<div className={styles.paragraph}>
+							<p className={styles.p}>
+								<span className={styles.boldText}>
+									Extensive Question Database:
+								</span>
+								Our site includes over 100 meticulously prepared questions for
+								each profile, allowing you to fully immerse yourself in the
+								specifics of your chosen field.
+							</p>
+							<p className={styles.p}>
+								<span className={styles.boldText}>
+									Three Levels of Difficulty:
+								</span>
+								Depending on your experience and knowledge level, you can choose
+								from three difficulty levels: beginner, intermediate, or
+								advanced.
+							</p>
+							<p className={styles.p}>
+								<span className={styles.boldText}>Randomized Tests:</span>
+								Each test consists of 20 randomly selected questions, ensuring a
+								unique testing experience each time you take a test.
+							</p>
+							<Link to="/more-info" className={styles.moreInfoLink}>
+								more ...{' '}
+							</Link>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -51,7 +77,11 @@ export default function Home(): JSX.Element {
 								hoveredImage === 'BE' ? styles.hoverImageVisible : ''
 							}`}
 						>
-							<img src="/images/test_page3.jpg" alt="BE" className={styles.imageFullSize} />
+							<img
+								src="/images/test_pageBE.png"
+								alt="BE"
+								className={styles.imageFullSize}
+							/>
 						</div>
 					</div>
 
@@ -65,7 +95,11 @@ export default function Home(): JSX.Element {
 								hoveredImage === 'FE' ? styles.hoverImageVisible : ''
 							}`}
 						>
-							<img src="/images/test_page2.jpg" alt="FE" className={styles.imageFullSize} />
+							<img
+								src="/images/test_pageFE.png"
+								alt="FE"
+								className={styles.imageFullSize}
+							/>
 						</div>
 					</div>
 
@@ -79,7 +113,11 @@ export default function Home(): JSX.Element {
 								hoveredImage === 'QA' ? styles.hoverImageVisible : ''
 							}`}
 						>
-							<img src="/images/test_page.jpg" alt="QA" className={styles.imageFullSize} />
+							<img
+								src="/images/test_pageQA.png"
+								alt="QA"
+								className={styles.imageFullSize}
+							/>
 						</div>
 					</div>
 				</div>
