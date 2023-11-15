@@ -62,6 +62,10 @@
 	font-size: 16px;
 	color: rgb(76, 152, 150);
 	font-style: italic;
+	margin-bottom: 20px;
+}
+.moreInfoLink:hover {
+	color: #333;
 }
 
 .demoButtonContainer {

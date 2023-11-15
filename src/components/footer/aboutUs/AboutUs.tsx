@@ -138,7 +138,7 @@ export default function AboutUs(): JSX.Element {
 							better IT preparation. Let's navigate the future of IT together.
 						</p>
 						<div>
-							<p>https://testpool.com/</p>
+							<p className={styles.moreInfoLink}>testpool@contact.com</p>
 						</div>
 					</div>
 				</div>
