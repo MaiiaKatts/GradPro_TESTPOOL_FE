@@ -11,7 +11,7 @@
 	align-items: flex-start;
 	width: 100%;
 	padding-right: 20px;
-	box-shadow: 0 2px 4px 4px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .leftContainer {
@@ -20,7 +20,10 @@
 	justify-content: center;
 	align-items: center;
 }
-
+.p{
+	margin: 0px;
+	margin-bottom: 5px;
+}
 .mainImage {
 	width: 100%;
 }
@@ -34,14 +37,31 @@
 	align-items: center;
 	justify-content: center;
 }
+
 .h4 {
-	font-size: 26px;
+	font-size: 24px;
 }
+
 .textContent {
-	font-size: 22px;
-	
+	font-size: 20px;
 	text-align: center;
 	text-align: justify; 
+}
+
+.paragraph {
+	font-size: 18px;
+}
+.boldText {
+  font-weight: bold;
+	font-size: 18px;
+ margin-right: 10px;
+}
+
+.moreInfoLink {
+	
+	font-size: 16px;
+	color: rgb(76, 152, 150);
+	font-style: italic;
 }
 
 .demoButtonContainer {
@@ -52,6 +72,7 @@
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .demoButtons {

@@ -52,7 +52,7 @@ export default function Support(): JSX.Element {
 					</div>
 					<div className={styles.formGroup}>
 						<label htmlFor="message" className={styles.formLabel}>
-							Your Message:
+							Your Message*:
 						</label>
 						<textarea
 							id="message"

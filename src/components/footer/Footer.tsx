@@ -33,6 +33,9 @@ function Footer(): JSX.Element {
 							<NavLink to="/support" className={`${styles.footerLink} ${styles.support}`}>
 								Support
 							</NavLink>
+							<NavLink to="/faq" className={`${styles.footerLink} ${styles.support}`}>
+								FAQ
+							</NavLink>
 						</div>
 						<div className={styles.socials}>
 							<a

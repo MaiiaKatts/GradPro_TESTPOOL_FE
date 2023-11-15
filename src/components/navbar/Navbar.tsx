@@ -33,7 +33,10 @@ function Navbar(): JSX.Element {
 	return (
 		<nav className={styles.navbar}>
 			<div className={styles.navbar_upper}>
-				<Link to="/" className={styles.logoLink}>
+				<Link
+					to={isLoggedIn ? (isAdmin ? '/admin_test' : '/user') : '/'}
+					className={styles.logoLink}
+				>
 					<div className={styles.logo}></div>
 				</Link>
 

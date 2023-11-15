@@ -39,7 +39,7 @@
 	height: 150px;
 	background-size: contain;
 	background-repeat: no-repeat;
-	background-color: rgb(246, 246, 228);
+	
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -64,9 +64,9 @@
 	padding-top: 3%;
 	background-color: rgb(246, 246, 228);
 	display: flex;
-	flex-direction: column; /* Располагаем элементы в колонку */
-	align-items: center; /* Центрируем элементы по горизонтали */
-	justify-content: flex-start; /* Выравниваем элементы по началу контейнера */
+	flex-direction: column; 
+	align-items: center;
+	justify-content: flex-start;
 }
 .middleContainer {
 	width: 40%;

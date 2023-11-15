@@ -85,7 +85,7 @@ export default function AnswerList(): JSX.Element {
 	};
 
 	return (
-		<div className={styles.backgroundWrapper}>
+		<div className={styles.containerHome}>
 			<div className={styles.container}>
 				<h1>All answers</h1>
 				<div className={styles['table-container']}>

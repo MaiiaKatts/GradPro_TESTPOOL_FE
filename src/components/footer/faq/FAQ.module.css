@@ -51,4 +51,25 @@
   margin-bottom: 10px;
 }
 
+.emphasizedText {
+  font-weight: bold;
+}
+.boldText {
+  font-weight: bold;
+}
 
+.regularText {
+  font-style: italic;
+  font-size: 18px;
+  color: rgb(141, 141, 141);
+}
+
+.link {
+  font-style: italic;
+  font-size: 16px;
+}
+
+.paragraph_link{
+  font-size: 14px;
+  margin-top: 30px;
+}
