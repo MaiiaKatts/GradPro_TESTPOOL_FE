@@ -60,6 +60,7 @@ export default function QuestionsList(): JSX.Element {
 						))}
 				</div>
 			))}
+			<QuestionsList />
 		</div>
 	);
 }

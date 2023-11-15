@@ -77,6 +77,9 @@ function Navbar(): JSX.Element {
 							<NavLink to="/admin/tests" className={styles.nav_link_lower}>
 								Create test
 							</NavLink>
+							<NavLink to="/admin/questionsList" className={styles.nav_link_lower}>
+								Questions List
+							</NavLink>
 
 							{/*<NavLink to="/tasks">Задачи текущего пользователя</NavLink>*/}
 							{/*<NavLink to="/questions" className={styles.nav_link_lower}>
