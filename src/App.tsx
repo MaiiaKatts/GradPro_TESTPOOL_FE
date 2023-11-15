@@ -24,6 +24,7 @@ import TestQA from './components/user_tests/TestQA';
 import TestFE from './components/user_tests/TestFE';
 import FAQ from './components/footer/faq/FAQ';
 import More from './components/user_tests/More';
+import QuestionsList from './features/questions/QuestionsList';
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -61,6 +62,7 @@ function App(): JSX.Element {
 					<Route path="/admin/questions" element={<Questions />} />
 					<Route path="/admin/answers" element={<AnswerList />} />
 					<Route path="/admin/tests" element={<CreateTestForm />} />
+					<Route path="/admin/questionsList" element={<QuestionsList />} />
 					{/* Footer */}
 					<Route path="/policy" element={<Policy />} />
 					<Route path="/about-us" element={<AboutUs />} />
