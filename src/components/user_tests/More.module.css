@@ -1,26 +1,24 @@
 .supportContainer {
 	background-color: rgb(246, 246, 228);
-	padding-top: 40px;
-	min-height: 100vh;
-	width: 100%;
-	box-sizing: border-box;
-	margin: 0;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	justify-content: center;
 }
 
 .termsContainer {
-	padding: 20px;
-	background-color: #ffffff;
-	border-radius: 8px;
-	max-width: 1000px;
-	margin: auto;
-	border: 1px solid #ccc;
-	border-radius: 8px;
-	background-color: white;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	background-attachment: scroll;
-	padding-left: 40px;
-	padding-right: 40px;
-	margin-bottom: 60px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  max-width: 1000px;
+  margin: auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-attachment: scroll; 
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-bottom: 60px;
 }
 
 .p{
