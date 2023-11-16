@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import AnswerState from './types/AnswerState';
 import * as api from './answerApi';
@@ -18,8 +19,7 @@ export const createAnswer = createAsyncThunk(
 		questionId,
 		answer,
 		correct,
-	}: //isCorrect,
-	{
+	}: {
 		questionId: number;
 		answer: string;
 		correct: boolean;
@@ -35,25 +35,25 @@ export const updateAnswerDetails = createAsyncThunk(
 	'answers/updateAnswer',
 	async ({
 		questionId,
-		answerId,
+		id,
 		answer,
 		correct,
 	}: {
 		questionId: number;
-		answerId: number;
+		id: number;
 		answer: string;
 		correct: boolean;
 	}) => {
-		await api.updateAnswer(questionId, answerId, answer, correct);
-		return { answerId, answer, correct };
+		await api.updateAnswer(questionId, id, answer, correct);
+		return { id, answer, correct };
 	}
 );
 
 export const removeAnswer = createAsyncThunk(
 	'answers/deleteAnswer',
-	async ({ questionId, answerId }: { questionId: number; answerId: number }) => {
-		await api.deleteAnswer(questionId, answerId);
-		return answerId;
+	async ({ questionId, id }: { questionId: number; id: number }) => {
+		await api.deleteAnswer(questionId, id);
+		return id;
 	}
 );
 
@@ -81,8 +81,8 @@ const answersSlice = createSlice({
 				state.error = action.error.message ?? 'Ошибка при создании ответа.';
 			})
 			.addCase(updateAnswerDetails.fulfilled, (state, action) => {
-				const { answerId, answer } = action.payload;
-				const index = state.answers.findIndex((a) => a.id === answerId);
+				const { id, answer } = action.payload;
+				const index = state.answers.findIndex((a) => a.id === id);
 				if (index !== -1) {
 					state.answers[index].answer = answer;
 				}

@@ -15,6 +15,8 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { loadTests } from '../tests/testsSlice';
 import { selectTests } from '../tests/selectors';
 import { JSX } from 'react/jsx-runtime';
+import AnswerEditForm from '../answers/AnswerEditForm';
+import QuestionEditForm from './QuestionEditForm';
 
 export default function QuestionsList(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -51,16 +53,19 @@ export default function QuestionsList(): JSX.Element {
 			{filteredQuestions.map((question) => (
 				<div key={question.id}>
 					<h4>{question.question}</h4>
+					<QuestionEditForm question={question} />
 					{filteredAnswers
 						.filter((answer) => answer.questionId === question.id)
 						.map((answer) => (
-							<p key={answer.id}>
-								{answer.answer} - {answer.correct ? 'Correct' : 'Incorrect'}
-							</p>
+							<div key={answer.id}>
+								<p>
+									{answer.answer} - {answer.correct ? 'Correct' : 'Incorrect'}
+								</p>
+								<AnswerEditForm answer={answer} />
+							</div>
 						))}
 				</div>
 			))}
-			<QuestionsList />
 		</div>
 	);
 }

@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { TestId } from './../tests/types/Test';
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import Question, { QuestionId } from './types/Question';
@@ -20,6 +23,15 @@ export async function getAllQuestions(): Promise<Question[]> {
 	return res.json();
 }
 
+interface QuestionResponse {
+	id: number;
+	question: string;
+	answer1: string;
+	answer2: string;
+	answer3: string;
+	answer4: string;
+}
+
 export async function getRandomQuestions(testId: TestId): Promise<Question[]> {
 	const res = await fetch(`/api/tests/${testId}/questions/randomQuestions`, {
 		method: 'GET',
@@ -40,7 +52,14 @@ export async function getRandomQuestions(testId: TestId): Promise<Question[]> {
 		});
 	}
 
-	return res.json();
+	const data: QuestionResponse[] = await res.json();
+
+	return data.map((item) => ({
+		id: item.id,
+		testId,
+		question: item.question,
+		answers: [item.answer1, item.answer2, item.answer3, item.answer4],
+	}));
 }
 
 export async function createQuestion(testId: TestId, question: string): Promise<Question> {
