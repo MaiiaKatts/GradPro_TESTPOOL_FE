@@ -61,6 +61,12 @@ function Navbar(): JSX.Element {
 			</div>
 
 			<div className={styles.navbar_lower}>
+				<div className={styles.leftLinks}>
+					<NavLink className={styles.nav_link_lower_advent} to="/advent_calender">
+						Advent Calender
+					</NavLink>
+				</div>
+
 				{isAdmin && (
 					<div className={styles.adminContainer}>
 						<div>
@@ -77,7 +83,10 @@ function Navbar(): JSX.Element {
 							<NavLink to="/admin/tests" className={styles.nav_link_lower}>
 								Create test
 							</NavLink>
-							<NavLink to="/admin/questionsList" className={styles.nav_link_lower}>
+							<NavLink
+								to="/admin/questionsList"
+								className={styles.nav_link_lower}
+							>
 								Questions List
 							</NavLink>
 
@@ -93,7 +102,7 @@ function Navbar(): JSX.Element {
 				)}
 
 				{isLoggedIn && !isAdmin && (
-					<>
+					<div>
 						<NavLink to="/user/progress" className={styles.nav_link_lower}>
 							Progress Bar
 						</NavLink>
@@ -103,7 +112,7 @@ function Navbar(): JSX.Element {
 						<NavLink to="/user/rank" className={styles.nav_link_lower}>
 							See the rank
 						</NavLink>
-					</>
+					</div>
 				)}
 			</div>
 		</nav>

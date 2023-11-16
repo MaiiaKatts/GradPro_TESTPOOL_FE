@@ -1,0 +1,209 @@
+.mainContainer {
+  background-color: rgb(246, 246, 228);
+	padding-top: 40px;
+	min-height: 100vh;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+  }
+.header {
+  color:rgb(209,92,83);
+  font-weight: bolder;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 26px;
+  text-align: center;
+}
+.calenderContainer{
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	padding-bottom:100px;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.day {
+  width: 250px;
+  height: 200px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: rgb(246, 246, 228);
+  padding: 10px;
+  text-align: center;
+  position: relative;
+}
+
+.dayNumber {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 40px;
+  background-color: rgb(252,177,70); /* Жёлтый фон */
+  width: 70px; /* Ширина круга */
+  height: 70px; /* Высота круга */
+  border-radius: 50%; /* Делаем круг */
+  display: flex;
+  align-items: center; /* Центрирование текста по вертикали */
+  justify-content: center; /* Центрирование текста по горизонтали */
+  color: black; /* Цвет текста */
+  margin: auto; 
+  position: absolute; /* Позиционируем номер дня абсолютно внутри .day */
+  bottom: 10px; /* Отступ снизу */
+  right: 10px;
+}
+
+.answer {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  margin-bottom: 5px;
+  outline: none;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px; 
+}
+
+.question {
+  margin-top: 5px;
+  transition: background-color 0.3s;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.correct {
+  background-color:rgb(252,177,70);
+}
+
+.incorrect {
+  background-color:rgb(241, 155, 149);
+}
+
+.day {
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Скрытие фона при открытии */
+.day.open {
+  background-image: none;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.question, .answer {
+  display: none;
+  width: 80%; /* или другой процент/значение в зависимости от предпочтений */
+}
+
+.day.open .question {
+  display: block;
+  margin-top: 5px; /* Расстояние между вопросом и верхней частью окошка */
+}
+
+.day.open .answer {
+margin-top: 145px;
+}
+
+@keyframes correctAnswerAnimation {
+  0% {
+    transform: scale(1);
+    background-color: rgb(252, 219, 172);
+  }
+  50% {
+    transform: scale(1.1);
+    background-color: rgb(252,177,70);
+  }
+  100% {
+    transform: scale(1);
+    background-color: rgb(252, 219, 172);
+  }
+}
+
+.correct {
+  animation: correctAnswerAnimation 1s ease-in-out;
+}
+
+
+
+
+/* Стили для фоновых изображений */
+.day1 {
+  background-image: url('/images/advent_02.png');
+}
+.day2 {
+  background-image: url('/images/advent_03.png');
+}
+.day3 {
+  background-image: url('/images/advent_04.png');
+}
+.day4 {
+  background-image: url('/images/advent_05.png');
+}.day5 {
+  background-image: url('/images/advent_06.png');
+}.day6 {
+  background-image: url('/images/advent_07.png');
+}.day7 {
+  background-image: url('/images/advent_08.png');
+}.day8 {
+  background-image: url('/images/advent_09.png');
+}.day9 {
+  background-image: url('/images/advent_10.png');
+}.day10 {
+  background-image: url('/images/advent_11.png');
+}.day11 {
+  background-image: url('/images/advent_12.png');
+}.day12 {
+  background-image: url('/images/advent_13.png');
+}.day14 {
+  background-image: url('/images/advent_15.png');
+}.day15 {
+  background-image: url('/images/advent_16.png');
+}.day16 {
+  background-image: url('/images/advent_17.png');
+}.day18 {
+  background-image: url('/images/advent_19.png');
+}.day19 {
+  background-image: url('/images/advent_20.png');
+}.day20 {
+  background-image: url('/images/advent_21.png');
+}.day21 {
+  background-image: url('/images/advent_22.png');
+}.day22 {
+  background-image: url('/images/advent_23.png');
+}.day23 {
+  background-image: url('/images/advent_24.png');
+}.day24 {
+  background-image: url('/images/advent_25.png');
+}.day13 {
+  background-image: url('/images/advent_14.png');
+}.day17 {
+  background-image: url('/images/advent_18.png');
+}
+/* ... и так далее для каждого дня ... */
+
+/* Стили для отображения вопросов и полей ввода */
+.question, .answer {
+  display: none;
+}
+
+.day.open .question, 
+.day.open .answer {
+  display: block;
+}
