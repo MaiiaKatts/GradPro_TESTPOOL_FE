@@ -18,14 +18,13 @@
 }
 
 .navbar_lower {
-  justify-content: flex-end;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: space-between; /* Расположение элементов по краям */
   background-color: rgb(209, 92, 83);
   height: 40px;
-  padding-bottom: 4px;
+  padding: 0 70px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding-right: 70px;
 }
 
 .logo {
@@ -82,12 +81,26 @@
   font-style: italic;
 }
 
-.nav_link_lower:hover {
+.nav_link_lower:hover,
+.nav_link_lower_advent:hover{
   color: white;
   text-decoration: none;
   transform: scale(1.05);
 }
-
+.nav_link_lower_advent{
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(246, 246, 228);
+  text-decoration: none;
+  display: inline-block;
+  font-style: italic;
+}
+.leftLinks {
+  /* Стили для контейнера слева */
+  display: flex;
+  align-items: center;
+}
 .tooltip {
   position: absolute;
   background-color: #333;

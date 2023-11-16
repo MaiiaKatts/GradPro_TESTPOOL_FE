@@ -25,7 +25,9 @@ import TestFE from './components/user_tests/TestFE';
 import FAQ from './components/footer/faq/FAQ';
 import More from './components/user_tests/More';
 import QuestionsList from './features/questions/QuestionsList';
+import AdventCalendar from './components/advent_calendar/AdventCalender';
 import TestsQuestions from './features/tests/TestsQuestions';
+
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -51,6 +53,7 @@ function App(): JSX.Element {
 					{/* NavBar */}
 					<Route path="/auth/login" element={<Login />} />
 					<Route path="/auth/register" element={<Register />} />
+					<Route path="/advent_calender" element={<AdventCalendar />} />
 					<Route path="/confirm" element={<Confirmation />} />
 					{/* user */}
 					<Route path="/user" element={<TestList />} />
