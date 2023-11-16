@@ -18,6 +18,7 @@ export default function AnswerList(): JSX.Element {
 	const questions = useAppSelector(selectQuestions);
 	const tests = useAppSelector(selectTests);
 	const [newAnswer, setNewAnswer] = useState<Answer>({
+		id: 0,
 		answer: '',
 		correct: false,
 		questionId: 0,
@@ -59,7 +60,7 @@ export default function AnswerList(): JSX.Element {
 					correct: newAnswer.correct,
 				})
 			);
-			setNewAnswer({ questionId: 0, answer: '', correct: false });
+			setNewAnswer({ id: 0, questionId: 0, answer: '', correct: false });
 		} else {
 			console.error('Please fill in all fields');
 		}
@@ -69,7 +70,7 @@ export default function AnswerList(): JSX.Element {
 		if (answer.id && answer.questionId) {
 			dispatch(
 				updateAnswerDetails({
-					answerId: answer.id,
+					id: answer.id,
 					questionId: answer.questionId,
 					answer: answer.answer,
 					correct: answer.correct,
@@ -80,7 +81,7 @@ export default function AnswerList(): JSX.Element {
 
 	const handleRemoveAnswer = (answer: Answer): void => {
 		if (answer.id && answer.questionId) {
-			dispatch(removeAnswer({ questionId: answer.questionId, answerId: answer.id }));
+			dispatch(removeAnswer({ questionId: answer.questionId, id: answer.id }));
 		}
 	};
 

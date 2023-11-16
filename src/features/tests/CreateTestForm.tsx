@@ -57,6 +57,7 @@ export default function CreateTestFormSec() {
 	const [answerTexts, setAnswerTexts] = useState(['', '', '', '']);
 	const [correctAnswerIndex, setCorrectAnswerIndex] = useState<number | null>(null);
 	const [newAnswer, setNewAnswer] = useState<Answer>({
+		id: 0,
 		answer: '',
 		correct: false,
 		questionId: 0,
@@ -170,7 +171,7 @@ export default function CreateTestFormSec() {
 		if (answer.id && answer.questionId) {
 			const resultAction = await dispatch(
 				updateAnswerDetails({
-					answerId: answer.id,
+					id: answer.id,
 					questionId: answer.questionId,
 					answer: answer.answer,
 					correct: answer.correct,
@@ -189,7 +190,7 @@ export default function CreateTestFormSec() {
 													...a,
 													answer: resultAction.payload.answer,
 													correct: resultAction.payload.correct,
-													id: resultAction.payload.answerId,
+													id: resultAction.payload.id,
 											  }
 											: a
 									),
@@ -208,10 +209,10 @@ export default function CreateTestFormSec() {
 		setEditingAnswerIndex(index);
 	};
 
-	const handleRemoveAnswer = async (answerId: number, questionId: number) => {
+	/*const handleRemoveAnswer = async (answerId: number, questionId: number) => {
 		const resultAction = await dispatch(
 			removeAnswer({
-				answerId,
+				id,
 				questionId,
 			})
 		);
@@ -365,36 +366,6 @@ export default function CreateTestFormSec() {
 						</button>
 					</div>
 				)}
-				{createdQuestions.map((questionWithAnswers) => (
-					<div key={questionWithAnswers.id} className={styles.questionItem}>
-						<h4 className={styles.questionText}>{questionWithAnswers.question}</h4>
-						<button
-							className={styles.editQuestionButton}
-							onClick={() => startEditingQuestion(questionWithAnswers)}
-						>
-							Edit
-						</button>
-						<button
-							className={styles.deleteQuestionButton}
-							onClick={() => handleQuestionRemove(questionWithAnswers.id)}
-						>
-							Delete
-						</button>
-						<ul className={styles.answerList}>
-							{questionWithAnswers.answers.map((answer) => (
-								<li key={answer.id} className={styles.answerItem}>
-									{answer.answer} - {answer.correct ? 'Correct' : 'Incorrect'}
-									<button className={styles.editAnswerButton} type="button">
-										Edit
-									</button>
-									<button className={styles.deleteAnswerButton} type="button">
-										Delete
-									</button>
-								</li>
-							))}
-						</ul>
-					</div>
-				))}
 			</div>
 		</div>
 	);
