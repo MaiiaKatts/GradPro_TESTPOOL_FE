@@ -29,19 +29,23 @@ export default function TestsResults({
 	const dispatch = useAppDispatch();
 	const error = useAppSelector(selectError);
 	const userAnswers = Object.values(selectedAnswers);
-	const currentTestResults = testResults.filter((result) => result.testId === testId);
+	const currentTestResults = testResults.filter(
+		(result) => result.testId === testId
+	);
 	const latestTestResult = currentTestResults[currentTestResults.length - 1];
 	//const latestTestResult = testResults[testResults.length - 1];
 
 	useEffect(() => {
 		const saveResults = async () => {
-			const answerPromises = Object.entries(selectedAnswers).map(([questionId, answerId]) => {
-				const answerData = {
-					answerId,
-					questionId: Number(questionId),
-				};
-				return dispatch(correctAnswer(answerData));
-			});
+			const answerPromises = Object.entries(selectedAnswers).map(
+				([questionId, answerId]) => {
+					const answerData = {
+						answerId,
+						questionId: Number(questionId),
+					};
+					return dispatch(correctAnswer(answerData));
+				}
+			);
 
 			try {
 				await Promise.all(answerPromises);
@@ -85,7 +89,9 @@ export default function TestsResults({
 	return (
 		<div>
 			<h2>Test Results</h2>
-			{showOnlyScore && latestTestResult && latestTestResult.testId === testId ? (
+			{showOnlyScore &&
+			latestTestResult &&
+			latestTestResult.testId === testId ? (
 				<div key={latestTestResult.id}>
 					<p>Your result: {latestTestResult.score} correct answers</p>
 				</div>

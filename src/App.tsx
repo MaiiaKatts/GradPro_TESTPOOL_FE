@@ -52,7 +52,7 @@ function App(): JSX.Element {
 					<Route path="/confirm" element={<Confirmation />} />
 					{/* user */}
 					<Route path="/user" element={<TestList />} />
-					<Route path="/more-info" element={<More />} /
+					<Route path="/more-info" element={<More />} />
 					<Route path="/testBE/:testId" element={<TestsQuestions />} />
 					<Route path="/testFE/:testId" element={<TestsQuestions />} />
 					<Route path="/testQA/:testId" element={<TestsQuestions />} />
