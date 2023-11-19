@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { logout } from '../../features/auth/authSlice';
 import { selectUser } from '../../features/auth/selectors';
@@ -7,7 +7,6 @@ import styles from './NavBar.module.css';
 
 function Navbar(): JSX.Element {
 	const dispatch = useAppDispatch();
-	const location = useLocation();
 	const navigate = useNavigate();
 	const user = useAppSelector(selectUser);
 
@@ -62,7 +61,10 @@ function Navbar(): JSX.Element {
 
 			<div className={styles.navbar_lower}>
 				<div className={styles.leftLinks}>
-					<NavLink className={styles.nav_link_lower_advent} to="/advent_calender">
+					<NavLink
+						className={styles.nav_link_lower_advent}
+						to="/advent_calender"
+					>
 						Advent Calender
 					</NavLink>
 				</div>
@@ -89,14 +91,6 @@ function Navbar(): JSX.Element {
 							>
 								Questions List
 							</NavLink>
-
-							{/*<NavLink to="/tasks">Задачи текущего пользователя</NavLink>*/}
-							{/*<NavLink to="/questions" className={styles.nav_link_lower}>
-								Вопросы
-							</NavLink>
-							<NavLink to="/answers" className={styles.nav_link_lower}>
-								Ответы
-				</NavLink>*/}
 						</div>
 					</div>
 				)}

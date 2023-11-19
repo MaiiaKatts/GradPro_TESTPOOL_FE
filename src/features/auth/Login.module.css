@@ -1,7 +1,7 @@
 .containerHome {
   background-color: rgb(246, 246, 228);
   padding-top: 20px;
-  min-height: 100vh;
+  min-height: 90vh;
   width: 100%;
   box-sizing: border-box;
   margin: 0;
@@ -73,5 +73,4 @@
   right: 10px;
   cursor: pointer;
   margin-bottom: 10px;;
-  
 }

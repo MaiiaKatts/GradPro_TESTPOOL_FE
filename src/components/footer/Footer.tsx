@@ -12,7 +12,10 @@ function Footer(): JSX.Element {
 		<div className={styles.mainContainer}>
 			<footer className={styles.footer}>
 				<div className={styles.footerContainer}>
-					<NavLink to="/about-us" className={`${styles.footerLink} ${styles.about}`}>
+					<NavLink
+						to="/about-us"
+						className={`${styles.footerLink} ${styles.about}`}
+					>
 						About Us
 					</NavLink>
 					<div className={styles.footerContainer}>
@@ -20,20 +23,32 @@ function Footer(): JSX.Element {
 							<span>© {currentYear} Testpool. All rights reserved.</span>
 						</div>
 						<div className={styles.centerContent2}>
-							<NavLink to="/termOfUse" className={`${styles.footerLink} ${styles.about}`}>
+							<NavLink
+								to="/termOfUse"
+								className={`${styles.footerLink} ${styles.about}`}
+							>
 								Terms of Use
 							</NavLink>
-							<NavLink to="/policy" className={`${styles.footerLink} ${styles.about}`}>
+							<NavLink
+								to="/policy"
+								className={`${styles.footerLink} ${styles.about}`}
+							>
 								Privacy Policy
 							</NavLink>
 						</div>
 					</div>
 					<div className={styles.support_socials}>
 						<div className={styles.support}>
-							<NavLink to="/support" className={`${styles.footerLink} ${styles.support}`}>
+							<NavLink
+								to="/support"
+								className={`${styles.footerLink} ${styles.support}`}
+							>
 								Support
 							</NavLink>
-							<NavLink to="/faq" className={`${styles.footerLink} ${styles.support}`}>
+							<NavLink
+								to="/faq"
+								className={`${styles.footerLink} ${styles.support}`}
+							>
 								FAQ
 							</NavLink>
 						</div>

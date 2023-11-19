@@ -5,7 +5,6 @@ import { getUser } from './features/auth/authSlice';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import { selectAuthChecked } from './features/auth/selectors';
 import Layout from './components/layouts/Layout';
-
 import Confirmation from './features/auth/Confirmation';
 import AnswerList from './features/answers/AnswerList';
 import AboutUs from './components/footer/aboutUs/AboutUs';
@@ -19,15 +18,11 @@ import AdminCabinet from './components/main/AdminCabinet';
 import Questions from './features/questions/Questions';
 import CreateTestForm from './features/tests/CreateTestForm';
 import Home from './components/Home/Home';
-import TestBE from './components/user_tests/TestBE';
-import TestQA from './components/user_tests/TestQA';
-import TestFE from './components/user_tests/TestFE';
 import FAQ from './components/footer/faq/FAQ';
 import More from './components/user_tests/More';
 import QuestionsList from './features/questions/QuestionsList';
 import AdventCalendar from './components/advent_calendar/AdventCalender';
 import TestsQuestions from './features/tests/TestsQuestions';
-
 
 function App(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -57,13 +52,10 @@ function App(): JSX.Element {
 					<Route path="/confirm" element={<Confirmation />} />
 					{/* user */}
 					<Route path="/user" element={<TestList />} />
-					<Route path="/testBE" element={<TestBE />} />
-					<Route path="/testBE/:testId" element={<TestsQuestions />} />
-					<Route path="/testFE" element={<TestFE />} />
-					<Route path="/testFE/:testId" element={<TestsQuestions />} />
-					<Route path="/testQA" element={<TestQA />} />
-					<Route path="/testQA/:testId" element={<TestsQuestions />} />
 					<Route path="/more-info" element={<More />} />
+					<Route path="/testBE/:testId" element={<TestsQuestions />} />
+					<Route path="/testFE/:testId" element={<TestsQuestions />} />
+					<Route path="/testQA/:testId" element={<TestsQuestions />} />
 					{/* admin */}
 					<Route path="/admin_test" element={<AdminCabinet />} />
 					<Route path="/admin/questions" element={<Questions />} />

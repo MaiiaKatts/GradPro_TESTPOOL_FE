@@ -68,7 +68,8 @@ export default function PrivacyPolicy(): JSX.Element {
 				<h3 className={styles.sectionTitle}>8. Contact Us</h3>
 				<p className={styles.paragraph}>
 					If you have any questions or concerns regarding our Privacy Policy or
-					data processing, please contact us at testpool@contact.com.
+					data processing, please contact us at
+					<span className={styles.moreInfoLink}> testpool@contact.com.</span>
 				</p>
 			</div>
 		</div>
