@@ -1,15 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable no-console */
 /* eslint-disable no-prototype-builtins */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { loadRandomQuestions } from '../questions/questionsSlice';
 import { selectRandomQuestions } from '../questions/selectors';
 import { QuestionId } from '../questions/types/Question';
+import TestsResults from '../testsResults/TestsResults';
+import { AnswerId } from '../answers/types/answer';
+import { useParams } from 'react-router-dom';
 
-interface SelectedAnswers {
+export interface SelectedAnswers {
 	[key: number]: number;
 }
 
@@ -19,6 +23,7 @@ export default function TestsQuestions(): JSX.Element {
 	const dispatch = useAppDispatch();
 	const questions = useAppSelector(selectRandomQuestions);
 	const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
+	const [isTestCompleted, setIsTestCompleted] = useState<boolean>(false);
 
 	useEffect(() => {
 		console.log('Effect triggered, numTestId:', numTestId);
@@ -28,14 +33,14 @@ export default function TestsQuestions(): JSX.Element {
 		}
 	}, [dispatch, numTestId]);
 
-	/*useEffect(() => {
-		console.log('Questions in component:', questions);
-	}, [questions]);*/
+	const handleTestCompletion = () => {
+		setIsTestCompleted(true);
+	};
 
 	const filteredQuestions = questions.filter((q) => q.testId === numTestId);
 	console.log('questions: ', filteredQuestions);
 
-	const handleAnswerChange = (questionId: QuestionId, answerId: number) => {
+	const handleAnswerChange = (questionId: QuestionId, answerId: AnswerId) => {
 		setSelectedAnswers({
 			...selectedAnswers,
 			[questionId]: answerId,
@@ -48,25 +53,44 @@ export default function TestsQuestions(): JSX.Element {
 	);
 	console.log('answered', allAnswered);
 
+	console.log(
+		'Questions and their answers:',
+		filteredQuestions.map((q) => ({
+			questionId: q.id,
+			answers: q.answerObjects?.map((a) => ({ answerId: a.id, answerText: a.answer })),
+		}))
+	);
+
 	return (
 		<div>
-			{filteredQuestions.map((question) => (
-				<div key={question.id}>
-					<h4>{question.question}</h4>
-					{question.answers?.map((answer, index) => (
-						<label key={index}>
-							<input
-								type="radio"
-								name={`question ${question.id}`}
-								checked={selectedAnswers[question.id] === index}
-								onChange={() => handleAnswerChange(question.id, index)}
-							/>
-							{answer}
-						</label>
+			{!isTestCompleted && (
+				<div>
+					{filteredQuestions.map((question) => (
+						<div key={question.id}>
+							<h4>{question.question}</h4>
+							{question.answerObjects?.map((answer) => (
+								<label key={answer.id}>
+									<input
+										type="radio"
+										name={`question ${question.id}`}
+										checked={selectedAnswers[question.id] === answer.id}
+										onChange={() => handleAnswerChange(question.id, answer.id)}
+									/>
+									{answer.answer}
+								</label>
+							))}
+						</div>
 					))}
+					{allAnswered && (
+						<button type="button" onClick={handleTestCompletion}>
+							Get result
+						</button>
+					)}
 				</div>
-			))}
-			{allAnswered && <button type="button">Get result</button>}
+			)}
+			{isTestCompleted && (
+				<TestsResults selectedAnswers={selectedAnswers} testId={numTestId} showOnlyScore={true} />
+			)}
 		</div>
 	);
 }

@@ -1,3 +1,4 @@
+import { AnswerId } from './../answers/types/answer';
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
@@ -23,7 +24,7 @@ export async function getAllQuestions(): Promise<Question[]> {
 	return res.json();
 }
 
-interface QuestionResponse {
+/*interface QuestionResponse {
 	id: number;
 	question: string;
 	answer1: string;
@@ -59,6 +60,55 @@ export async function getRandomQuestions(testId: TestId): Promise<Question[]> {
 		testId,
 		question: item.question,
 		answers: [item.answer1, item.answer2, item.answer3, item.answer4],
+	}));
+}*/
+
+interface QuestionResponse {
+	id: number;
+	question: string;
+	answerId1: AnswerId;
+	answer1: string;
+	answerId2: AnswerId;
+	answer2: string;
+	answerId3: AnswerId;
+	answer3: string;
+	answerId4: AnswerId;
+	answer4: string;
+}
+
+export async function getRandomQuestions(testId: TestId): Promise<Question[]> {
+	const res = await fetch(`/api/tests/${testId}/questions/randomQuestions`, {
+		method: 'GET',
+		headers: {
+			accept: 'application/json',
+		},
+	});
+
+	interface Error {
+		message: string;
+		field: string;
+		rejectedValue: string;
+	}
+	if (res.status >= 400) {
+		const { errors }: { errors: Error[] } = await res.json();
+		errors.forEach((err) => {
+			throw new Error(`${err.field} ${err.rejectedValue} ${err.message}`);
+		});
+	}
+
+	const data: QuestionResponse[] = await res.json();
+
+	return data.map((item) => ({
+		id: item.id,
+		testId,
+		question: item.question,
+		answers: [item.answer1, item.answer2, item.answer3, item.answer4],
+		answerObjects: [
+			{ id: item.answerId1, answer: item.answer1 },
+			{ id: item.answerId2, answer: item.answer2 },
+			{ id: item.answerId3, answer: item.answer3 },
+			{ id: item.answerId4, answer: item.answer4 },
+		],
 	}));
 }
 

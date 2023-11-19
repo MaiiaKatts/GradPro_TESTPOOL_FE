@@ -1,3 +1,5 @@
+import { AnswerId } from './types/answer';
+import { QuestionId } from './../questions/types/Question';
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import AnswerState from './types/AnswerState';
@@ -57,6 +59,17 @@ export const removeAnswer = createAsyncThunk(
 	}
 );
 
+export const correctAnswer = createAsyncThunk(
+	'answers/correctAnswer',
+	async ({ questionId, answerId }: { questionId: QuestionId; answerId: AnswerId }) => {
+		console.log(`Sending correctAnswer for questionId: ${questionId}, answerId: ${answerId}`);
+		//await api.correctAnswer(id, questionId);
+		//return { id, questionId };
+		const res = await api.correctAnswer(questionId, answerId);
+		return res;
+	}
+);
+
 const answersSlice = createSlice({
 	name: 'answers',
 	initialState,
@@ -87,7 +100,6 @@ const answersSlice = createSlice({
 					state.answers[index].answer = answer;
 				}
 			})
-
 			.addCase(updateAnswerDetails.rejected, (state, action) => {
 				state.error = action.error.message ?? 'Ошибка при обновлении ответа.';
 			})
@@ -96,6 +108,9 @@ const answersSlice = createSlice({
 			})
 			.addCase(removeAnswer.rejected, (state, action) => {
 				state.error = action.error.message ?? 'Ошибка при удалении ответа.';
+			})
+			.addCase(correctAnswer.fulfilled, (state, action) => {
+				state.answers.push(action.payload);
 			});
 	},
 });

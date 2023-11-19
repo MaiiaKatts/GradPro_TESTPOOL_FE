@@ -31,12 +31,12 @@ export const login = createAsyncThunk('login', async (credentials: Credentials) 
 });
 
 export const register = createAsyncThunk('api/register', async (data: RegisterData) => {
-	// if (data.password !== data.passwordRepeat) {
-	// 	throw new Error('Пароли не совпадают');
-	// }
-	// if (!data.email.trim() || !data.password.trim()) {
-	// 	throw new Error('Не все поля заполнены');
-	// }
+	if (data.password !== data.passwordRepeat) {
+		throw new Error('Пароли не совпадают');
+	}
+	if (!data.email.trim() || !data.password.trim()) {
+		throw new Error('Не все поля заполнены');
+	}
 	return api.register(data);
 });
 

@@ -6,3 +6,4 @@ export default interface Answer {
 	question?: string;
 	difficultyLevel?: string;
 }
+export type AnswerId = Answer['id'];
