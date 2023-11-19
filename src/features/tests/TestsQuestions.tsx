@@ -57,7 +57,10 @@ export default function TestsQuestions(): JSX.Element {
 		'Questions and their answers:',
 		filteredQuestions.map((q) => ({
 			questionId: q.id,
-			answers: q.answerObjects?.map((a) => ({ answerId: a.id, answerText: a.answer })),
+			answers: q.answerObjects?.map((a) => ({
+				answerId: a.id,
+				answerText: a.answer,
+			})),
 		}))
 	);
 
@@ -89,7 +92,11 @@ export default function TestsQuestions(): JSX.Element {
 				</div>
 			)}
 			{isTestCompleted && (
-				<TestsResults selectedAnswers={selectedAnswers} testId={numTestId} showOnlyScore={true} />
+				<TestsResults
+					selectedAnswers={selectedAnswers}
+					testId={numTestId}
+					showOnlyScore={true}
+				/>
 			)}
 		</div>
 	);
