@@ -20,7 +20,7 @@
 	justify-content: center;
 	align-items: center;
 }
-.p{
+.p {
 	margin: 0px;
 	margin-bottom: 5px;
 }
@@ -45,20 +45,19 @@
 .textContent {
 	font-size: 20px;
 	text-align: center;
-	text-align: justify; 
+	text-align: justify;
 }
 
 .paragraph {
 	font-size: 18px;
 }
 .boldText {
-  font-weight: bold;
+	font-weight: bold;
 	font-size: 18px;
- margin-right: 10px;
+	margin-right: 10px;
 }
 
 .moreInfoLink {
-	
 	font-size: 16px;
 	color: rgb(76, 152, 150);
 	font-style: italic;
@@ -143,16 +142,15 @@
 	display: block;
 }
 
-
 @media (min-width: 481px) and (max-width: 768px) {
-  .demoButton {
+	.demoButton {
 		height: 20px;
 		width: 80px;
 		margin: 6px;
 	}
-  .demoButtonContainer {
-    padding-top: 10px;
-  }
+	.demoButtonContainer {
+		padding-top: 10px;
+	}
 	.textContent {
 		font-size: 6px;
 	}
@@ -162,18 +160,18 @@
 	.demoButtons {
 		padding-left: 20px;
 		padding-right: 20px;
-  }
+	}
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  .demoButton {
+	.demoButton {
 		height: 60px;
 		width: 180px;
 		margin: 6px;
 	}
-  .demoButtonContainer {
-    padding-top: 10px;
-  }
+	.demoButtonContainer {
+		padding-top: 10px;
+	}
 	.textContent {
 		font-size: 10px;
 	}
@@ -183,19 +181,18 @@
 	.demoButtons {
 		padding-left: 20px;
 		padding-right: 20px;
-  }
+	}
 }
 
-
 @media (min-width: 1025px) and (max-width: 1200px) {
-  .demoButton {
+	.demoButton {
 		height: 70px;
 		width: 220px;
 		margin: 6px;
 	}
-  .demoButtonContainer {
-    padding-top: 40px;
-  }
+	.demoButtonContainer {
+		padding-top: 40px;
+	}
 	.textContent {
 		font-size: 18px;
 	}
@@ -205,5 +202,5 @@
 	.demoButtons {
 		padding-left: 20px;
 		padding-right: 20px;
-  }
+	}
 }

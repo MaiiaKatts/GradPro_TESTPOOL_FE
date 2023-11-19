@@ -24,47 +24,132 @@
 
 .testLink_BE {
 	background-image: url('/images/button_BE_test.png');
+	cursor: pointer;
 }
 .testLink_FE {
 	background-image: url('/images/button_FE_test.png');
+	cursor: pointer;
 }
 .testLink_QA {
 	background-image: url('/images/button_QA_test.png');
+	cursor: pointer;
 }
 
 .testLink_BE,
 .testLink_FE,
 .testLink_QA {
-	width: 350px;
+	width: 330px;
 	height: 150px;
 	background-size: contain;
 	background-repeat: no-repeat;
-	
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
-	transition: transform 0.3s;
 	position: relative;
 	border: none;
 	outline: none;
-	margin-bottom: 50px;
-	background-attachment: scroll;
+	margin-bottom: 30px;
+	transition: background-color 0.3s;
+	
 }
 
-.testLink_BE:hover,
-.testLink_FE:hover,
-.testLink_QA:hover {
+.testLink_BE.active,
+.testLink_FE.active,
+.testLink_QA.active {
+	background-image: none;
 	transform: scale(1.03);
 	z-index: 5;
+	
+}
+
+.testLink_BE.active div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url('/images/button_BE_test_leer.png');
+	background-size: cover;
+	background-position: center;
+	
+}
+.testLink_FE.active div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url('/images/button_FE_test _leer.png');
+	background-size: cover;
+	background-position: center;
+}
+.testLink_QA.active div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url('/images/button_QA_test_leer.png');
+	background-size: cover;
+	background-position: center;
+}
+
+.testLink_BE.active a {
+	color: rgb(252, 177, 70);
+	text-decoration: none;
+	font-size: 18px;
+	font-style: italic;
+	font-family:monospace;
+	transition: color 0.3s;
+	text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000;
+
+}
+.testLink_FE.active a {
+	color: rgb(76, 152, 150);
+	text-decoration: none;
+	font-size: 18px;
+	font-style: italic;
+	font-family:monospace;
+	transition: color 0.3s;
+	text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000;
+}
+.testLink_QA.active a {
+	color: rgb(252, 177, 70);
+	text-decoration: none;
+	font-size: 18px;
+	font-style: italic;
+	font-family:monospace;
+	transition: color 0.3s;
+	text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000;
+}
+
+/* Стили при наведении */
+.testLink_BE.active a:hover,
+.testLink_FE.active a:hover,
+.testLink_QA.active a:hover {
+	color: rgb(0, 0, 0);
+	
 }
 
 .testLinks {
 	padding-top: 3%;
 	background-color: rgb(246, 246, 228);
 	display: flex;
-	flex-direction: column; 
+	flex-direction: column;
 	align-items: center;
 	justify-content: flex-start;
 }
@@ -78,7 +163,7 @@
 	padding-right: 20px;
 }
 .textContent {
-	font-size: 22px;
+	font-size: 20px;
 	text-align: center;
 	text-align: justify;
 	margin-left: 10px;
