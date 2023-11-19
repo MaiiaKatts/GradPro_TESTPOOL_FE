@@ -26,8 +26,13 @@ export async function getTestsResult(userId: UserId): Promise<TestResult[]> {
 	return res.json();
 }
 
-export async function saveTestResult(testId: TestId, userAnswers: AnswerId[]): Promise<TestResult> {
-	const userAnswersQuery = userAnswers.map((answerId) => `userAnswers=${answerId}`).join('&');
+export async function saveTestResult(
+	testId: TestId,
+	userAnswers: AnswerId[]
+): Promise<TestResult> {
+	const userAnswersQuery = userAnswers
+		.map((answerId) => `userAnswers=${answerId}`)
+		.join('&');
 	const url = `/api/tests/${testId}/saveResult?${userAnswersQuery}`;
 
 	const res = await fetch(url, {
