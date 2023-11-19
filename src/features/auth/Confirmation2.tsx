@@ -10,9 +10,12 @@ const Confirmation: React.FC = () => {
 
 	async function handleConfirm(): Promise<void> {
 		try {
-			const response = await fetch(`http://localhost:8080/api/users/confirm/${confirm}`, {
-				headers: { accept: 'application/json' },
-			});
+			const response = await fetch(
+				`http://localhost:8080/api/users/confirm/${confirm}`,
+				{
+					headers: { accept: 'application/json' },
+				}
+			);
 			if (!response.ok) {
 				throw new Error('Network response was not ok.');
 			}
@@ -25,7 +28,11 @@ const Confirmation: React.FC = () => {
 
 	return (
 		<>
-			<input type="text" value={confirm} onChange={(e) => setConfirm(e.target.value)} />
+			<input
+				type="text"
+				value={confirm}
+				onChange={(e) => setConfirm(e.target.value)}
+			/>
 			<button
 				type="button"
 				onClick={handleConfirm} // Теперь здесь прямой вызов функции handleConfirm
