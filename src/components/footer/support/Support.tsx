@@ -19,8 +19,8 @@ export default function Support(): JSX.Element {
 		<div className={styles.supportContainer}>
 			<h1 className={styles.supportTitle}>Need Help?</h1>
 			<p className={styles.supportText}>
-				Our team is here to help you with any questions or issues. Fill out the form below and we'll
-				get back to you as soon as possible.
+				Our team is here to help you with any questions or issues. Fill out the
+				form below and we'll get back to you as soon as possible.
 			</p>
 			<div className={styles.container}>
 				<form onSubmit={handleSubmit} className={styles.authForm}>

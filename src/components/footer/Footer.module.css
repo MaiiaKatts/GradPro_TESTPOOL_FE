@@ -11,8 +11,6 @@
 }
 .mainContainer {
 	background-color: rgb(246, 246, 228);
-	
-
 }
 
 .footerContainer {
@@ -33,14 +31,13 @@
 	align-items: center;
 	font-size: 12px;
 	padding-right: 20px;
-
 }
-.centerContent2{
+.centerContent2 {
 	font-family: monospace;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	font-size:18px;
+	font-size: 18px;
 	font-style: italic;
 }
 
@@ -53,49 +50,46 @@
 }
 .footerLink:hover {
 	color: rgb(246, 246, 228);
-} 
+}
 .socials {
 	display: flex;
-	
+
 	align-items: center;
 	justify-content: flex-end;
 	text-align: right;
-	
 }
 .socials:hover {
 	color: rgb(246, 246, 228);
-} 
+}
 .support {
 	margin-right: 20px;
 }
 
 .support:hover {
 	color: rgb(246, 246, 228);
-} 
+}
 
 .socialIcon {
 	display: inline-flex;
 	color: inherit;
 	padding: 0 8px;
-
 }
 .support_socials {
-  display: flex; 
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
 }
 @media screen and (max-width: 768px) {
 	.footerContainer,
 	.centerContent,
 	.socials {
-			flex-direction: column;
-			text-align: center;
+		flex-direction: column;
+		text-align: center;
 	}
 
 	.footerLink,
 	.support {
-			font-size: 14px;
+		font-size: 14px;
 	}
 }

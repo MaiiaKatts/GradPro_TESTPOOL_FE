@@ -1,75 +1,75 @@
 .supportContainer {
-  background-color: rgb(246, 246, 228);
+	background-color: rgb(246, 246, 228);
 	padding-top: 30px;
 	padding-bottom: 30px;
 	justify-content: center;
-  
- 
 }
 .termsContainer {
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  max-width: 1000px;
-  margin: auto;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-attachment: scroll; 
-  padding-left: 40px;
-  padding-right: 40px;
-  margin-bottom: 60px;
+	padding: 20px;
+	background-color: #ffffff;
+	border-radius: 8px;
+	max-width: 1000px;
+	margin: auto;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	background-color: white;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	background-attachment: scroll;
+	padding-left: 40px;
+	padding-right: 40px;
+	margin-bottom: 60px;
 }
 
 .header {
-  color:rgb(76, 152, 150);
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 26px;
-  text-align: center;
+	color: rgb(76, 152, 150);
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 26px;
+	text-align: center;
 }
 
 .lastUpdated {
-  margin-bottom: 10px;
-  font-style: italic;
-  color: #666;
-  text-align: center;
+	margin-bottom: 10px;
+	font-style: italic;
+	color: #666;
+	text-align: center;
 }
 
 .sectionTitle {
-  font-size: 1.25rem;
-  color: #222;
-  margin-top: 20px;
-  margin-bottom: 10px;
+	font-size: 1.25rem;
+	color: #222;
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
 
 .paragraph {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 10px;
+	font-size: 1rem;
+	line-height: 1.6;
+	color: #333;
+	margin-bottom: 10px;
 }
 
 .emphasizedText {
-  font-weight: bold;
+	font-weight: bold;
 }
 .boldText {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .regularText {
-  font-style: italic;
-  font-size: 18px;
-  color: rgb(141, 141, 141);
+	font-style: italic;
+	font-size: 18px;
+	color: rgb(141, 141, 141);
 }
 
-.link {
-  font-style: italic;
-  font-size: 16px;
+.moreInfoLink {
+	font-size: 16px;
+	color: rgb(76, 152, 150);
+	font-style: italic;
+	margin-bottom: 20px;
 }
 
-.paragraph_link{
-  font-size: 14px;
-  margin-top: 30px;
+.paragraph_link {
+	font-size: 14px;
+	margin-top: 30px;
 }

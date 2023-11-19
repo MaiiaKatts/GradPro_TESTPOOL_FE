@@ -5,7 +5,6 @@ import { getUser } from './features/auth/authSlice';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import { selectAuthChecked } from './features/auth/selectors';
 import Layout from './components/layouts/Layout';
-
 import Confirmation from './features/auth/Confirmation';
 import AnswerList from './features/answers/AnswerList';
 import AboutUs from './components/footer/aboutUs/AboutUs';
@@ -53,10 +52,10 @@ function App(): JSX.Element {
 					<Route path="/confirm" element={<Confirmation />} />
 					{/* user */}
 					<Route path="/user" element={<TestList />} />
+					<Route path="/more-info" element={<More />} /
 					<Route path="/testBE/:testId" element={<TestsQuestions />} />
 					<Route path="/testFE/:testId" element={<TestsQuestions />} />
 					<Route path="/testQA/:testId" element={<TestsQuestions />} />
-					<Route path="/more-info" element={<More />} />
 					{/* admin */}
 					<Route path="/admin_test" element={<AdminCabinet />} />
 					<Route path="/admin/questions" element={<Questions />} />
