@@ -39,7 +39,8 @@ export async function login(credentials: Credentials): Promise<User> {
 export async function register(
 	data: RegisterData
 ): Promise<
-	{ id: number; email: string; firstName: string; lastName: string } | { message: string }
+	| { id: number; email: string; firstName: string; lastName: string }
+	| { message: string }
 > {
 	const res = await fetch('/api/users/register', {
 		method: 'POST',
@@ -63,7 +64,10 @@ export async function register(
 				.map((err) => `${err.field} ${err.rejectedValue} ${err.message}`)
 				.join('\n');
 			return { message: errorMessage };
-		} else if (responseBody.message && responseBody.message.includes('already exists')) {
+		} else if (
+			responseBody.message &&
+			responseBody.message.includes('already exists')
+		) {
 			return { message: responseBody.message };
 		}
 	}
