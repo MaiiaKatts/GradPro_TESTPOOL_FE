@@ -1,4 +1,5 @@
-import Answer from './types/answer';
+import { QuestionId } from '../questions/types/Question';
+import Answer, { AnswerId } from './types/answer';
 
 interface Error {
 	message: string;
@@ -48,27 +49,37 @@ export async function addAnswer(
 	return res.json();
 }
 
-export async function correctAnswer(answer: Answer): Promise<void> {
-	if (typeof answer.id === 'number' && typeof answer.questionId === 'number') {
-		const response = await fetch(`/api/questions/${answer.questionId}/answers/${answer.id}`, {
-			method: 'POST',
-			body: JSON.stringify({
-				answer: answer.answer,
-				correct: answer.correct,
-				questionId: answer.questionId,
-			}),
-			headers: {
-				accept: 'application/json',
-			},
-		});
+/*export async function correctAnswer(questionId: QuestionId, answerId: AnswerId): Promise<Answer> {
+	const res = await fetch(`/api/questions/${questionId}/answers/${answerId}`, {
+		method: 'POST',
+		headers: {
+			accept: 'application/json',
+		},
+	});
 
-		if (!response.ok) {
-			const errorText = await response.text();
-			throw new Error(errorText);
-		}
-	} else {
-		throw new Error('Answer id or questionId is undefined');
+	const { errors }: { errors: Error[] } = await res.json();
+	errors.forEach((err) => {
+		throw new Error(`${err.field} ${err.rejectedValue} ${err.message}`);
+	});
+	return res.json();
+}*/
+
+export async function correctAnswer(questionId: QuestionId, answerId: AnswerId): Promise<Answer> {
+	const url = `/api/questions/${questionId}/answers/${answerId}?selectedAnswerId=${answerId}`;
+	const res = await fetch(url, {
+		method: 'POST',
+		headers: {
+			accept: 'application/json',
+		},
+	});
+
+	if (res.status >= 400) {
+		const { errors }: { errors: Error[] } = await res.json();
+		errors.forEach((err) => {
+			throw new Error(`${err.field} ${err.rejectedValue} ${err.message}`);
+		});
 	}
+	return res.json();
 }
 
 export async function updateAnswer(
@@ -77,6 +88,7 @@ export async function updateAnswer(
 	answerText: string,
 	correct: boolean
 ): Promise<Answer> {
+	console.log(`API request to /api/questions/${questionId}/answers/${answerId}`);
 	const response = await fetch(`/api/questions/${questionId}/answers/${answerId}`, {
 		method: 'PUT',
 		headers: {

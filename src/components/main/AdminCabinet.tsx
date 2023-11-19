@@ -3,9 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { useCallback, useEffect, useState } from 'react';
 import { selectTasks } from '../../features/tasks/selectors';
-import { loadTasksOfAll, deleteTask } from '../../features/tasks/tasksSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { TaskId } from '../../features/tasks/types/Task';
 import { selectError, selectTests } from '../../features/tests/selectors';
 import {
 	createTest,
@@ -17,7 +15,6 @@ import {
 import Test, { TestId } from '../../features/tests/types/Test';
 
 export default function AdminCabinet(): JSX.Element {
-	const tasks = useAppSelector(selectTasks);
 	const dispatch = useAppDispatch();
 	const tests = useAppSelector(selectTests);
 	const error = useAppSelector(selectError);

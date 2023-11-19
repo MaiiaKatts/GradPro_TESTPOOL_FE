@@ -5,6 +5,7 @@ import modalSlice from '../features/auth/modalSlice';
 import answerSlice from '../features/answers/answerSlice';
 import questionsSlice from '../features/questions/questionsSlice';
 import testsSlice from '../features/tests/testsSlice';
+import testsResultsSlice from '../features/testsResults/testsResultsSlice';
 
 export const store = configureStore({
 	reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
 		modal: modalSlice,
 		questions: questionsSlice,
 		answers: answerSlice,
+		testsResults: testsResultsSlice,
 	},
 });
 

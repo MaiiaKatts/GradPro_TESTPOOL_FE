@@ -73,7 +73,6 @@ const questionsSlice = createSlice({
 				state.error = action.error.message;
 			})
 			.addCase(createQuestion.fulfilled, (state, action) => {
-				//console.log('state.tests before push', state.questions);
 				state.questions.push(action.payload);
 			})
 			.addCase(createQuestion.rejected, (state, action) => {
@@ -94,9 +93,6 @@ const questionsSlice = createSlice({
 					(question) => question.id !== id || question.testId === testId
 				);
 			})
-			/*.addCase(deleteQuestion.fulfilled, (state, action) => {
-				state.questions = state.questions.filter((question) => question.id !== action.payload);
-			})*/
 			.addCase(loadRandomQuestions.fulfilled, (state, action) => {
 				state.randomQuestions = action.payload;
 			})

@@ -1,9 +1,8 @@
-import { TestId } from './types/Test';
+import Test, { TestId } from './types/Test';
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import TestsState from './types/TestsState';
 import * as api from './api';
-import Test from './types/Test';
 
 export const initialState: TestsState = {
 	tests: [],

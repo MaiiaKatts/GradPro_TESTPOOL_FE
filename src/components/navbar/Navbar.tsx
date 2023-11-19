@@ -85,10 +85,7 @@ function Navbar(): JSX.Element {
 							<NavLink to="/admin/tests" className={styles.nav_link_lower}>
 								Create test
 							</NavLink>
-							<NavLink
-								to="/admin/questionsList"
-								className={styles.nav_link_lower}
-							>
+							<NavLink to="/admin/questionsList" className={styles.nav_link_lower}>
 								Questions List
 							</NavLink>
 						</div>

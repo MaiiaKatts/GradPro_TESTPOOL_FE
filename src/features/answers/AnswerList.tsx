@@ -5,7 +5,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { createAnswer, loadAllAnswers, removeAnswer, updateAnswerDetails } from './answersSlice';
+import {
+	correctAnswer,
+	createAnswer,
+	loadAllAnswers,
+	removeAnswer,
+	updateAnswerDetails,
+} from './answersSlice';
 import { selectAnswers } from './selector';
 import Answer from './types/answer';
 import styles from './AnswerList.module.css';
@@ -28,28 +34,6 @@ export default function AnswerList(): JSX.Element {
 		dispatch(loadAllAnswers());
 		dispatch(loadQuestions());
 	}, [dispatch]);
-
-	/*const handleCreateAnswer = (): void => {
-		if (newAnswer.answer.trim() && newAnswer.questionId) {
-			const question = questions.find((q) => q.id === newAnswer.questionId);
-			const test = tests.find((t: { id: number }) => t.id === question.testId);
-
-			dispatch(
-				createAnswer({
-					...newAnswer,
-					isCorrect: newAnswer.is_correct,
-					questionText: question.question,
-					difficultyLevel: test.level,
-				})
-			);
-			setNewAnswer({
-				...newAnswer,
-				answer: '',
-				is_correct: false,
-				questionId: 0,
-			});
-		}
-	};*/
 
 	const handleCreateAnswer = useCallback(() => {
 		if (newAnswer.questionId && newAnswer.answer.trim()) {
