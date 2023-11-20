@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './TermOfUse.module.css'; // Ensure this path matches your file structure
+/* eslint-disable react/no-unescaped-entities */
+import styles from './TermOfUse.module.css';
 
 export default function TermOfUse(): JSX.Element {
 	return (
@@ -102,8 +102,8 @@ export default function TermOfUse(): JSX.Element {
 				<h3 className={styles.sectionTitle}>9. Governing Law</h3>
 				<p className={styles.paragraph}>
 					These Terms are governed by and construed in accordance with the laws
-					of the jurisdiction in which [Your Company Name] is located, without
-					regard to its conflict of law principles.
+					of the jurisdiction in which Testpool is located, without regard to
+					its conflict of law principles.
 				</p>
 
 				<h3 className={styles.sectionTitle}>10. Severability</h3>

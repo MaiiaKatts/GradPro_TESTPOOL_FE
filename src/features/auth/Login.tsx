@@ -102,7 +102,10 @@ function Login(): JSX.Element {
 									required
 								/>
 								{passwordShown ? (
-									<VisibilityIcon onClick={togglePasswordVisibility} className={styles.eyeIcon} />
+									<VisibilityIcon
+										onClick={togglePasswordVisibility}
+										className={styles.eyeIcon}
+									/>
 								) : (
 									<VisibilityOffIcon
 										onClick={togglePasswordVisibility}
@@ -113,7 +116,11 @@ function Login(): JSX.Element {
 						</div>
 
 						<div className={styles.submitButtonContainer}>
-							<button type="submit" aria-label="Login" className={styles.submitButton}></button>
+							<button
+								type="submit"
+								aria-label="Login"
+								className={styles.submitButton}
+							></button>
 						</div>
 					</form>
 				</div>

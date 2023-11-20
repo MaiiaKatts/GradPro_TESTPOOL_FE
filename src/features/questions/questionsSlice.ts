@@ -35,7 +35,9 @@ export const loadRandomQuestions = createAsyncThunk(
 			const res = await api.getRandomQuestions(testId);
 			return res;
 		} catch (err) {
-			return rejectWithValue(err instanceof Error ? err.message : 'An unknown error occurred');
+			return rejectWithValue(
+				err instanceof Error ? err.message : 'An unknown error occurred'
+			);
 		}
 	}
 );

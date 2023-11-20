@@ -35,7 +35,9 @@ export default function QuestionsList(): JSX.Element {
 		setSelectedTestId(Number(event.target.value));
 	};
 
-	const filteredQuestions = questions.filter((q) => q.testId === selectedTestId);
+	const filteredQuestions = questions.filter(
+		(q) => q.testId === selectedTestId
+	);
 	const filteredAnswers = answers.filter((a) =>
 		filteredQuestions.some((q) => q.id === a.questionId)
 	);

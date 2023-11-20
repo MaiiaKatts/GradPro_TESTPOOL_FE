@@ -1,4 +1,4 @@
-import React from 'react';
+/* eslint-disable react/no-unescaped-entities */
 import styles from './FAQ.module.css';
 
 export default function FAQ(): JSX.Element {
@@ -14,7 +14,7 @@ export default function FAQ(): JSX.Element {
 				<p className={styles.paragraph}>
 					<span className={styles.boldText}>Answer:</span> Practice coding,study
 					algorithms, data structures, and system design. Also, prepare examples
-					of projects you’ve worked on and problems you’ve solved.
+					of projects you have worked on and problems you have solved.
 				</p>
 				<span className={styles.emphasizedText}>Question 2:</span>
 				<span className={styles.regularText}>
@@ -82,9 +82,9 @@ export default function FAQ(): JSX.Element {
 					How can I find out more about the company culture?
 				</span>
 				<p className={styles.paragraph}>
-					<span className={styles.boldText}>Answer:</span> Research the
-					company’s website, read reviews on employer review sites, and ask
-					about the company culture during the interview.
+					<span className={styles.boldText}>Answer:</span> Research the website
+					of company , read reviews on employer review sites, and ask about the
+					company culture during the interview.
 				</p>
 				<span className={styles.emphasizedText}>Question 9:</span>
 				<span className={styles.regularText}>

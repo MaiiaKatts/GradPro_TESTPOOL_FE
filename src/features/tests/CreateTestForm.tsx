@@ -7,7 +7,13 @@
 /* eslint-disable import/default */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useCallback, useEffect } from 'react';
-import { createTest, deleteTest, loadTests, resetError, updateTest } from './testsSlice';
+import {
+	createTest,
+	deleteTest,
+	loadTests,
+	resetError,
+	updateTest,
+} from './testsSlice';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { selectTasks } from '../tasks/selectors';
 import { loadTasksOfAll } from '../tasks/tasksSlice';
@@ -16,10 +22,18 @@ import { selectTests, selectError } from './selectors';
 import Test, { TestId } from './types/Test';
 import Question, { QuestionId } from '../questions/types/Question';
 import { selectQuestions, selectRandomQuestions } from '../questions/selectors';
-import { createQuestion, deleteQuestion, updateQuestion } from '../questions/questionsSlice';
+import {
+	createQuestion,
+	deleteQuestion,
+	updateQuestion,
+} from '../questions/questionsSlice';
 import { selectAnswers } from '../answers/selector';
 import Answer from '../answers/types/answer';
-import { createAnswer, removeAnswer, updateAnswerDetails } from '../answers/answersSlice';
+import {
+	createAnswer,
+	removeAnswer,
+	updateAnswerDetails,
+} from '../answers/answersSlice';
 import QuestionsList from '../questions/QuestionsList';
 import styles from './CreateTestForm.module.css';
 
@@ -44,8 +58,12 @@ export default function CreateTestFormSec() {
 	const [editType, setEditType] = useState<string>('');
 	const [editLevel, setEditLevel] = useState<string>('');
 	const questions = useAppSelector(selectQuestions);
-	const [createdQuestionId, setCreatedQuestionId] = useState<number | null>(null);
-	const [createdQuestions, setCreatedQuestions] = useState<QuestionWithAnswers[]>([]);
+	const [createdQuestionId, setCreatedQuestionId] = useState<number | null>(
+		null
+	);
+	const [createdQuestions, setCreatedQuestions] = useState<
+		QuestionWithAnswers[]
+	>([]);
 	const randomQuestions = useAppSelector(selectRandomQuestions);
 	const [testId, setTestId] = useState<number>(0);
 	const [question, setQuestion] = useState<string>('');
@@ -55,7 +73,9 @@ export default function CreateTestFormSec() {
 	const [isAddingQuestion, setIsAddingQuestion] = useState(false);
 	const answers = useAppSelector(selectAnswers);
 	const [answerTexts, setAnswerTexts] = useState(['', '', '', '']);
-	const [correctAnswerIndex, setCorrectAnswerIndex] = useState<number | null>(null);
+	const [correctAnswerIndex, setCorrectAnswerIndex] = useState<number | null>(
+		null
+	);
 	const [newAnswer, setNewAnswer] = useState<Answer>({
 		id: 0,
 		answer: '',
@@ -63,7 +83,9 @@ export default function CreateTestFormSec() {
 		questionId: 0,
 	});
 	const [editingAnswerId, setEditingAnswerId] = useState<number | null>(null);
-	const [editingAnswerIndex, setEditingAnswerIndex] = useState<number | null>(null);
+	const [editingAnswerIndex, setEditingAnswerIndex] = useState<number | null>(
+		null
+	);
 
 	useEffect(() => {
 		dispatch(loadTests());
@@ -87,7 +109,9 @@ export default function CreateTestFormSec() {
 				console.error('Test ID is not set.');
 				return;
 			}
-			const dispatchResult = await dispatch(createQuestion({ testId, question }));
+			const dispatchResult = await dispatch(
+				createQuestion({ testId, question })
+			);
 			if (createQuestion.fulfilled.match(dispatchResult)) {
 				const newQuestionWithAnswers: QuestionWithAnswers = {
 					id: dispatchResult.payload.id,
@@ -95,7 +119,10 @@ export default function CreateTestFormSec() {
 					testId: dispatchResult.payload.testId,
 					answers: [],
 				};
-				setCreatedQuestions((prevQuestions) => [...prevQuestions, newQuestionWithAnswers]);
+				setCreatedQuestions((prevQuestions) => [
+					...prevQuestions,
+					newQuestionWithAnswers,
+				]);
 				setCreatedQuestionId(dispatchResult.payload.id);
 				setIsAddingQuestion(true);
 				setQuestion('');
@@ -129,7 +156,14 @@ export default function CreateTestFormSec() {
 				}
 			}
 		},
-		[dispatch, editTestId, editQuestion, currentQuestion, setIsEditing, resetError]
+		[
+			dispatch,
+			editTestId,
+			editQuestion,
+			currentQuestion,
+			setIsEditing,
+			resetError,
+		]
 	);
 
 	const selectTestForQuestions = (test: Test) => {
@@ -240,7 +274,9 @@ export default function CreateTestFormSec() {
 	};*/
 
 	const handleAnswerTextChange = (index: number, text: string) => {
-		setAnswerTexts(answerTexts.map((answer, idx) => (idx === index ? text : answer)));
+		setAnswerTexts(
+			answerTexts.map((answer, idx) => (idx === index ? text : answer))
+		);
 	};
 
 	const handleCorrectAnswerIndexChange = (index: number) => {
@@ -271,7 +307,9 @@ export default function CreateTestFormSec() {
 			if (createAnswer.fulfilled.match(resultAction)) {
 				setCreatedQuestions((prevQuestions) =>
 					prevQuestions.map((q) =>
-						q.id === questionId ? { ...q, answers: [...q.answers, resultAction.payload] } : q
+						q.id === questionId
+							? { ...q, answers: [...q.answers, resultAction.payload] }
+							: q
 					)
 				);
 			} else if (createAnswer.rejected.match(resultAction)) {
@@ -309,11 +347,17 @@ export default function CreateTestFormSec() {
 						<span className={styles.electedTestName}>
 							{tests.find((test) => test.id === testId)?.name}
 						</span>
-						<button className={styles.addQuestionButton} onClick={() => setIsAddingQuestion(true)}>
+						<button
+							className={styles.addQuestionButton}
+							onClick={() => setIsAddingQuestion(true)}
+						>
 							Add Question
 						</button>
 						{isAddingQuestion && (
-							<form className={styles.questionForm} onSubmit={handleCreateQuestion}>
+							<form
+								className={styles.questionForm}
+								onSubmit={handleCreateQuestion}
+							>
 								<input
 									className={styles.questionInput}
 									type="text"
@@ -345,7 +389,9 @@ export default function CreateTestFormSec() {
 									type="text"
 									placeholder={`Answer ${index + 1}`}
 									value={answerTexts[index]}
-									onChange={(e) => handleAnswerTextChange(index, e.target.value)}
+									onChange={(e) =>
+										handleAnswerTextChange(index, e.target.value)
+									}
 									required
 								/>
 								<input
