@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { useEffect, useState } from 'react';
 import styles from './TestList.module.css';
 import { Link, Navigate } from 'react-router-dom';

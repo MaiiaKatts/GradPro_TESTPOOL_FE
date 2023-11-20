@@ -39,7 +39,11 @@ export default function QuestionEditForm(props: Props): JSX.Element {
 			</button>
 			{toggle && (
 				<form onSubmit={handleSubmit}>
-					<input type="text" value={text} onChange={(e) => setText(e.target.value)} />
+					<input
+						type="text"
+						value={text}
+						onChange={(e) => setText(e.target.value)}
+					/>
 					<button type="submit">Save</button>
 				</form>
 			)}

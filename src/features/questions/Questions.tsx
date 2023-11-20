@@ -5,7 +5,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { selectError, selectQuestions, selectRandomQuestions } from './selectors';
+import {
+	selectError,
+	selectQuestions,
+	selectRandomQuestions,
+} from './selectors';
 import Question, { QuestionId } from './types/Question';
 import {
 	createQuestion,
@@ -65,7 +69,9 @@ export default function Questions(): JSX.Element {
 	const handleCreateQuestion = useCallback(
 		async (event: React.FormEvent<HTMLFormElement>) => {
 			event.preventDefault();
-			const dispatchResult = await dispatch(createQuestion({ testId, question }));
+			const dispatchResult = await dispatch(
+				createQuestion({ testId, question })
+			);
 			if (createQuestion.fulfilled.match(dispatchResult)) {
 				setTestId(0);
 				setQuestion('');
@@ -99,7 +105,14 @@ export default function Questions(): JSX.Element {
 				}
 			}
 		},
-		[dispatch, editTestId, editQuestion, currentQuestion, setIsEditing, resetError]
+		[
+			dispatch,
+			editTestId,
+			editQuestion,
+			currentQuestion,
+			setIsEditing,
+			resetError,
+		]
 	);
 	const user = useAppSelector(selectUser);
 	// user // - что есть такой юзер
@@ -171,7 +184,10 @@ export default function Questions(): JSX.Element {
 					</button>
 				</div>
 				{error && (
-					<div className="invalid-feedback text-end" style={{ display: 'block' }}>
+					<div
+						className="invalid-feedback text-end"
+						style={{ display: 'block' }}
+					>
 						{error}
 					</div>
 				)}

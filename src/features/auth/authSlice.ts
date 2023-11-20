@@ -21,24 +21,32 @@ const initialState: AuthState = {
 	message: string;
 } */
 
-export const getUser = createAsyncThunk('api/users/my/profile', () => api.user());
+export const getUser = createAsyncThunk('api/users/my/profile', () =>
+	api.user()
+);
 
-export const login = createAsyncThunk('login', async (credentials: Credentials) => {
-	if (!credentials.email.trim() || !credentials.password.trim()) {
-		throw new Error('Не все поля заполнены');
+export const login = createAsyncThunk(
+	'login',
+	async (credentials: Credentials) => {
+		if (!credentials.email.trim() || !credentials.password.trim()) {
+			throw new Error('Не все поля заполнены');
+		}
+		return api.login(credentials);
 	}
-	return api.login(credentials);
-});
+);
 
-export const register = createAsyncThunk('api/register', async (data: RegisterData) => {
-	if (data.password !== data.passwordRepeat) {
-		throw new Error('Пароли не совпадают');
+export const register = createAsyncThunk(
+	'api/register',
+	async (data: RegisterData) => {
+		if (data.password !== data.passwordRepeat) {
+			throw new Error('Пароли не совпадают');
+		}
+		if (!data.email.trim() || !data.password.trim()) {
+			throw new Error('Не все поля заполнены');
+		}
+		return api.register(data);
 	}
-	if (!data.email.trim() || !data.password.trim()) {
-		throw new Error('Не все поля заполнены');
-	}
-	return api.register(data);
-});
+);
 
 export const logout = createAsyncThunk('logout', api.logout);
 
@@ -84,6 +92,7 @@ const authSlice = createSlice({
 	},
 });
 
-export const { resetLoginFormError, resetRegisterFormError } = authSlice.actions;
+export const { resetLoginFormError, resetRegisterFormError } =
+	authSlice.actions;
 
 export default authSlice.reducer;

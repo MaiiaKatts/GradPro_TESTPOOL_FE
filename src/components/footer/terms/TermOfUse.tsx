@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
-import styles from './TermOfUse.module.css'; // Ensure this path matches your file structure
+import styles from './TermOfUse.module.css';
 
 export default function TermOfUse(): JSX.Element {
 	return (

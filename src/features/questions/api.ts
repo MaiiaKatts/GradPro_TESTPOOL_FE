@@ -112,7 +112,10 @@ export async function getRandomQuestions(testId: TestId): Promise<Question[]> {
 	}));
 }
 
-export async function createQuestion(testId: TestId, question: string): Promise<Question> {
+export async function createQuestion(
+	testId: TestId,
+	question: string
+): Promise<Question> {
 	const res = await fetch(`/api/tests/${testId}/questions`, {
 		method: 'POST',
 		body: JSON.stringify({ testId, question }),
@@ -136,7 +139,10 @@ export async function createQuestion(testId: TestId, question: string): Promise<
 	return res.json();
 }
 
-export async function updateQuestion(testId: TestId, question: Question): Promise<Question> {
+export async function updateQuestion(
+	testId: TestId,
+	question: Question
+): Promise<Question> {
 	const res = await fetch(`/api/tests/${testId}/questions/${question.id}`, {
 		method: 'PUT',
 		body: JSON.stringify({
@@ -156,7 +162,10 @@ export async function updateQuestion(testId: TestId, question: Question): Promis
 	return res.json();
 }
 
-export async function deleteQuestion(testId: TestId, question_id: QuestionId): Promise<Question> {
+export async function deleteQuestion(
+	testId: TestId,
+	question_id: QuestionId
+): Promise<Question> {
 	const res = await fetch(`/api/tests/${testId}/questions/${question_id}`, {
 		method: 'DELETE',
 	});

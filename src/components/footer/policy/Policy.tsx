@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Policy.module.css'; // Ensure this path matches your file structure
+import styles from './Policy.module.css';
 
 export default function PrivacyPolicy(): JSX.Element {
 	return (

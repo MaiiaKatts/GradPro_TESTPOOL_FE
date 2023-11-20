@@ -16,13 +16,20 @@ export const initialState: TestResultsState = {
 	error: undefined,
 };
 
-export const loadTestsResult = createAsyncThunk('testsResults/loadTestsResult', (userId: UserId) =>
-	api.getTestsResult(userId)
+export const loadTestsResult = createAsyncThunk(
+	'testsResults/loadTestsResult',
+	(userId: UserId) => api.getTestsResult(userId)
 );
 
 export const saveTestResult = createAsyncThunk(
 	'testsResults/saveTestResult',
-	async ({ testId, userAnswers }: { testId: TestId; userAnswers: AnswerId[] }) => {
+	async ({
+		testId,
+		userAnswers,
+	}: {
+		testId: TestId;
+		userAnswers: AnswerId[];
+	}) => {
 		const savedTestResult = await api.saveTestResult(testId, userAnswers);
 		return savedTestResult;
 	}

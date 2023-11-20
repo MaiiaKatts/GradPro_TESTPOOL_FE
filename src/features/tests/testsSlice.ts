@@ -11,7 +11,15 @@ export const initialState: TestsState = {
 
 export const createTest = createAsyncThunk(
 	'tests/createTest',
-	async ({ name, type, level }: { name: string; type: string; level: string }) => {
+	async ({
+		name,
+		type,
+		level,
+	}: {
+		name: string;
+		type: string;
+		level: string;
+	}) => {
 		console.log('createTest called with:', name, type, level);
 		if (!name.trim() || !type.trim() || !level.trim()) {
 			throw new Error('All fields should be filled in');
@@ -20,17 +28,25 @@ export const createTest = createAsyncThunk(
 	}
 );
 
-export const loadTests = createAsyncThunk('tests/loadTests', () => api.getAllTests());
+export const loadTests = createAsyncThunk('tests/loadTests', () =>
+	api.getAllTests()
+);
 
-export const deleteTest = createAsyncThunk('tests/deleteTest', async (id: TestId) => {
-	await api.deleteTest(id);
-	return id;
-});
+export const deleteTest = createAsyncThunk(
+	'tests/deleteTest',
+	async (id: TestId) => {
+		await api.deleteTest(id);
+		return id;
+	}
+);
 
-export const updateTest = createAsyncThunk('tests/updateTest', async (test: Test) => {
-	const updatedTest = await api.updateTest(test);
-	return updatedTest;
-});
+export const updateTest = createAsyncThunk(
+	'tests/updateTest',
+	async (test: Test) => {
+		const updatedTest = await api.updateTest(test);
+		return updatedTest;
+	}
+);
 
 const testsSlice = createSlice({
 	name: 'tests',

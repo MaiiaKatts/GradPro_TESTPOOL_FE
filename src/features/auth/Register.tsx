@@ -37,10 +37,16 @@ function Register(): JSX.Element {
 	const [passwordShown, setPasswordShown] = useState(false);
 	const [passwordRepeatShown, setPasswordRepeatShown] = useState(false);
 
-	const showErrorPassword = useAppSelector((state) => state.modal.showPasswordRequirementsModal);
-	const showExistedUser = useAppSelector((state) => state.modal.showExistedUserModal);
+	const showErrorPassword = useAppSelector(
+		(state) => state.modal.showPasswordRequirementsModal
+	);
+	const showExistedUser = useAppSelector(
+		(state) => state.modal.showExistedUserModal
+	);
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-	const showConfirmation = useAppSelector((state) => state.modal.showConfirmationModal);
+	const showConfirmation = useAppSelector(
+		(state) => state.modal.showConfirmationModal
+	);
 	const [passwordIsValid, setPasswordIsValid] = useState(true);
 
 	const [isAgreed, setIsAgreed] = useState(false);
@@ -85,7 +91,16 @@ function Register(): JSX.Element {
 				}
 			}
 		},
-		[dispatch, firstName, lastName, email, password, passwordRepeat, passwordIsValid, isAgreed]
+		[
+			dispatch,
+			firstName,
+			lastName,
+			email,
+			password,
+			passwordRepeat,
+			passwordIsValid,
+			isAgreed,
+		]
 	);
 	const handleFirstNameChange = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -118,7 +133,9 @@ function Register(): JSX.Element {
 			dispatch(resetRegisterFormError());
 
 			const isValid =
-				newPassword.length >= 8 && /[A-Z]/.test(newPassword) && /[!@#$%^&+=]/.test(newPassword);
+				newPassword.length >= 8 &&
+				/[A-Z]/.test(newPassword) &&
+				/[!@#$%^&+=]/.test(newPassword);
 			setPasswordIsValid(isValid);
 		},
 		[dispatch]
@@ -162,7 +179,9 @@ function Register(): JSX.Element {
 						</label>
 						<input
 							type="text"
-							className={`${styles.inputField} ${error ? styles.inputInvalid : ''}`}
+							className={`${styles.inputField} ${
+								error ? styles.inputInvalid : ''
+							}`}
 							id="firstName-input"
 							name="firstName"
 							value={firstName}
@@ -175,7 +194,9 @@ function Register(): JSX.Element {
 						</label>
 						<input
 							type="text"
-							className={`${styles.inputField} ${error ? styles.inputInvalid : ''}`}
+							className={`${styles.inputField} ${
+								error ? styles.inputInvalid : ''
+							}`}
 							id="lastName-input"
 							name="lastName"
 							value={lastName}
@@ -188,7 +209,9 @@ function Register(): JSX.Element {
 						</label>
 						<input
 							type="email"
-							className={`${styles.inputField} ${error ? styles.inputInvalid : ''}`}
+							className={`${styles.inputField} ${
+								error ? styles.inputInvalid : ''
+							}`}
 							id="email-input"
 							name="email"
 							value={email}
@@ -202,16 +225,24 @@ function Register(): JSX.Element {
 						<div className={styles.passwordInputContainer}>
 							<input
 								type={passwordShown ? 'text' : 'password'}
-								className={`${styles.inputField} ${error ? styles.inputInvalid : ''}`}
+								className={`${styles.inputField} ${
+									error ? styles.inputInvalid : ''
+								}`}
 								id="password-input"
 								name="password"
 								value={password}
 								onChange={handlePasswordChange}
 							/>
 							{passwordShown ? (
-								<VisibilityIcon onClick={togglePasswordVisibility} className={styles.eyeIcon} />
+								<VisibilityIcon
+									onClick={togglePasswordVisibility}
+									className={styles.eyeIcon}
+								/>
 							) : (
-								<VisibilityOffIcon onClick={togglePasswordVisibility} className={styles.eyeIcon} />
+								<VisibilityOffIcon
+									onClick={togglePasswordVisibility}
+									className={styles.eyeIcon}
+								/>
 							)}
 						</div>
 					</div>
@@ -222,7 +253,9 @@ function Register(): JSX.Element {
 						<div className={styles.passwordInputContainer}>
 							<input
 								type={passwordRepeatShown ? 'text' : 'password'}
-								className={`${styles.inputField} ${error ? styles.inputInvalid : ''}`}
+								className={`${styles.inputField} ${
+									error ? styles.inputInvalid : ''
+								}`}
 								id="password-repeat-input"
 								name="passwordRepeat"
 								value={passwordRepeat}
@@ -281,7 +314,10 @@ function Register(): JSX.Element {
 				>
 					<h2>Registration Successful</h2>
 					<p>Please check your email.</p>
-					<button onClick={handleModalClose} className={styles.modalCloseButton}>
+					<button
+						onClick={handleModalClose}
+						className={styles.modalCloseButton}
+					>
 						Close
 					</button>
 				</Modal>
@@ -295,10 +331,13 @@ function Register(): JSX.Element {
 				>
 					<h2>Password Requirements</h2>
 					<p>
-						Password must be at least 8 characters long and contain at least one uppercase letter
-						and one symbol (@#$%^&+=!).
+						Password must be at least 8 characters long and contain at least one
+						uppercase letter and one symbol (@#$%^&+=!).
 					</p>
-					<button onClick={handleModalClose} className={styles.modalCloseButton}>
+					<button
+						onClick={handleModalClose}
+						className={styles.modalCloseButton}
+					>
 						Close
 					</button>
 				</Modal>
@@ -312,7 +351,10 @@ function Register(): JSX.Element {
 				>
 					<h2>User Already Exists</h2>
 					<p>An account with this email already exists.</p>
-					<button onClick={handleModalClose} className={styles.modalCloseButton}>
+					<button
+						onClick={handleModalClose}
+						className={styles.modalCloseButton}
+					>
 						Close
 					</button>
 				</Modal>

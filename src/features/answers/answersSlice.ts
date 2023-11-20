@@ -61,8 +61,16 @@ export const removeAnswer = createAsyncThunk(
 
 export const correctAnswer = createAsyncThunk(
 	'answers/correctAnswer',
-	async ({ questionId, answerId }: { questionId: QuestionId; answerId: AnswerId }) => {
-		console.log(`Sending correctAnswer for questionId: ${questionId}, answerId: ${answerId}`);
+	async ({
+		questionId,
+		answerId,
+	}: {
+		questionId: QuestionId;
+		answerId: AnswerId;
+	}) => {
+		console.log(
+			`Sending correctAnswer for questionId: ${questionId}, answerId: ${answerId}`
+		);
 		//await api.correctAnswer(id, questionId);
 		//return { id, questionId };
 		const res = await api.correctAnswer(questionId, answerId);
@@ -104,7 +112,9 @@ const answersSlice = createSlice({
 				state.error = action.error.message ?? 'Ошибка при обновлении ответа.';
 			})
 			.addCase(removeAnswer.fulfilled, (state, action) => {
-				state.answers = state.answers.filter((answer) => answer.id !== action.payload);
+				state.answers = state.answers.filter(
+					(answer) => answer.id !== action.payload
+				);
 			})
 			.addCase(removeAnswer.rejected, (state, action) => {
 				state.error = action.error.message ?? 'Ошибка при удалении ответа.';

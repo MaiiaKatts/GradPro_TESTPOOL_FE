@@ -14,7 +14,11 @@ const Confirmation: React.FC = () => {
 
 	return (
 		<>
-			<input type="text" value={confirm} onChange={(e) => setConfirm(e.target.value)} />
+			<input
+				type="text"
+				value={confirm}
+				onChange={(e) => setConfirm(e.target.value)}
+			/>
 			<button
 				type="button"
 				onClick={() => {
