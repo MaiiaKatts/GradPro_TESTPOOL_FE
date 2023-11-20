@@ -21,7 +21,7 @@ export default function Home(): JSX.Element {
 				<div className={styles.leftContainer}>
 					<img
 						className={styles.mainImage}
-						src="/images/image.jpg"
+						src="/images/image.gif"
 						alt="main image"
 					/>
 				</div>

@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
 import styles from './AboutUs.module.css';
 
 export default function AboutUs(): JSX.Element {
@@ -13,11 +12,11 @@ export default function AboutUs(): JSX.Element {
 							<div className={styles.memberPhoto}>
 								<img
 									className={styles.photo}
-									src="/images/maiia.png"
-									alt="Maiia Kattz"
+									src="/images/maiia2.gif"
+									alt="Maiia Katts"
 								/>
 							</div>
-							<div className={styles.memberName}>Maiia Kattz</div>
+							<div className={styles.memberName}>Maiia Katts</div>
 							<div className={styles.memberTitle}>Team Lead & QA Tester</div>
 							<div className={styles.memberDescription}>
 								As a co-founder and team lead, Maiia's strategic vision and
@@ -30,7 +29,7 @@ export default function AboutUs(): JSX.Element {
 							<div className={styles.memberPhoto}>
 								<img
 									className={styles.photo}
-									src="/images/irina.png"
+									src="/images/irina.gif"
 									alt="Irina Frank"
 								/>
 							</div>
@@ -45,7 +44,7 @@ export default function AboutUs(): JSX.Element {
 							<div className={styles.memberPhoto}>
 								<img
 									className={styles.photo}
-									src="/images/orchan.png"
+									src="/images/orchan.gif"
 									alt="Anar Aliyev"
 								/>
 							</div>
@@ -60,7 +59,7 @@ export default function AboutUs(): JSX.Element {
 							<div className={styles.memberPhoto}>
 								<img
 									className={styles.photo}
-									src="/images/kristina.png"
+									src="/images/kristina.gif"
 									alt="Kristina Romanova"
 								/>
 							</div>
@@ -77,7 +76,7 @@ export default function AboutUs(): JSX.Element {
 								<div className={styles.memberPhoto}>
 									<img
 										className={styles.photo}
-										src="/images/jurgita.png"
+										src="/images/jurgita.gif"
 										alt="Jurgita Butiene"
 									/>
 								</div>
@@ -93,7 +92,7 @@ export default function AboutUs(): JSX.Element {
 								<div className={styles.memberPhoto}>
 									<img
 										className={styles.photo}
-										src="/images/natalia.png"
+										src="/images/natalia.gif"
 										alt="Natali Hrytsenia"
 									/>
 								</div>
@@ -109,7 +108,7 @@ export default function AboutUs(): JSX.Element {
 								<div className={styles.memberPhoto}>
 									<img
 										className={styles.photo}
-										src="/images/irinaS.png"
+										src="/images/irinaS.gif"
 										alt="Iryna Sainozhenko"
 									/>
 								</div>
@@ -125,7 +124,7 @@ export default function AboutUs(): JSX.Element {
 								<div className={styles.memberPhoto}>
 									<img
 										className={styles.photo}
-										src="/images/sidan.png"
+										src="/images/sidan.gif"
 										alt="Elena Sidanova"
 									/>
 								</div>
