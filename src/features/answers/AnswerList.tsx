@@ -6,7 +6,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
-	correctAnswer,
 	createAnswer,
 	loadAllAnswers,
 	removeAnswer,
@@ -96,7 +95,10 @@ export default function AnswerList(): JSX.Element {
 											>
 												Update
 											</button>
-											<button onClick={() => handleRemoveAnswer(answer)} className={styles.button}>
+											<button
+												onClick={() => handleRemoveAnswer(answer)}
+												className={styles.button}
+											>
 												Delete
 											</button>
 										</div>
@@ -111,7 +113,9 @@ export default function AnswerList(): JSX.Element {
 					<input
 						type="text"
 						value={newAnswer.answer}
-						onChange={(e) => setNewAnswer({ ...newAnswer, answer: e.target.value })}
+						onChange={(e) =>
+							setNewAnswer({ ...newAnswer, answer: e.target.value })
+						}
 						placeholder="New answer text"
 						className={styles.input}
 					/>
@@ -119,7 +123,9 @@ export default function AnswerList(): JSX.Element {
 						<input
 							type="checkbox"
 							checked={newAnswer.correct}
-							onChange={(e) => setNewAnswer({ ...newAnswer, correct: e.target.checked })}
+							onChange={(e) =>
+								setNewAnswer({ ...newAnswer, correct: e.target.checked })
+							}
 						/>
 						Is correct?
 					</label>
@@ -128,14 +134,21 @@ export default function AnswerList(): JSX.Element {
 							value={newAnswer.questionId}
 							onChange={(e) => {
 								const questionId = Number(e.target.value);
-								const selectedQuestion = questions.find((q) => q.id === questionId);
+								const selectedQuestion = questions.find(
+									(q) => q.id === questionId
+								);
 								if (!selectedQuestion) {
 									console.error('Selected question not found');
 									return;
 								}
-								console.log("Selected question's testId:", selectedQuestion.testId);
+								console.log(
+									"Selected question's testId:",
+									selectedQuestion.testId
+								);
 								console.log('Available tests:', tests);
-								const test = tests.find((t) => t.id === selectedQuestion.testId);
+								const test = tests.find(
+									(t) => t.id === selectedQuestion.testId
+								);
 								if (!test) {
 									console.error('Test not found for the selected question');
 									return;
@@ -153,12 +166,18 @@ export default function AnswerList(): JSX.Element {
 							{questions.map((question) => (
 								<option key={question.id} value={question.id}>
 									{question.question} (
-									{tests.find((t) => t.id === question.testId)?.level || 'Unknown Level'})
+									{tests.find((t) => t.id === question.testId)?.level ||
+										'Unknown Level'}
+									)
 								</option>
 							))}
 						</select>
 					}
-					<button type="button" onClick={handleCreateAnswer} className={styles.answerButton}>
+					<button
+						type="button"
+						onClick={handleCreateAnswer}
+						className={styles.answerButton}
+					>
 						Add Answer
 					</button>
 				</div>

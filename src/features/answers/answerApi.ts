@@ -64,7 +64,10 @@ export async function addAnswer(
 	return res.json();
 }*/
 
-export async function correctAnswer(questionId: QuestionId, answerId: AnswerId): Promise<Answer> {
+export async function correctAnswer(
+	questionId: QuestionId,
+	answerId: AnswerId
+): Promise<Answer> {
 	const url = `/api/questions/${questionId}/answers/${answerId}?selectedAnswerId=${answerId}`;
 	const res = await fetch(url, {
 		method: 'POST',
@@ -88,15 +91,20 @@ export async function updateAnswer(
 	answerText: string,
 	correct: boolean
 ): Promise<Answer> {
-	console.log(`API request to /api/questions/${questionId}/answers/${answerId}`);
-	const response = await fetch(`/api/questions/${questionId}/answers/${answerId}`, {
-		method: 'PUT',
-		headers: {
-			'Content-Type': 'application/json',
-			accept: 'application/json',
-		},
-		body: JSON.stringify({ answer: answerText, questionId, correct }),
-	});
+	console.log(
+		`API request to /api/questions/${questionId}/answers/${answerId}`
+	);
+	const response = await fetch(
+		`/api/questions/${questionId}/answers/${answerId}`,
+		{
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				accept: 'application/json',
+			},
+			body: JSON.stringify({ answer: answerText, questionId, correct }),
+		}
+	);
 
 	if (!response.ok) {
 		const errorText = await response.text();
@@ -106,7 +114,10 @@ export async function updateAnswer(
 	return response.json();
 }
 
-export async function deleteAnswer(questionId: number, answerId: number): Promise<void> {
+export async function deleteAnswer(
+	questionId: number,
+	answerId: number
+): Promise<void> {
 	const res = await fetch(`/api/questions/${questionId}/answers/${answerId}`, {
 		method: 'DELETE',
 	});

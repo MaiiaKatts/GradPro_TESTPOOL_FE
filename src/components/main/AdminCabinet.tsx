@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { useCallback, useEffect, useState } from 'react';
-import { selectTasks } from '../../features/tasks/selectors';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectError, selectTests } from '../../features/tests/selectors';
 import {
@@ -84,7 +83,15 @@ export default function AdminCabinet(): JSX.Element {
 				}
 			}
 		},
-		[dispatch, editName, editType, editLevel, currentTest, setIsEditing, resetError]
+		[
+			dispatch,
+			editName,
+			editType,
+			editLevel,
+			currentTest,
+			setIsEditing,
+			resetError,
+		]
 	);
 
 	return (
@@ -126,7 +133,10 @@ export default function AdminCabinet(): JSX.Element {
 					</button>
 				</div>
 				{error && (
-					<div className="invalid-feedback text-end" style={{ display: 'block' }}>
+					<div
+						className="invalid-feedback text-end"
+						style={{ display: 'block' }}
+					>
 						{error}
 					</div>
 				)}
