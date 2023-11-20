@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import styles from './More.module.css';
 
 export default function More(): JSX.Element {

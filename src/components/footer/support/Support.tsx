@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/*import React, { useState } from 'react';
 import styles from './Support.module.css';
 
 export default function Support(): JSX.Element {
@@ -70,4 +71,4 @@ export default function Support(): JSX.Element {
 			</div>
 		</div>
 	);
-}
+}*/

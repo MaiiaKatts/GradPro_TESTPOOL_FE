@@ -48,7 +48,13 @@ export const updateAnswerDetails = createAsyncThunk(
 
 export const removeAnswer = createAsyncThunk(
 	'answers/deleteAnswer',
-	async ({ questionId, answerId }: { questionId: number; answerId: number }) => {
+	async ({
+		questionId,
+		answerId,
+	}: {
+		questionId: number;
+		answerId: number;
+	}) => {
 		await api.deleteAnswer(questionId, answerId);
 		return answerId;
 	}
@@ -88,7 +94,9 @@ const answersSlice = createSlice({
 				state.error = action.error.message ?? 'Ошибка при обновлении ответа.';
 			})
 			.addCase(removeAnswer.fulfilled, (state, action) => {
-				state.answers = state.answers.filter((answer) => answer.id !== action.payload);
+				state.answers = state.answers.filter(
+					(answer) => answer.id !== action.payload
+				);
 			})
 			.addCase(removeAnswer.rejected, (state, action) => {
 				state.error = action.error.message ?? 'Ошибка при удалении ответа.';

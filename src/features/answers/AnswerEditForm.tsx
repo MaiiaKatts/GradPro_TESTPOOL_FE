@@ -36,8 +36,15 @@ export default function AnswerEditForm(props: Props): JSX.Element {
 			</button>
 			{toggle && (
 				<form onSubmit={handleSubmit}>
-					<input type="text" value={text} onChange={(e) => setText(e.target.value)} />
-					<select value={String(correct)} onChange={(e) => setCorrect(Boolean(e.target.value))}>
+					<input
+						type="text"
+						value={text}
+						onChange={(e) => setText(e.target.value)}
+					/>
+					<select
+						value={String(correct)}
+						onChange={(e) => setCorrect(Boolean(e.target.value))}
+					>
 						<option value="false">Incorrect</option>
 						<option value="true">Correct</option>
 					</select>
