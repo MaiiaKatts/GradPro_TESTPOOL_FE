@@ -78,7 +78,7 @@ export default function Home(): JSX.Element {
 							}`}
 						>
 							<img
-								src="/images/test_pageBE.png"
+								src="/testpool-fe/images/test_pageBE.png"
 								alt="BE"
 								className={styles.imageFullSize}
 							/>
@@ -96,7 +96,7 @@ export default function Home(): JSX.Element {
 							}`}
 						>
 							<img
-								src="/images/test_pageFE.png"
+								src="/testpool-fe/images/test_pageFE.png"
 								alt="FE"
 								className={styles.imageFullSize}
 							/>
@@ -114,7 +114,7 @@ export default function Home(): JSX.Element {
 							}`}
 						>
 							<img
-								src="/images/test_pageQA.png"
+								src="/testpool-fe/images/test_pageQA.png"
 								alt="QA"
 								className={styles.imageFullSize}
 							/>
