@@ -12,7 +12,7 @@ export default function AboutUs(): JSX.Element {
 							<div className={styles.memberPhoto}>
 								<img
 									className={styles.photo}
-									src="/images/maiia2.gif"
+									src="/testpool-fe/images/maiia2.gif"
 									alt="Maiia Katts"
 								/>
 							</div>
@@ -29,7 +29,7 @@ export default function AboutUs(): JSX.Element {
 							<div className={styles.memberPhoto}>
 								<img
 									className={styles.photo}
-									src="/images/irina.gif"
+									src="/testpool-fe/images/irina.gif"
 									alt="Irina Frank"
 								/>
 							</div>
@@ -44,7 +44,7 @@ export default function AboutUs(): JSX.Element {
 							<div className={styles.memberPhoto}>
 								<img
 									className={styles.photo}
-									src="/images/orchan.gif"
+									src="/testpool-fe/images/orchan.gif"
 									alt="Anar Aliyev"
 								/>
 							</div>
@@ -59,7 +59,7 @@ export default function AboutUs(): JSX.Element {
 							<div className={styles.memberPhoto}>
 								<img
 									className={styles.photo}
-									src="/images/kristina.gif"
+									src="/testpool-fe/images/kristina.gif"
 									alt="Kristina Romanova"
 								/>
 							</div>
@@ -76,7 +76,7 @@ export default function AboutUs(): JSX.Element {
 								<div className={styles.memberPhoto}>
 									<img
 										className={styles.photo}
-										src="/images/jurgita.gif"
+										src="/testpool-fe/images/jurgita.gif"
 										alt="Jurgita Butiene"
 									/>
 								</div>
@@ -92,7 +92,7 @@ export default function AboutUs(): JSX.Element {
 								<div className={styles.memberPhoto}>
 									<img
 										className={styles.photo}
-										src="/images/natalia.gif"
+										src="/testpool-fe/images/natalia.gif"
 										alt="Natali Hrytsenia"
 									/>
 								</div>
@@ -108,7 +108,7 @@ export default function AboutUs(): JSX.Element {
 								<div className={styles.memberPhoto}>
 									<img
 										className={styles.photo}
-										src="/images/irinaS.gif"
+										src="/testpool-fe/images/irinaS.gif"
 										alt="Iryna Sainozhenko"
 									/>
 								</div>
@@ -124,7 +124,7 @@ export default function AboutUs(): JSX.Element {
 								<div className={styles.memberPhoto}>
 									<img
 										className={styles.photo}
-										src="/images/sidan.gif"
+										src="/testpool-fe/images/sidan.gif"
 										alt="Elena Sidanova"
 									/>
 								</div>
