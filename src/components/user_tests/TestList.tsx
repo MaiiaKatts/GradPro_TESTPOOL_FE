@@ -63,7 +63,8 @@ export default function TestList(): JSX.Element {
 
 	const handleTestSelect = (testId: number) => {
 		dispatch(loadRandomQuestions(testId));
-		dispatch(loadAllAnswers());
+
+		/*dispatch(loadAllAnswers());*/
 	};
 
 	const currentTerm = techTerms[currentTermIndex];
@@ -85,13 +86,13 @@ export default function TestList(): JSX.Element {
 						>
 							{showLinks.BE && (
 								<div className={styles.links}>
-									<Link to="/testBE/21" onClick={() => handleTestSelect(21)}>
+									<Link to="/testBE/1" onClick={() => handleTestSelect(1)}>
 										Junior
 									</Link>
-									<Link to="/testBE/27" onClick={() => handleTestSelect(27)}>
+									<Link to="/testBE/2" onClick={() => handleTestSelect(2)}>
 										Middle
 									</Link>
-									<Link to="/testBE/29" onClick={() => handleTestSelect(29)}>
+									<Link to="/testBE/3" onClick={() => handleTestSelect(3)}>
 										Middle Plus
 									</Link>
 								</div>
@@ -107,13 +108,13 @@ export default function TestList(): JSX.Element {
 						>
 							{showLinks.FE && (
 								<div className={styles.links}>
-									<Link to="/testFE/20" onClick={() => handleTestSelect(20)}>
+									<Link to="/testFE/4" onClick={() => handleTestSelect(4)}>
 										Junior
 									</Link>
-									<Link to="/testFE/26" onClick={() => handleTestSelect(26)}>
+									<Link to="/testFE/5" onClick={() => handleTestSelect(5)}>
 										Middle
 									</Link>
-									<Link to="/testFE/30" onClick={() => handleTestSelect(30)}>
+									<Link to="/testFE/6" onClick={() => handleTestSelect(6)}>
 										Middle Plus
 									</Link>
 								</div>
@@ -129,13 +130,13 @@ export default function TestList(): JSX.Element {
 						>
 							{showLinks.QA && (
 								<div className={styles.links}>
-									<Link to="/testQA/25" onClick={() => handleTestSelect(25)}>
+									<Link to="/testQA/7" onClick={() => handleTestSelect(7)}>
 										Junior
 									</Link>
-									<Link to="/testQA/28" onClick={() => handleTestSelect(28)}>
+									<Link to="/testQA/8" onClick={() => handleTestSelect(8)}>
 										Middle
 									</Link>
-									<Link to="/testQA/31" onClick={() => handleTestSelect(31)}>
+									<Link to="/testQA/9" onClick={() => handleTestSelect(9)}>
 										Middle Plus
 									</Link>
 								</div>

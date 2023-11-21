@@ -13,6 +13,7 @@ import { QuestionId } from '../questions/types/Question';
 import TestsResults from '../testsResults/TestsResults';
 import { AnswerId } from '../answers/types/answer';
 import { useParams } from 'react-router-dom';
+import styles from './TestsQuestions.module.css';
 
 export interface SelectedAnswers {
 	[key: number]: number;
@@ -65,16 +66,26 @@ export default function TestsQuestions(): JSX.Element {
 		}))
 	);
 
+	let mainContainerClass = styles.mainContainer;
+	if (numTestId >= 1 && numTestId <= 3) {
+		mainContainerClass = styles.mainContainerTest1;
+	} else if (numTestId >= 4 && numTestId <= 6) {
+		mainContainerClass = styles.mainContainerTest2;
+	} else if (numTestId >= 7 && numTestId <= 9) {
+		mainContainerClass = styles.mainContainerTest3;
+	}
+
 	return (
-		<div>
+		<div className={styles.container}>
 			{!isTestCompleted && (
-				<div>
+				<div className={mainContainerClass}>
 					{filteredQuestions.map((question) => (
-						<div key={question.id}>
-							<h4>{question.question}</h4>
+						<div key={question.id} className={styles.question}>
+							<h4 className={styles.questionTitle}>{question.question}</h4>
 							{question.answerObjects?.map((answer) => (
-								<label key={answer.id}>
+								<label key={answer.id} className={styles.answerLabel}>
 									<input
+										className={styles.inputField}
 										type="radio"
 										name={`question ${question.id}`}
 										checked={selectedAnswers[question.id] === answer.id}
@@ -86,18 +97,43 @@ export default function TestsQuestions(): JSX.Element {
 						</div>
 					))}
 					{allAnswered && (
-						<button type="button" onClick={handleTestCompletion}>
-							Get result
-						</button>
+						<div className={styles.buttonContainer}>
+							{numTestId >= 1 && numTestId <= 3 && (
+								<button
+									type="button"
+									aria-label="Get result"
+									onClick={handleTestCompletion}
+									className={styles.buttonGroup1}
+								></button>
+							)}
+							{numTestId >= 4 && numTestId <= 6 && (
+								<button
+									type="button"
+									aria-label="Get result"
+									onClick={handleTestCompletion}
+									className={styles.buttonGroup2}
+								></button>
+							)}
+							{numTestId >= 7 && numTestId <= 9 && (
+								<button
+									type="button"
+									aria-label="Get result"
+									onClick={handleTestCompletion}
+									className={styles.buttonGroup3}
+								></button>
+							)}
+						</div>
 					)}
 				</div>
 			)}
 			{isTestCompleted && (
-				<TestsResults
-					selectedAnswers={selectedAnswers}
-					testId={numTestId}
-					showOnlyScore={true}
-				/>
+				<div className={styles.testResults}>
+					<TestsResults
+						selectedAnswers={selectedAnswers}
+						testId={numTestId}
+						showOnlyScore={true}
+					/>
+				</div>
 			)}
 		</div>
 	);

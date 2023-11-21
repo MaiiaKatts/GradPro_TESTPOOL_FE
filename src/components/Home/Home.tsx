@@ -20,11 +20,12 @@ export default function Home(): JSX.Element {
 			<div className={styles.mainContainer}>
 				<div className={styles.leftContainer}>
 					<img
-						className={styles.mainImage}
 						src="/testpool-fe/images/image.gif"
 						alt="main image"
+						className={styles.mainImage}
 					/>
 				</div>
+
 				<div className={styles.rightContainer}>
 					<div className={styles.textContent}>
 						<h4 className={styles.h4}>Unlock Your Potential – Start Today!</h4>
