@@ -15,23 +15,30 @@
 }
 
 .leftContainer {
-	width: 40%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
+
+.mainImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+
 .p {
 	margin: 0px;
 	margin-bottom: 5px;
-}
-.mainImage {
-	width: 100%;
 }
 
 .rightContainer {
 	padding-right: 20px;
 	padding-left: 40px;
 	padding-top: 30px;
+	padding-bottom: 10px;
 	width: 60%;
 	display: flex;
 	align-items: center;

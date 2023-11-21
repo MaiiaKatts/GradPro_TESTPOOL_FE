@@ -149,7 +149,7 @@ export default function AboutUs(): JSX.Element {
 						for IT professionals by IT professionals.
 					</p>
 					<p>
-						Our journey began in [Year], when our founders noticed a gap in the
+						Our journey began in 2023, when our founders noticed a gap in the
 						market for a comprehensive and interactive testing service.
 						Together, we've built a platform that not only assesses skills but
 						also nurtures and develops talent, preparing candidates for not just
