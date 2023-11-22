@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { useEffect, useState } from 'react';
+import { JSX, useEffect, useState } from 'react';
 import styles from './TestList.module.css';
 import { Link, Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -63,8 +63,6 @@ export default function TestList(): JSX.Element {
 
 	const handleTestSelect = (testId: number) => {
 		dispatch(loadRandomQuestions(testId));
-
-		/*dispatch(loadAllAnswers());*/
 	};
 
 	const currentTerm = techTerms[currentTermIndex];

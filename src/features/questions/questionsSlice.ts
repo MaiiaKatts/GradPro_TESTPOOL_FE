@@ -9,6 +9,7 @@ import Question, { QuestionId } from './types/Question';
 
 const initialState: QuestionsState = {
 	questions: [],
+	questionWithCorrectAnswer: null,
 	randomQuestions: [],
 	error: undefined,
 };
@@ -26,6 +27,20 @@ export const createQuestion = createAsyncThunk(
 
 export const loadQuestions = createAsyncThunk('questions/loadQuestions', () =>
 	api.getAllQuestions()
+);
+
+export const loadQuestionWithCorrectAnswer = createAsyncThunk(
+	'questions/loadQuestionWithCorrectAnswer',
+	async (questionId: QuestionId, { rejectWithValue }) => {
+		try {
+			const res = await api.getQuestionWithCorrectAnswer(questionId);
+			return res;
+		} catch (err) {
+			return rejectWithValue(
+				err instanceof Error ? err.message : 'An unknown error occurred'
+			);
+		}
+	}
 );
 
 export const loadRandomQuestions = createAsyncThunk(
@@ -99,6 +114,12 @@ const questionsSlice = createSlice({
 				state.randomQuestions = action.payload;
 			})
 			.addCase(loadRandomQuestions.rejected, (state, action) => {
+				state.error = action.error.message;
+			})
+			.addCase(loadQuestionWithCorrectAnswer.fulfilled, (state, action) => {
+				state.questionWithCorrectAnswer = action.payload;
+			})
+			.addCase(loadQuestionWithCorrectAnswer.rejected, (state, action) => {
 				state.error = action.error.message;
 			});
 	},

@@ -1,9 +1,12 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable no-prototype-builtins */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable react/prop-types */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectError, selectTestsResults } from './selectors';
 import { loadTestsResult, saveTestResult } from './testsResultsSlice';
@@ -12,17 +15,21 @@ import { getUser } from '../auth/authSlice';
 import { SelectedAnswers } from '../tests/TestsQuestions';
 import { correctAnswer } from '../answers/answersSlice';
 import { unwrapResult } from '@reduxjs/toolkit';
+import Question from '../questions/types/Question';
+import { loadQuestionWithCorrectAnswer } from '../questions/questionsSlice';
 
 interface TestsResultsProps {
 	selectedAnswers: SelectedAnswers;
 	testId: number;
 	showOnlyScore: boolean;
+	filteredQuestions: Question[];
 }
 
 export default function TestsResults({
 	selectedAnswers,
 	testId,
 	showOnlyScore,
+	filteredQuestions,
 }: TestsResultsProps): JSX.Element {
 	const testResults = useAppSelector(selectTestsResults);
 	const currentUser = useAppSelector(selectUser);
@@ -33,7 +40,10 @@ export default function TestsResults({
 		(result) => result.testId === testId
 	);
 	const latestTestResult = currentTestResults[currentTestResults.length - 1];
-	//const latestTestResult = testResults[testResults.length - 1];
+	const [showDecryption, setShowDecryption] = useState(false);
+	const [correctAnswers, setCorrectAnswers] = useState<{
+		[key: number]: string;
+	}>({});
 
 	useEffect(() => {
 		const saveResults = async () => {
@@ -86,6 +96,46 @@ export default function TestsResults({
 		return <div>Error loading test results: {error}</div>;
 	}
 
+	const handleShowDecryptionClick = () => {
+		setShowDecryption(true);
+	};
+
+	useEffect(() => {
+		const fetchCorrectAnswers = async () => {
+			const questionsWithCorrectAnswers = await Promise.all(
+				filteredQuestions.map(async (question) => {
+					try {
+						const questionWithCorrectAnswer = await dispatch(
+							loadQuestionWithCorrectAnswer(question.id)
+						).unwrap();
+						return questionWithCorrectAnswer;
+					} catch (error) {
+						console.error('Ошибка при получении правильного ответа:', error);
+						return null;
+					}
+				})
+			);
+
+			const correctAnswersMap = questionsWithCorrectAnswers.reduce<{
+				[key: number]: string;
+			}>((acc, questionWithCorrectAnswer) => {
+				if (
+					questionWithCorrectAnswer &&
+					questionWithCorrectAnswer.correctAnswerText
+				) {
+					acc[questionWithCorrectAnswer.id] =
+						questionWithCorrectAnswer.correctAnswerText;
+				}
+				return acc;
+			}, {});
+
+			setCorrectAnswers(correctAnswersMap);
+		};
+
+		if (filteredQuestions.length > 0) {
+			fetchCorrectAnswers();
+		}
+	}, [filteredQuestions, dispatch]);
 	return (
 		<div>
 			<h2>Test Results</h2>
@@ -94,6 +144,29 @@ export default function TestsResults({
 			latestTestResult.testId === testId ? (
 				<div key={latestTestResult.id}>
 					<p>Your result: {latestTestResult.score} correct answers</p>
+					{!showDecryption && (
+						<button type="button" onClick={handleShowDecryptionClick}>
+							Show Decryption
+						</button>
+					)}
+					{showDecryption && (
+						<div>
+							{filteredQuestions.map((question) => (
+								<div key={question.id}>
+									<h4>{question.question}</h4>
+									<p>
+										Your Answer:{' '}
+										{
+											question.answerObjects?.find(
+												(a) => a.id === selectedAnswers[question.id]
+											)?.answer
+										}
+									</p>
+									<p>Correct Answer: {correctAnswers[question.id]}</p>
+								</div>
+							))}
+						</div>
+					)}
 				</div>
 			) : (
 				testResults.map((result) => (
