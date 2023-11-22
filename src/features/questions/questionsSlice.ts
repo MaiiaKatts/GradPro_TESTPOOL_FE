@@ -31,15 +31,9 @@ export const loadQuestions = createAsyncThunk('questions/loadQuestions', () =>
 
 export const loadQuestionWithCorrectAnswer = createAsyncThunk(
 	'questions/loadQuestionWithCorrectAnswer',
-	async (questionId: QuestionId, { rejectWithValue }) => {
-		try {
-			const res = await api.getQuestionWithCorrectAnswer(questionId);
-			return res;
-		} catch (err) {
-			return rejectWithValue(
-				err instanceof Error ? err.message : 'An unknown error occurred'
-			);
-		}
+	async (questionId: number) => {
+		const res = await api.getQuestionWithCorrectAnswer(questionId);
+		return res;
 	}
 );
 

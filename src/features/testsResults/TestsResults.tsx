@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/require-await */
+/* eslint-disable @typescript-eslint/await-thenable */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
@@ -17,6 +19,7 @@ import { correctAnswer } from '../answers/answersSlice';
 import { unwrapResult } from '@reduxjs/toolkit';
 import Question from '../questions/types/Question';
 import { loadQuestionWithCorrectAnswer } from '../questions/questionsSlice';
+import { CorrectAnswerResponse } from '../questions/api';
 
 interface TestsResultsProps {
 	selectedAnswers: SelectedAnswers;
@@ -44,6 +47,9 @@ export default function TestsResults({
 	const [correctAnswers, setCorrectAnswers] = useState<{
 		[key: number]: string;
 	}>({});
+	const [correctAnswersData, setCorrectAnswersData] = useState<
+		CorrectAnswerResponse[]
+	>([]);
 
 	useEffect(() => {
 		const saveResults = async () => {
@@ -100,7 +106,127 @@ export default function TestsResults({
 		setShowDecryption(true);
 	};
 
+	/*useEffect(() => {
+		const fetchCorrectAnswers = async () => {
+			const correctAnswersMap: { [key: number]: string } = {};
+
+			for (const question of filteredQuestions) {
+				try {
+					const answer = await dispatch(
+						correctAnswer({
+							questionId: question.id,
+							answerId: selectedAnswers[question.id],
+						})
+					).unwrap();
+
+					if (answer.correct) {
+						correctAnswersMap[question.id] = answer.answer;
+					}
+				} catch (error) {
+					console.error(
+						`Error fetching correct answer for question ${question.id}:`,
+						error
+					);
+				}
+			}
+			setCorrectAnswers(correctAnswersMap);
+		};
+
+		if (
+			filteredQuestions.length > 0 &&
+			Object.keys(selectedAnswers).length > 0
+		) {
+			fetchCorrectAnswers();
+		}
+	}, [filteredQuestions, selectedAnswers, dispatch]);*/
+
 	useEffect(() => {
+		const fetchCorrectAnswers = async () => {
+			const questionsWithCorrectAnswers: CorrectAnswerResponse[] =
+				await Promise.all(
+					filteredQuestions.map(async (question) => {
+						try {
+							const questionWithCorrectAnswer = await dispatch(
+								loadQuestionWithCorrectAnswer(question.id)
+							).unwrap();
+							return questionWithCorrectAnswer;
+						} catch (error) {
+							console.error('Ошибка при получении правильного ответа:', error);
+							return null;
+						}
+					})
+				).then((results) =>
+					results.filter(
+						(result): result is CorrectAnswerResponse => result !== null
+					)
+				);
+
+			setCorrectAnswersData(questionsWithCorrectAnswers);
+
+			const correctAnswersMap = questionsWithCorrectAnswers.reduce<{
+				[key: number]: string;
+			}>((acc, questionWithCorrectAnswer) => {
+				acc[questionWithCorrectAnswer.questionId] =
+					questionWithCorrectAnswer.correctAnswerText;
+				return acc;
+			}, {});
+
+			setCorrectAnswers(correctAnswersMap);
+		};
+
+		if (filteredQuestions.length > 0) {
+			fetchCorrectAnswers();
+		}
+	}, [filteredQuestions, dispatch]);
+
+	/*useEffect(() => {
+		const fetchCorrectAnswers = async () => {
+			const questionsWithCorrectAnswers = await Promise.all(
+				filteredQuestions.map(async (question) => {
+					try {
+						const questionWithCorrectAnswer = await dispatch(
+							loadQuestionWithCorrectAnswer(question.id)
+						).unwrap();
+						console.log(
+							'Question with correct answer:',
+							questionWithCorrectAnswer
+						);
+
+						const transformedData = {
+							...questionWithCorrectAnswer,
+							question: questionWithCorrectAnswer.questionText,
+						};
+
+						return transformedData;
+					} catch (error) {
+						console.error('Ошибка при получении правильного ответа:', error);
+						return null;
+					}
+				})
+			);
+
+			const correctAnswersMap = questionsWithCorrectAnswers.reduce<{
+				[key: number]: string;
+			}>((acc, questionWithCorrectAnswer) => {
+				if (
+					questionWithCorrectAnswer &&
+					questionWithCorrectAnswer.correctAnswerText
+				) {
+					acc[questionWithCorrectAnswer.id] =
+						questionWithCorrectAnswer.correctAnswerText;
+				}
+				return acc;
+			}, {});
+
+			setCorrectAnswers(correctAnswersMap);
+		};
+
+		if (filteredQuestions.length > 0) {
+			fetchCorrectAnswers();
+		}
+	}, [filteredQuestions, dispatch]);*/
+
+	/*useEffect(() => {
 		const fetchCorrectAnswers = async () => {
 			const questionsWithCorrectAnswers = await Promise.all(
 				filteredQuestions.map(async (question) => {
@@ -135,7 +261,8 @@ export default function TestsResults({
 		if (filteredQuestions.length > 0) {
 			fetchCorrectAnswers();
 		}
-	}, [filteredQuestions, dispatch]);
+	}, [filteredQuestions, dispatch]);*/
+
 	return (
 		<div>
 			<h2>Test Results</h2>
@@ -168,15 +295,7 @@ export default function TestsResults({
 						</div>
 					)}
 				</div>
-			) : (
-				testResults.map((result) => (
-					<div key={result.id}>
-						<p>Date: {result.date}</p>
-						<p>Total Correct Answers: {result.totalCorrectAnswer}</p>
-						<p>Progress: {result.progressPercent}%</p>
-					</div>
-				))
-			)}
+			) : null}
 		</div>
 	);
 }
