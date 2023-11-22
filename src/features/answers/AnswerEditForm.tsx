@@ -2,6 +2,8 @@ import { FormEvent, useState } from 'react';
 import Answer from './types/answer';
 import { useAppDispatch } from '../../app/hooks';
 import { updateAnswerDetails } from './answersSlice';
+import styles from './AnswerEditForm.module.css';
+
 interface Props {
 	answer: Answer;
 }
@@ -30,27 +32,35 @@ export default function AnswerEditForm(props: Props): JSX.Element {
 		);
 	}
 	return (
-		<div>
-			<button type="button" onClick={handleToggle}>
+		<div className={styles.containerHome}>
+			<button
+				className={styles.editButton}
+				type="button"
+				onClick={handleToggle}
+			>
 				Edit
 			</button>
-			{toggle && (
-				<form onSubmit={handleSubmit}>
-					<input
-						type="text"
-						value={text}
-						onChange={(e) => setText(e.target.value)}
-					/>
-					<select
-						value={String(correct)}
-						onChange={(e) => setCorrect(Boolean(e.target.value))}
-					>
-						<option value="false">Incorrect</option>
-						<option value="true">Correct</option>
-					</select>
-					<button type="submit">Save</button>
-				</form>
-			)}
+			<div className={styles.containerSave}>
+				{toggle && (
+					<form onSubmit={handleSubmit} className={styles.formInline}>
+						<input
+							type="text"
+							value={text}
+							onChange={(e) => setText(e.target.value)}
+						/>
+						<select
+							value={String(correct)}
+							onChange={(e) => setCorrect(Boolean(e.target.value))}
+						>
+							<option value="false">Incorrect</option>
+							<option value="true">Correct</option>
+						</select>
+						<button className={styles.saveButton} type="submit">
+							Save
+						</button>
+					</form>
+				)}
+			</div>
 		</div>
 	);
 }

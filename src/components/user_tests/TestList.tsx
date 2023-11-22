@@ -84,7 +84,7 @@ export default function TestList(): JSX.Element {
 						>
 							{showLinks.BE && (
 								<div className={styles.links}>
-									<Link to="/testBE/21" onClick={() => handleTestSelect(21)}>
+									<Link to="/testBE/1" onClick={() => handleTestSelect(1)}>
 										Junior
 									</Link>
 									<Link to="/testBE/2" onClick={() => handleTestSelect(2)}>

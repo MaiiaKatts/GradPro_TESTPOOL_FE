@@ -232,28 +232,34 @@ export default function Questions(): JSX.Element {
 					</form>
 				)}
 				<ul>
-					{questions?.map((question) => (
-						<li key={question.id}>
-							{question.testId}
-							{' ' + question.question + ' '}
-							<span
-								className={`${styles.badge} ${styles.bgPrimary} ${styles.roundedPill} ${styles.editTest}`}
-								role="button"
-								onClick={() => startEditing(question)}
-								tabIndex={0}
-							>
-								Edit
-							</span>
-							<span
-								className={`${styles.badge} ${styles.bgDanger} ${styles.roundedPill} ${styles.removeTest}`}
-								role="button"
-								onClick={() => handleQuestionRemove(question.id)}
-								tabIndex={0}
-							>
-								Delete
-							</span>
-						</li>
-					))}
+					<div>
+						{questions?.map((question) => (
+							<li key={question.id} className={styles.questionItem}>
+								<div className={styles.questionContent}>
+									{question.testId}
+									{' ' + question.question + ' '}
+								</div>
+								<div className={styles.questionsActions}>
+									<span
+										className={`${styles.badge} ${styles.bgPrimary} ${styles.roundedPill} ${styles.editTest}`}
+										role="button"
+										onClick={() => startEditing(question)}
+										tabIndex={0}
+									>
+										Edit
+									</span>
+									<span
+										className={`${styles.badge} ${styles.bgDanger} ${styles.roundedPill} ${styles.removeTest}`}
+										role="button"
+										onClick={() => handleQuestionRemove(question.id)}
+										tabIndex={0}
+									>
+										Delete
+									</span>
+								</div>
+							</li>
+						))}
+					</div>
 				</ul>
 			</div>
 		</div>

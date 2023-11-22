@@ -73,7 +73,7 @@ export default function AnswerList(): JSX.Element {
 			<div className={styles.container}>
 				<h1 className={styles.testHeading}>Create answers</h1>
 				<div className={styles.h1container}>All answers</div>
-				<div className={styles['table-container']}>
+				<div className={styles.tableContainer}>
 					<table>
 						<thead>
 							<tr>
@@ -88,17 +88,17 @@ export default function AnswerList(): JSX.Element {
 									<td>{answer.answer}</td>
 									<td>{answer.correct ? 'Yes' : 'No'}</td>
 									<td>
-										<div>
+										<div className={styles.buttonRow}>
 											<button
 												type="button"
 												onClick={() => handleUpdateAnswer(answer)}
-												className={styles.button}
+												className={styles.buttonUpdate}
 											>
 												Update
 											</button>
 											<button
 												onClick={() => handleRemoveAnswer(answer)}
-												className={styles.button}
+												className={styles.buttonDelete}
 											>
 												Delete
 											</button>
@@ -110,7 +110,7 @@ export default function AnswerList(): JSX.Element {
 					</table>
 				</div>
 				<div className={styles.h1container}>Add new answer</div>
-				<div className={styles['new-answer-container']}>
+				<div className={styles.newAnswerContainer}>
 					<input
 						type="text"
 						value={newAnswer.answer}
@@ -130,50 +130,52 @@ export default function AnswerList(): JSX.Element {
 						/>
 						Is correct?
 					</label>
-					{
-						<select
-							value={newAnswer.questionId}
-							onChange={(e) => {
-								const questionId = Number(e.target.value);
-								const selectedQuestion = questions.find(
-									(q) => q.id === questionId
-								);
-								if (!selectedQuestion) {
-									console.error('Selected question not found');
-									return;
-								}
-								console.log(
-									"Selected question's testId:",
-									selectedQuestion.testId
-								);
-								console.log('Available tests:', tests);
-								const test = tests.find(
-									(t) => t.id === selectedQuestion.testId
-								);
-								if (!test) {
-									console.error('Test not found for the selected question');
-									return;
-								}
-								setNewAnswer({
-									...newAnswer,
-									questionId,
-									question: selectedQuestion.question,
-									difficultyLevel: test.level,
-								});
-							}}
-							className={styles.dropdown}
-						>
-							<option value="">Select Question</option>
-							{questions.map((question) => (
-								<option key={question.id} value={question.id}>
-									{question.question} (
-									{tests.find((t) => t.id === question.testId)?.level ||
-										'Unknown Level'}
-									)
-								</option>
-							))}
-						</select>
-					}
+					<div className={styles.selectQuestion}>
+						{
+							<select
+								value={newAnswer.questionId}
+								onChange={(e) => {
+									const questionId = Number(e.target.value);
+									const selectedQuestion = questions.find(
+										(q) => q.id === questionId
+									);
+									if (!selectedQuestion) {
+										console.error('Selected question not found');
+										return;
+									}
+									console.log(
+										"Selected question's testId:",
+										selectedQuestion.testId
+									);
+									console.log('Available tests:', tests);
+									const test = tests.find(
+										(t) => t.id === selectedQuestion.testId
+									);
+									if (!test) {
+										console.error('Test not found for the selected question');
+										return;
+									}
+									setNewAnswer({
+										...newAnswer,
+										questionId,
+										question: selectedQuestion.question,
+										difficultyLevel: test.level,
+									});
+								}}
+								className={styles.dropdown}
+							>
+								<option value="">Select Question</option>
+								{questions.map((question) => (
+									<option key={question.id} value={question.id}>
+										{question.question} (
+										{tests.find((t) => t.id === question.testId)?.level ||
+											'Unknown Level'}
+										)
+									</option>
+								))}
+							</select>
+						}
+					</div>
 					<button
 						type="button"
 						onClick={handleCreateAnswer}
