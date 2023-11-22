@@ -138,7 +138,7 @@ export default function TestsQuestions(): JSX.Element {
 						selectedAnswers={selectedAnswers}
 						testId={numTestId}
 						showOnlyScore={true}
-            filteredQuestions={filteredQuestions}
+						filteredQuestions={filteredQuestions}
 					/>
 				</div>
 			)}

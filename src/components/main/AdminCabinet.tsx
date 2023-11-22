@@ -96,7 +96,6 @@ export default function AdminCabinet(): JSX.Element {
 	);
 
 	return (
-
 		<div className={styles.containerHome}>
 			<div className={styles.adminCabinet}>
 				<h1 className={styles.testHeading}>Admin Cabinet</h1>
@@ -143,87 +142,6 @@ export default function AdminCabinet(): JSX.Element {
 								Add
 							</button>
 						</div>
-
-		<>
-			<div>Admin cabinet</div>
-			<h1>Tests</h1>
-			<p>Add test</p>
-			<form className="mb-3" onSubmit={handleCreateTest}>
-				<div className="input-group">
-					<input
-						type="text"
-						className={`form-control ${error ? 'is-invalid' : ''}`}
-						placeholder="Title..."
-						aria-label="Title..."
-						name="testTitle"
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-					/>
-					<input
-						type="text"
-						className={`form-control ${error ? 'is-invalid' : ''}`}
-						placeholder="Type..."
-						aria-label="Type..."
-						name="testType"
-						value={type}
-						onChange={(e) => setType(e.target.value)}
-					/>
-					<input
-						type="text"
-						className={`form-control ${error ? 'is-invalid' : ''}`}
-						placeholder="Level..."
-						aria-label="Level..."
-						name="testLevel"
-						value={level}
-						onChange={(e) => setLevel(e.target.value)}
-					/>
-					<button type="submit" className="btn btn-primary">
-						Add
-					</button>
-				</div>
-				{error && (
-					<div
-						className="invalid-feedback text-end"
-						style={{ display: 'block' }}
-					>
-						{error}
-					</div>
-				)}
-			</form>
-			{isEditing && (
-				<form className="mb-3" onSubmit={handleUpdateTest}>
-					<div className="input-group">
-						<input
-							type="text"
-							className={`form-control ${error ? 'is-invalid' : ''}`}
-							placeholder="Title..."
-							aria-label="Title..."
-							name="testTitle"
-							value={editName}
-							onChange={(e) => setEditName(e.target.value)}
-						/>
-						<input
-							type="text"
-							className={`form-control ${error ? 'is-invalid' : ''}`}
-							placeholder="Type..."
-							aria-label="Type..."
-							name="testType"
-							value={editType}
-							onChange={(e) => setEditType(e.target.value)}
-						/>
-						<input
-							type="text"
-							className={`form-control ${error ? 'is-invalid' : ''}`}
-							placeholder="Level..."
-							aria-label="Level..."
-							name="testLevel"
-							value={editLevel}
-							onChange={(e) => setEditLevel(e.target.value)}
-						/>
-						<button type="submit" className="btn btn-primary">
-							{isEditing ? 'Update' : 'Add'}
-						</button>
-
 					</div>
 					{error && (
 						<div className={`${styles.invalidFeedback} ${styles.displayBlock}`}>
