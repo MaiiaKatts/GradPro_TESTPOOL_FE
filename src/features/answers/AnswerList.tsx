@@ -72,7 +72,8 @@ export default function AnswerList(): JSX.Element {
 	return (
 		<div className={styles.containerHome}>
 			<div className={styles.container}>
-				<h1>All answers</h1>
+				<h1 className={styles.testHeading}>Create answers</h1>
+				<div className={styles.h1container}>All answers</div>
 				<div className={styles['table-container']}>
 					<table>
 						<thead>
@@ -109,7 +110,7 @@ export default function AnswerList(): JSX.Element {
 						</tbody>
 					</table>
 				</div>
-				<h3>Add new answer</h3>
+				<div className={styles.h1container}>Add new answer</div>
 				<div className={styles['new-answer-container']}>
 					<input
 						type="text"

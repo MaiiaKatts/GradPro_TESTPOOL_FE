@@ -17,6 +17,7 @@ import { selectTests } from '../tests/selectors';
 import { JSX } from 'react/jsx-runtime';
 import AnswerEditForm from '../answers/AnswerEditForm';
 import QuestionEditForm from './QuestionEditForm';
+import styles from './QuestionList.module.css';
 
 export default function QuestionsList(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -43,31 +44,34 @@ export default function QuestionsList(): JSX.Element {
 	);
 
 	return (
-		<div className="questions-list">
-			<select onChange={handleTestChange}>
-				<option value="">Choose test</option>
-				{tests.map((test) => (
-					<option key={test.id} value={test.id}>
-						{test.name} - {test.type} - {test.level}
-					</option>
+		<div className={styles.containerHome}>
+			<div className={styles.mainContainer}>
+				<div className={styles.testHeading}>Questions List</div>
+				<select onChange={handleTestChange}>
+					<option value="">Choose test</option>
+					{tests.map((test) => (
+						<option key={test.id} value={test.id}>
+							{test.name} - {test.type} - {test.level}
+						</option>
+					))}
+				</select>
+				{filteredQuestions.map((question) => (
+					<div key={question.id}>
+						<h4 className={styles.questionTitle}>{question.question}</h4>
+						<QuestionEditForm question={question} />
+						{filteredAnswers
+							.filter((answer) => answer.questionId === question.id)
+							.map((answer) => (
+								<div key={answer.id}>
+									<p>
+										{answer.answer} - {answer.correct ? 'Correct' : 'Incorrect'}
+									</p>
+									<AnswerEditForm answer={answer} />
+								</div>
+							))}
+					</div>
 				))}
-			</select>
-			{filteredQuestions.map((question) => (
-				<div key={question.id}>
-					<h4>{question.question}</h4>
-					<QuestionEditForm question={question} />
-					{filteredAnswers
-						.filter((answer) => answer.questionId === question.id)
-						.map((answer) => (
-							<div key={answer.id}>
-								<p>
-									{answer.answer} - {answer.correct ? 'Correct' : 'Incorrect'}
-								</p>
-								<AnswerEditForm answer={answer} />
-							</div>
-						))}
-				</div>
-			))}
+			</div>
 		</div>
 	);
 }
