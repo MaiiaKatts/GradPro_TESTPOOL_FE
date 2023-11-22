@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default-member */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
@@ -9,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { loadRandomQuestions } from '../questions/questionsSlice';
 import { selectRandomQuestions } from '../questions/selectors';
-import { QuestionId } from '../questions/types/Question';
+import Question, { QuestionId } from '../questions/types/Question';
 import TestsResults from '../testsResults/TestsResults';
 import { AnswerId } from '../answers/types/answer';
 import { useParams } from 'react-router-dom';
@@ -25,6 +26,10 @@ export default function TestsQuestions(): JSX.Element {
 	const questions = useAppSelector(selectRandomQuestions);
 	const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
 	const [isTestCompleted, setIsTestCompleted] = useState<boolean>(false);
+	const [
+		filteredQuestionsAfterCompletion,
+		setFilteredQuestionsAfterCompletion,
+	] = useState<Question[]>([]);
 
 	useEffect(() => {
 		console.log('Effect triggered, numTestId:', numTestId);
@@ -34,12 +39,13 @@ export default function TestsQuestions(): JSX.Element {
 		}
 	}, [dispatch, numTestId]);
 
-	const handleTestCompletion = () => {
-		setIsTestCompleted(true);
-	};
-
 	const filteredQuestions = questions.filter((q) => q.testId === numTestId);
 	console.log('questions: ', filteredQuestions);
+
+	const handleTestCompletion = () => {
+		setIsTestCompleted(true);
+		setFilteredQuestionsAfterCompletion(filteredQuestions);
+	};
 
 	const handleAnswerChange = (questionId: QuestionId, answerId: AnswerId) => {
 		setSelectedAnswers({
@@ -97,6 +103,7 @@ export default function TestsQuestions(): JSX.Element {
 					selectedAnswers={selectedAnswers}
 					testId={numTestId}
 					showOnlyScore={true}
+					filteredQuestions={filteredQuestions}
 				/>
 			)}
 		</div>

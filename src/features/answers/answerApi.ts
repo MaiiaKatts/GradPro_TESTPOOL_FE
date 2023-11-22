@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { QuestionId } from '../questions/types/Question';
 import Answer, { AnswerId } from './types/answer';
 
@@ -49,32 +50,19 @@ export async function addAnswer(
 	return res.json();
 }
 
-/*export async function correctAnswer(questionId: QuestionId, answerId: AnswerId): Promise<Answer> {
-	const res = await fetch(`/api/questions/${questionId}/answers/${answerId}`, {
-		method: 'POST',
-		headers: {
-			accept: 'application/json',
-		},
-	});
-
-	const { errors }: { errors: Error[] } = await res.json();
-	errors.forEach((err) => {
-		throw new Error(`${err.field} ${err.rejectedValue} ${err.message}`);
-	});
-	return res.json();
-}*/
-
 export async function correctAnswer(
 	questionId: QuestionId,
 	answerId: AnswerId
-): Promise<Answer> {
-	const url = `/api/questions/${questionId}/answers/${answerId}?selectedAnswerId=${answerId}`;
-	const res = await fetch(url, {
-		method: 'POST',
-		headers: {
-			accept: 'application/json',
-		},
-	});
+): Promise<Answer | null> {
+	const res = await fetch(
+		`/api/questions/${questionId}/answers/${answerId}?selectedAnswerId=${answerId}`,
+		{
+			method: 'GET',
+			headers: {
+				accept: 'application/json',
+			},
+		}
+	);
 
 	if (res.status >= 400) {
 		const { errors }: { errors: Error[] } = await res.json();
@@ -82,7 +70,13 @@ export async function correctAnswer(
 			throw new Error(`${err.field} ${err.rejectedValue} ${err.message}`);
 		});
 	}
-	return res.json();
+	const answer = await res.json();
+	if (answer.correct) {
+		return answer;
+	} else {
+		return null;
+	}
+	//return res.json();
 }
 
 export async function updateAnswer(

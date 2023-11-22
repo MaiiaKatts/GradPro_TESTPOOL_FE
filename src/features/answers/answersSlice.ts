@@ -120,7 +120,9 @@ const answersSlice = createSlice({
 				state.error = action.error.message ?? 'Ошибка при удалении ответа.';
 			})
 			.addCase(correctAnswer.fulfilled, (state, action) => {
-				state.answers.push(action.payload);
+				if (action.payload) {
+					state.answers.push(action.payload);
+				}
 			});
 	},
 });

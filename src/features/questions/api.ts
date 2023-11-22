@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { AnswerId } from './../answers/types/answer';
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
@@ -24,23 +25,22 @@ export async function getAllQuestions(): Promise<Question[]> {
 	return res.json();
 }
 
-/*interface QuestionResponse {
-	id: number;
-	question: string;
-	answer1: string;
-	answer2: string;
-	answer3: string;
-	answer4: string;
-}
+/*interface QuestionAnswerPaar {
+	id: QuestionId;
+	answerId: AnswerId;
+	questionText: string;
+	correctAnswerText: string;
+}*/
 
-export async function getRandomQuestions(testId: TestId): Promise<Question[]> {
-	const res = await fetch(`/api/tests/${testId}/questions/randomQuestions`, {
+export async function getQuestionWithCorrectAnswer(
+	questionId: QuestionId
+): Promise<Question> {
+	const res = await fetch(`/api/questions/with-correct-answer/${questionId}`, {
 		method: 'GET',
 		headers: {
 			accept: 'application/json',
 		},
 	});
-
 	interface Error {
 		message: string;
 		field: string;
@@ -52,16 +52,8 @@ export async function getRandomQuestions(testId: TestId): Promise<Question[]> {
 			throw new Error(`${err.field} ${err.rejectedValue} ${err.message}`);
 		});
 	}
-
-	const data: QuestionResponse[] = await res.json();
-
-	return data.map((item) => ({
-		id: item.id,
-		testId,
-		question: item.question,
-		answers: [item.answer1, item.answer2, item.answer3, item.answer4],
-	}));
-}*/
+	return res.json();
+}
 
 interface QuestionResponse {
 	id: number;
