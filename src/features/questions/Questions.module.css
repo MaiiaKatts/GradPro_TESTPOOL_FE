@@ -1,0 +1,154 @@
+.containerHome {
+  background-color: rgb(246, 246, 228);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  min-height: 100vh;
+  width: 100%;
+  justify-content: center;
+}
+
+.mainContainer {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90vw;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.testHeading {
+  color:rgb(76, 152, 150);
+  font-family: Tahoma, sans-serif;
+  margin: 10px 0;
+  width: 100%;
+  text-align: left;
+  font-size: 24px;
+ font-weight: bold;
+}
+
+.random {
+  color: rgb(209, 92, 83);
+  font-family: Tahoma, sans-serif;
+  margin: 10px 0;
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+}
+.inputRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
+.form {
+  width: 70%;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 5px 0;
+}
+
+.formControl {
+  width: 100%;
+  border: 1px solid #aaa9a9;
+  padding: 8px;
+  text-align: center;
+}
+
+.btn {
+  background-color: rgb(76, 152, 150);
+  border: none;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex; /* Changed from flex to inline-flex */
+  align-items: center;
+  justify-content: center; /* Added for centering text */
+  font-size: 16px;
+  margin: 10px auto;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.btn:hover {
+  background-color: rgb(252, 177, 70);
+}
+
+.invalidFeedback {
+  color: red;
+  display: none;
+}
+
+.displayBlock {
+  display: block;
+}
+
+.addQuestion {
+  color: rgb(209, 92, 83);
+  font-family: Tahoma, sans-serif;
+  margin: 10px 0;
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+}
+
+.bgPrimary {
+  background-color: rgb(76, 152, 150);
+  border: none;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  margin: 10px auto;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100px;
+}
+
+.bgDanger {
+  background-color: rgb(209, 92, 83);
+  border: none;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  margin: 10px auto;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100px;
+}
+
+.bgPrimary:hover, 
+.bgDanger:hover {
+  background-color: rgb(252, 177, 70);
+}
+
+.editTest, .removeTest {
+  margin-left: 10px;
+}
+
+.isInvalid {
+  border-color: #dc3545;
+}

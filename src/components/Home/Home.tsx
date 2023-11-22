@@ -29,7 +29,7 @@ export default function Home(): JSX.Element {
 				<div className={styles.rightContainer}>
 					<div className={styles.textContent}>
 						<h4 className={styles.h4}>Unlock Your Potential – Start Today!</h4>
-						<p>
+						<p className={styles.p}>
 							Testpool offers a unique experience in preparing for technical
 							interviews in the fields of frontend, backend, and software
 							testing. Our platform is equipped with everything you need for

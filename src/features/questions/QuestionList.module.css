@@ -1,0 +1,35 @@
+.containerHome{
+  background-color: rgb(246, 246, 228);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  min-height: 100vh;
+  width: 100%;
+  justify-content: center;
+}
+
+.mainContainer {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90vw;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.testHeading {
+  color:rgb(76, 152, 150);
+  font-family: Tahoma, sans-serif;
+  margin: 10px 0;
+  width: 100%;
+  text-align: left;
+  font-size: 24px;
+ font-weight: bold;
+}
+.questionTitle {
+	font-size: 26px;
+	margin-bottom: 10px;
+	color: #333;
+	margin-bottom: 20px;
+}

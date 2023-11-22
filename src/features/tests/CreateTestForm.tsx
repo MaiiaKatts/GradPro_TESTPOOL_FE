@@ -326,7 +326,7 @@ export default function CreateTestFormSec() {
 	return (
 		<div className={styles.containerHome}>
 			<div className={styles.testContainer}>
-				<h2 className={styles.testHeader}>Test List</h2>
+				<h2 className={styles.testHeading}>Create test</h2>
 				<div className={styles.selectContainer}>
 					<select
 						className={styles.testSelect}
