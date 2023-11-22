@@ -12,6 +12,7 @@ import {
 	updateTest,
 } from '../../features/tests/testsSlice';
 import Test, { TestId } from '../../features/tests/types/Test';
+import styles from './AdminCabinet.module.css';
 
 export default function AdminCabinet(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -95,6 +96,54 @@ export default function AdminCabinet(): JSX.Element {
 	);
 
 	return (
+
+		<div className={styles.containerHome}>
+			<div className={styles.adminCabinet}>
+				<h1 className={styles.testHeading}>Admin Cabinet</h1>
+				<p className={styles.addTest}>Add test</p>
+				<form className={styles.form} onSubmit={handleCreateTest}>
+					<div className={styles.inputGroup}>
+						<div className={styles.inputRow}>
+							<input
+								type="text"
+								className={`${styles.formControl} ${
+									error ? styles.isInvalid : ''
+								}`}
+								placeholder="Title..."
+								aria-label="Title..."
+								name="testTitle"
+								value={name}
+								onChange={(e) => setName(e.target.value)}
+							/>
+							<input
+								type="text"
+								className={`${styles.formControl} ${
+									error ? styles.isInvalid : ''
+								}`}
+								placeholder="Type..."
+								aria-label="Type..."
+								name="testType"
+								value={type}
+								onChange={(e) => setType(e.target.value)}
+							/>
+							<input
+								type="text"
+								className={`${styles.formControl} ${
+									error ? styles.isInvalid : ''
+								}`}
+								placeholder="Level..."
+								aria-label="Level..."
+								name="testLevel"
+								value={level}
+								onChange={(e) => setLevel(e.target.value)}
+							/>
+						</div>
+						<div className={styles.buttonRow}>
+							<button type="submit" className={styles.addButton}>
+								Add
+							</button>
+						</div>
+
 		<>
 			<div>Admin cabinet</div>
 			<h1>Tests</h1>
@@ -174,32 +223,84 @@ export default function AdminCabinet(): JSX.Element {
 						<button type="submit" className="btn btn-primary">
 							{isEditing ? 'Update' : 'Add'}
 						</button>
+
 					</div>
+					{error && (
+						<div className={`${styles.invalidFeedback} ${styles.displayBlock}`}>
+							{error}
+						</div>
+					)}
 				</form>
-			)}
-			{tests?.map((test) => (
-				<li key={test.id}>
-					{test.name + ' '}
-					{test.type + ' '}
-					{test.level + ' '}
-					<span
-						className="badge bg-primary rounded-pill edit-test"
-						role="button"
-						onClick={() => startEditing(test)}
-						tabIndex={0}
-					>
-						Edit
-					</span>
-					<span
-						className="badge bg-danger rounded-pill remove-test"
-						role="button"
-						onClick={() => handleTestRemove(test.id)}
-						tabIndex={0}
-					>
-						Delete
-					</span>
-				</li>
-			))}
-		</>
+				{isEditing && (
+					<form className={styles.form} onSubmit={handleUpdateTest}>
+						<div className={styles.inputGroup}>
+							<div className={styles.inputRow}>
+								<input
+									type="text"
+									className={`${styles.formControl} ${
+										error ? styles.isInvalid : ''
+									}`}
+									placeholder="Title..."
+									aria-label="Title..."
+									name="testTitle"
+									value={editName}
+									onChange={(e) => setEditName(e.target.value)}
+								/>
+								<input
+									type="text"
+									className={`${styles.formControl} ${
+										error ? styles.isInvalid : ''
+									}`}
+									placeholder="Type..."
+									aria-label="Type..."
+									name="testType"
+									value={editType}
+									onChange={(e) => setEditType(e.target.value)}
+								/>
+								<input
+									type="text"
+									className={`${styles.formControl} ${
+										error ? styles.isInvalid : ''
+									}`}
+									placeholder="Level..."
+									aria-label="Level..."
+									name="testLevel"
+									value={editLevel}
+									onChange={(e) => setEditLevel(e.target.value)}
+								/>
+							</div>
+							<div className={styles.buttonRow}>
+								<button type="submit" className={styles.addButton}>
+									{isEditing ? 'Update' : 'Add'}
+								</button>
+							</div>
+						</div>
+					</form>
+				)}
+				{tests?.map((test) => (
+					<li key={test.id} className={styles.testItem}>
+						{test.name + ' '}
+						{test.type + ' '}
+						{test.level + ' '}
+						<span
+							className={styles.editTest}
+							role="button"
+							onClick={() => startEditing(test)}
+							tabIndex={0}
+						>
+							Edit
+						</span>
+						<span
+							className={styles.removeTest}
+							role="button"
+							onClick={() => handleTestRemove(test.id)}
+							tabIndex={0}
+						>
+							Delete
+						</span>
+					</li>
+				))}
+			</div>
+		</div>
 	);
 }

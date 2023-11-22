@@ -21,6 +21,7 @@ import {
 } from './questionsSlice';
 import { Navigate } from 'react-router-dom';
 import { selectUser } from '../auth/selectors';
+import styles from './Questions.module.css';
 
 export default function Questions(): JSX.Element {
 	const questions = useAppSelector(selectQuestions);
@@ -124,128 +125,137 @@ export default function Questions(): JSX.Element {
 	}
 
 	return (
-		<>
-			<div>Question's editor</div>
-			<p>Get random questions</p>
-			<form onSubmit={handleRandomQuestionsSubmit}>
-				<div className="input-group mb-3">
-					<input
-						type="number"
-						className="form-control"
-						placeholder="Enter Test ID to get random questions..."
-						value={testId}
-						onChange={(e) => {
-							const parsedValue = parseInt(e.target.value, 10);
-							setTestId(isNaN(parsedValue) ? 0 : parsedValue);
-						}}
-					/>
-					<button type="submit" className="btn btn-secondary">
-						Load Random Questions
-					</button>
-				</div>
-			</form>
-			<div>
-				{randomQuestions.length > 0 ? (
-					<ul>
-						{randomQuestions.map((question) => (
-							<li key={question.id}>{question.question}</li>
-						))}
-					</ul>
-				) : (
-					<div>No random questions available.</div>
-				)}
-			</div>
-			<p>Add question</p>
-			<form className="mb-3" onSubmit={handleCreateQuestion}>
-				<div className="input-group">
-					<input
-						type="text"
-						className={`form-control ${error ? 'is-invalid' : ''}`}
-						placeholder="Test ID..."
-						aria-label="Test ID..."
-						name="test ID"
-						value={testId}
-						onChange={(e) => {
-							const parsedValue = parseInt(e.target.value, 10);
-							setTestId(isNaN(parsedValue) ? 0 : parsedValue);
-						}}
-					/>
-					<input
-						type="text"
-						className={`form-control ${error ? 'is-invalid' : ''}`}
-						placeholder="Type your question..."
-						aria-label="Type your question..."
-						name="question"
-						value={question}
-						onChange={(e) => setQuestion(e.target.value)}
-					/>
-					<button type="submit" className="btn btn-primary">
-						Add
-					</button>
-				</div>
-				{error && (
-					<div
-						className="invalid-feedback text-end"
-						style={{ display: 'block' }}
-					>
-						{error}
-					</div>
-				)}
-			</form>
-			{isEditing && (
-				<form className="mb-3" onSubmit={handleUpdateQuestion}>
-					<div className="input-group">
+		<div className={styles.containerHome}>
+			<div className={styles.mainContainer}>
+				<div className={styles.testHeading}>Create questions</div>
+				<p className={styles.random}>Get random questions</p>
+				<form className={styles.form} onSubmit={handleRandomQuestionsSubmit}>
+					<div className={styles.inputGroup}>
 						<input
-							type="text"
-							className={`form-control ${error ? 'is-invalid' : ''}`}
-							placeholder="Test ID..."
-							aria-label="Test ID..."
-							name="testId"
-							value={editTestId}
+							type="number"
+							className={styles.formControl}
+							placeholder="Enter Test ID to get random questions..."
+							value={testId}
 							onChange={(e) => {
 								const parsedValue = parseInt(e.target.value, 10);
-								setEditTestId(isNaN(parsedValue) ? 0 : parsedValue);
+								setTestId(isNaN(parsedValue) ? 0 : parsedValue);
 							}}
 						/>
-						<input
-							type="text"
-							className={`form-control ${error ? 'is-invalid' : ''}`}
-							placeholder="Type your question..."
-							aria-label="Type your question..."
-							name="question"
-							value={editQuestion}
-							onChange={(e) => setEditQuestion(e.target.value)}
-						/>
-						<button type="submit" className="btn btn-primary">
-							{isEditing ? 'Update' : 'Add'}
+						<button type="submit" className={styles.btn}>
+							Load Random Questions
 						</button>
 					</div>
 				</form>
-			)}
-			<ul>
-				{questions?.map((question) => (
-					<li key={question.id}>
-						{question.testId}
-						{' ' + question.question + ' '}
-						<span
-							className="badge bg-primary rounded-pill edit-test"
-							role="button"
-							onClick={() => startEditing(question)}
-							tabIndex={0}
-						>
-							Edit
-						</span>
-						<span
-							className="badge bg-danger rounded-pill remove-test"
-							role="button"
-							onClick={() => handleQuestionRemove(question.id)}
-							tabIndex={0}
-						>
-							Delete
-						</span>
-					</li>
-				))}
-			</ul>
-		</>
+				<div>
+					{randomQuestions.length > 0 ? (
+						<ul>
+							{randomQuestions.map((question) => (
+								<li key={question.id}>{question.question}</li>
+							))}
+						</ul>
+					) : (
+						<div>No random questions available.</div>
+					)}
+				</div>
+				<p className={styles.addQuestion}>Add question</p>
+				<form className={styles.form} onSubmit={handleCreateQuestion}>
+					<div className={styles.inputGroup}>
+						<div className={styles.inputRow}>
+							<input
+								type="text"
+								className={`${styles.formControl} ${
+									error ? styles.isInvalid : ''
+								}`}
+								placeholder="Test ID..."
+								aria-label="Test ID..."
+								name="test ID"
+								value={testId}
+								onChange={(e) => {
+									const parsedValue = parseInt(e.target.value, 10);
+									setTestId(isNaN(parsedValue) ? 0 : parsedValue);
+								}}
+							/>
+							<input
+								type="text"
+								className={`${styles.formControl} ${
+									error ? styles.isInvalid : ''
+								}`}
+								placeholder="Type your question..."
+								aria-label="Type your question..."
+								name="question"
+								value={question}
+								onChange={(e) => setQuestion(e.target.value)}
+							/>
+						</div>
+						<button type="submit" className={styles.btn}>
+							Add
+						</button>
+					</div>
+					{error && (
+						<div className={`${styles.invalidFeedback} ${styles.displayBlock}`}>
+							{error}
+						</div>
+					)}
+				</form>
+				{isEditing && (
+					<form className={styles.form} onSubmit={handleUpdateQuestion}>
+						<div className={styles.inputGroup}>
+							<input
+								type="text"
+								className={`${styles.formControl} ${
+									error ? styles.isInvalid : ''
+								}`}
+								placeholder="Test ID..."
+								aria-label="Test ID..."
+								name="testId"
+								value={editTestId}
+								onChange={(e) => {
+									const parsedValue = parseInt(e.target.value, 10);
+									setEditTestId(isNaN(parsedValue) ? 0 : parsedValue);
+								}}
+							/>
+							<input
+								type="text"
+								className={`${styles.formControl} ${
+									error ? styles.isInvalid : ''
+								}`}
+								placeholder="Type your question..."
+								aria-label="Type your question..."
+								name="question"
+								value={editQuestion}
+								onChange={(e) => setEditQuestion(e.target.value)}
+							/>
+							<button type="submit" className={styles.btn}>
+								{isEditing ? 'Update' : 'Add'}
+							</button>
+						</div>
+					</form>
+				)}
+				<ul>
+					{questions?.map((question) => (
+						<li key={question.id}>
+							{question.testId}
+							{' ' + question.question + ' '}
+							<span
+								className={`${styles.badge} ${styles.bgPrimary} ${styles.roundedPill} ${styles.editTest}`}
+								role="button"
+								onClick={() => startEditing(question)}
+								tabIndex={0}
+							>
+								Edit
+							</span>
+							<span
+								className={`${styles.badge} ${styles.bgDanger} ${styles.roundedPill} ${styles.removeTest}`}
+								role="button"
+								onClick={() => handleQuestionRemove(question.id)}
+								tabIndex={0}
+							>
+								Delete
+							</span>
+						</li>
+					))}
+				</ul>
+			</div>
+		</div>
 	);
 }

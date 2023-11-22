@@ -1,0 +1,112 @@
+.container {
+	background-color: rgb(246, 246, 228);
+	padding-top: 30px;
+	padding-bottom: 30px;
+  min-height: 100vh;
+  width: 100%;
+	justify-content: center;
+}
+.mainContainerTest1 {
+	background-image: url('/images/test_page_pin_BE.png');
+}
+.mainContainerTest2 {
+	background-image: url('/images/test_page_pin_FE.png');
+}
+.mainContainerTest3 {
+	background-image: url('/images/test_page_pin_QA.png');
+}
+.mainContainerTest1,
+.mainContainerTest2,
+.mainContainerTest3 {
+	background-repeat: no-repeat;
+	background-size: 500px;
+	background-position: top left;
+	max-width: 800px;
+	max-height: auto;
+	overflow-y: auto;
+	margin: auto;
+	margin-top: 30px;
+	margin-bottom: 60px;
+	padding-top: 70px;
+  padding-left: 100px;
+  padding-right: 80px;
+  padding-bottom: 30px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	background-color: white;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	background-attachment: scroll;
+}
+
+.question {
+	margin-bottom: 60px;
+}
+
+.questionTitle {
+	font-size: 26px;
+	margin-bottom: 10px;
+	color: #333;
+	margin-bottom: 20px;
+}
+
+.answerLabel {
+	display: block;
+	margin-bottom: 10px;
+	margin-left: 30px;
+}
+
+.inputField {
+	margin-right: 20px;
+}
+
+.radioButton {
+	margin-right: 20px;
+}
+
+.testResults {
+	margin-top: 20px;
+	font-size: 22px;
+	color: #333;
+	margin-left: 60px;
+}
+
+.buttonContainer {
+	padding-top: 3%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.buttonGroup1 {
+	background-image: url('/images/button_BE_result.png');
+}
+.buttonGroup2 {
+	background-image: url('/images/button_FE_result.png');
+}
+.buttonGroup3 {
+	background-image: url('/images/button_QA_result.png');
+}
+
+.buttonGroup1,
+.buttonGroup2,
+.buttonGroup3 {
+	height: 90px;
+	width: 190px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	transition: transform 0.3s;
+	position: relative;
+	border: none;
+	outline: none;
+	background-attachment: scroll;
+}
+
+.buttonGroup1:hover {
+	transform: scale(1.03);
+	z-index: 5;
+}

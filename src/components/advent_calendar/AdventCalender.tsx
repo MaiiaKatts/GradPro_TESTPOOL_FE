@@ -202,9 +202,10 @@ export default function AdventCalendar(): JSX.Element {
 
 	return (
 		<div className={styles.mainContainer}>
+			<div className={styles.headerAC}>Advent Calendar</div>
 			<div className={styles.calenderContainer}>
 				{generateSnowflakes()}
-				<h1 className={styles.header}>Advent Calendar</h1>
+
 				<div className={styles.calendar}>
 					{Object.keys(questionsAndContents).map((day) => (
 						<div
