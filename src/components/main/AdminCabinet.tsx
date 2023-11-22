@@ -149,6 +149,7 @@ export default function AdminCabinet(): JSX.Element {
 						</div>
 					)}
 				</form>
+
 				{isEditing && (
 					<form className={styles.form} onSubmit={handleUpdateTest}>
 						<div className={styles.inputGroup}>
@@ -195,29 +196,35 @@ export default function AdminCabinet(): JSX.Element {
 						</div>
 					</form>
 				)}
-				{tests?.map((test) => (
-					<li key={test.id} className={styles.testItem}>
-						{test.name + ' '}
-						{test.type + ' '}
-						{test.level + ' '}
-						<span
-							className={styles.editTest}
-							role="button"
-							onClick={() => startEditing(test)}
-							tabIndex={0}
-						>
-							Edit
-						</span>
-						<span
-							className={styles.removeTest}
-							role="button"
-							onClick={() => handleTestRemove(test.id)}
-							tabIndex={0}
-						>
-							Delete
-						</span>
-					</li>
-				))}
+				<div>
+					{tests?.map((test) => (
+						<li key={test.id} className={styles.testItem}>
+							<div className={styles.testContent}>
+								{test.name + ' '}
+								{test.type + ' '}
+								{test.level + ' '}
+							</div>
+							<div className={styles.testActions}>
+								<span
+									className={styles.editTest}
+									role="button"
+									onClick={() => startEditing(test)}
+									tabIndex={0}
+								>
+									Edit
+								</span>
+								<span
+									className={styles.removeTest}
+									role="button"
+									onClick={() => handleTestRemove(test.id)}
+									tabIndex={0}
+								>
+									Delete
+								</span>
+							</div>
+						</li>
+					))}
+				</div>
 			</div>
 		</div>
 	);

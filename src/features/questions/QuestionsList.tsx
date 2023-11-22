@@ -56,19 +56,22 @@ export default function QuestionsList(): JSX.Element {
 					))}
 				</select>
 				{filteredQuestions.map((question) => (
-					<div key={question.id}>
+					<div key={question.id} className={styles.questionContainer}>
 						<h4 className={styles.questionTitle}>{question.question}</h4>
-						<QuestionEditForm question={question} />
-						{filteredAnswers
-							.filter((answer) => answer.questionId === question.id)
-							.map((answer) => (
-								<div key={answer.id}>
-									<p>
-										{answer.answer} - {answer.correct ? 'Correct' : 'Incorrect'}
-									</p>
-									<AnswerEditForm answer={answer} />
-								</div>
-							))}
+						<div className={styles.inputRow}>
+							<QuestionEditForm question={question} />
+							{filteredAnswers
+								.filter((answer) => answer.questionId === question.id)
+								.map((answer) => (
+									<div key={answer.id} className={styles.answerBlock}>
+										<p>
+											{answer.answer} -{' '}
+											{answer.correct ? 'Correct' : 'Incorrect'}
+										</p>
+										<AnswerEditForm answer={answer} />
+									</div>
+								))}
+						</div>
 					</div>
 				))}
 			</div>

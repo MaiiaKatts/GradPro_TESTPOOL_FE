@@ -1,0 +1,59 @@
+.containerHome {
+  display:block; /* Применение Flexbox */
+  flex-direction: column; /* Элементы располагаются вертикально */
+  align-items: center; /* Выравнивание элементов по центру */
+  padding: 20px; /* Внутренний отступ */
+  width: 100%; /* Ширина контейнера */
+}
+
+.containerSave {
+  display: flex; /* Применение Flexbox */
+  flex-direction: row; /* Элементы располагаются горизонтально */
+  align-items: center; /* Выравнивание элементов по центру */
+  width: 100%; /* Ширина контейнера */
+  justify-content: center; /* Центрирование содержимого */
+}
+
+.editButton,
+.saveButton {
+  background-color: rgb(76, 152, 150);
+  border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: flex;
+  padding-top: 5px;
+	flex-direction: column;
+	align-items: center;
+	font-size: 14px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	border-radius: 4px;
+	width: 100px;height: 30px;
+}
+
+
+.editButton:hover,
+.saveButton:hover {
+  background-color: rgb(252, 177, 70);
+}
+
+.formInline {
+  display: flex; /* Применение Flexbox */
+  flex-wrap: wrap; /* Перенос элементов на новую строку при нехватке места */
+  gap: 10px; /* Расстояние между элементами формы */
+  align-items: center; /* Выравнивание элементов по центру */
+}
+
+.formInline input,
+.formInline select {
+  margin: 10px;
+  padding: 7px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.formInline select {
+  cursor: pointer;
+}

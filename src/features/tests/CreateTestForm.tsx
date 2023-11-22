@@ -343,40 +343,46 @@ export default function CreateTestFormSec() {
 				</div>
 				{testId && (
 					<div className={styles.selectedTest}>
-						<strong>Selected Test: </strong>
-						<span className={styles.electedTestName}>
-							{tests.find((test) => test.id === testId)?.name}
-						</span>
-						<button
-							className={styles.addQuestionButton}
-							onClick={() => setIsAddingQuestion(true)}
-						>
-							Add Question
-						</button>
-						{isAddingQuestion && (
-							<form
-								className={styles.questionForm}
-								onSubmit={handleCreateQuestion}
+						<div className={styles.testActions}>
+							<strong>Selected Test: </strong>
+							<span className={styles.electedTestName}>
+								{tests.find((test) => test.id === testId)?.name}
+							</span>
+							<button
+								className={styles.addQuestionButton}
+								onClick={() => setIsAddingQuestion(true)}
 							>
-								<input
-									className={styles.questionInput}
-									type="text"
-									placeholder="Enter new question"
-									value={question}
-									onChange={(e) => setQuestion(e.target.value)}
-								/>
-								<button className={styles.saveQuestionButton} type="submit">
-									Save Question
-								</button>
-								<button
-									className={styles.cancelButton}
-									type="button"
-									onClick={() => setIsAddingQuestion(false)}
+								Add Question
+							</button>
+						</div>
+						<div className={styles.testActions}>
+							{isAddingQuestion && (
+								<form
+									className={styles.questionForm}
+									onSubmit={handleCreateQuestion}
 								>
-									Cancel
-								</button>
-							</form>
-						)}
+									<input
+										className={styles.questionInput}
+										type="text"
+										placeholder="Enter new question"
+										value={question}
+										onChange={(e) => setQuestion(e.target.value)}
+									/>
+									<div className={styles.testActions}>
+										<button className={styles.saveQuestionButton} type="submit">
+											Save Question
+										</button>
+										<button
+											className={styles.cancelButton}
+											type="button"
+											onClick={() => setIsAddingQuestion(false)}
+										>
+											Cancel
+										</button>
+									</div>
+								</form>
+							)}
+						</div>
 					</div>
 				)}
 				{createdQuestionId && isAddingQuestion && (

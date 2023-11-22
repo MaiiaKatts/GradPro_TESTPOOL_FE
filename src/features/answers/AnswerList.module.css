@@ -39,8 +39,8 @@
 
 
 
-.table-container {
-  width: 100%;
+.tableContainer {
+  width: 70%;
   margin-bottom: 20px;
   overflow-x: auto; 
 }
@@ -50,6 +50,10 @@ table {
   border-collapse: collapse;
   margin: 0 auto;
 }
+.buttonRow {
+	display: flex;
+	justify-content: center;
+}
 
 th, td {
   border: 1px solid #aaa9a9;
@@ -57,11 +61,11 @@ th, td {
   text-align: center;
 }
 
-.new-answer-container {
+.newAnswerContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 70%;
 }
 
 .input,
@@ -71,28 +75,60 @@ th, td {
   margin: 5px 0;
 }
 
-.button,
-.answerButton {
+.buttonUpdate{
   background-color: rgb(76, 152, 150);
-  border: none;
-  color: white;
-  padding: 10px 0;
-  text-align: center;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 16px;
-  margin: 10px auto;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  border-radius: 4px;
-  width: 200px;
 }
-.button:hover,
+.buttonDelete{
+  background-color: rgb(209, 92, 83);
+}
+.buttonUpdate,
+.buttonDelete{
+  border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: flex;
+  padding-top: 4px;
+	flex-direction: column;
+	align-items: center;
+	font-size: 14px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	border-radius: 4px;
+	width: 100px;height: 30px;
+ margin-left: 20px;
+ margin-right: 20px;
+}
+.buttonUpdate:hover,
+.buttonDelete:hover,
 .answerButton:hover{
   background-color: rgb(252, 177, 70);
 } 
+
+.selectQuestion{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+
+}
+.answerButton{
+	background-color: rgb(76, 152, 150);
+	border: none;
+	color: white;
+	padding: 10px 0;
+	text-align: center;
+	text-decoration: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 16px;
+	margin: 10px auto;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	border-radius: 4px;
+	width: 200px;
+}
 
 @media (max-width: 768px) {
   .table-container,

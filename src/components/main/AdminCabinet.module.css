@@ -8,116 +8,161 @@
 }
 
 .adminCabinet {
-  background-color: #FFFFFF;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 90vw;
-  margin: 0 auto;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	background-color: #ffffff;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 90vw;
+	margin: 0 auto;
+	padding: 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .addTest {
-  color: rgb(209, 92, 83);
-  font-family: Tahoma, sans-serif;
-  margin: 10px 0;
-  width: 100%;
-  text-align: center;
-  font-size: 22px;
+	color: rgb(209, 92, 83);
+	font-family: Tahoma, sans-serif;
+	margin: 10px 0;
+	width: 100%;
+	text-align: center;
+	font-size: 22px;
 }
 
 .testHeading {
-  color:rgb(76, 152, 150);
-  font-family: Tahoma, sans-serif;
-  margin: 10px 0;
-  width: 100%;
-  text-align: left;
-  font-size: 24px;
- font-weight: bold;
+	color: rgb(76, 152, 150);
+	font-family: Tahoma, sans-serif;
+	margin: 10px 0;
+	width: 100%;
+	text-align: left;
+	font-size: 24px;
+	font-weight: bold;
 }
 
 .form {
-  width: 100%;
+	width: 100%;
 }
 
 .inputGroup {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 5px 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 5px 0;
 }
 
 .inputRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
-
 .buttonRow {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .formControl {
-  width: 100%;
-  border: 1px solid #aaa9a9;
-  padding: 8px;
-  text-align: center;
+	width: 100%;
+	border: 1px solid #aaa9a9;
+	padding: 8px;
+	text-align: center;
 }
 
 .addButton,
-.updateButton,
+.updateButton {
+	background-color: rgb(76, 152, 150);
+	border: none;
+	color: white;
+	padding: 10px 0;
+	text-align: center;
+	text-decoration: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 16px;
+	margin: 10px auto;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	border-radius: 4px;
+	width: 200px;
+}
+
 .editTest,
-.removeTest  {
-  background-color: rgb(76, 152, 150);
+.removeTest{
   border: none;
-  color: white;
-  padding: 10px 0;
-  text-align: center;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 16px;
-  margin: 10px auto;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  border-radius: 4px;
-  width: 200px;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: flex;
+  padding-top: 4px;
+	flex-direction: column;
+	align-items: center;
+	font-size: 14px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	border-radius: 4px;
+	width: 100px;height: 30px;
+}
+
+.editTest{
+  background-color: rgb(76, 152, 150);
+}
+.removeTest{
+  background-color: rgb(209, 92, 83);
+  
 }
 .addButton:hover,
 .updateButton:hover,
 .editTest:hover,
 .removeTest:hover {
-  background-color: rgb(252, 177, 70);
+	background-color: rgb(252, 177, 70);
 }
 
 .is-invalid {
-  border-color: red;
+	border-color: red;
 }
 
 .invalidFeedback {
-  color: red;
-  display: none;
+	color: red;
+	display: none;
 }
 
 .displayBlock {
-  display: block;
+	display: block;
 }
 
 .testItem {
-  list-style-type: none;
-  margin: 10px 0;
+  display: flex;
+  align-items: center; 
+  justify-content: left;
+  padding: 10px;
+  border-bottom: 1px solid #eaeaea;
+}
+.testContent {
+  display: flex;
+  align-items: center; 
+  font-family: 'Arial', sans-serif; 
+  font-size: 16px;
+  color: #333333;
+  text-align: left;
+  padding: 5px 10px;
+  margin-right: 10px;
+  background-color: #ffffff; 
+  border-radius: 4px; 
+  border: 1px solid #dddddd;
+  flex-grow: 1; 
 }
 
 .editTest,
 .removeTest {
-  cursor: pointer;
-  text-decoration: underline;
-  margin-left: 10px;
+	cursor: pointer;
+	text-decoration: underline;
+	margin-left: 10px;
 }
-
+.testActions{
+  display: flex; 
+  align-items: center; 
+}
+.testActions span {
+  margin-left: 10px; 
+}

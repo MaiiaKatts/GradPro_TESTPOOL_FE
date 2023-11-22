@@ -2,6 +2,7 @@ import { FormEvent, useState } from 'react';
 import Question from './types/Question';
 import { useAppDispatch } from '../../app/hooks';
 import { updateQuestion } from './questionsSlice';
+import styles from './QuestionEditForm.module.css';
 
 interface Props {
 	question: Question;
@@ -34,8 +35,12 @@ export default function QuestionEditForm(props: Props): JSX.Element {
 		);
 	}
 	return (
-		<div>
-			<button type="button" onClick={handleToggle}>
+		<div className={styles.containerHome}>
+			<button
+				className={styles.editButton}
+				type="button"
+				onClick={handleToggle}
+			>
 				Edit
 			</button>
 			{toggle && (
@@ -45,7 +50,9 @@ export default function QuestionEditForm(props: Props): JSX.Element {
 						value={text}
 						onChange={(e) => setText(e.target.value)}
 					/>
-					<button type="submit">Save</button>
+					<button className={styles.saveButton} type="submit">
+						Save
+					</button>
 				</form>
 			)}
 		</div>
