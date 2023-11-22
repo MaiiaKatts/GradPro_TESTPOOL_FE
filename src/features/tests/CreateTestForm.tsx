@@ -188,19 +188,6 @@ export default function CreateTestFormSec() {
 		}));
 	};
 
-	/*const handleUpdateAnswer = (answer: Answer): void => {
-		if (answer.id && answer.questionId) {
-			dispatch(
-				updateAnswerDetails({
-					answerId: answer.id,
-					questionId: answer.questionId,
-					answer: answer.answer,
-					correct: answer.correct,
-				})
-			);
-		}
-	};*/
-
 	const handleUpdateAnswer = async (answer: Answer) => {
 		if (answer.id && answer.questionId) {
 			const resultAction = await dispatch(
