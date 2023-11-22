@@ -8,7 +8,7 @@ import Layout from './components/layouts/Layout';
 import Confirmation from './features/auth/Confirmation';
 import AnswerList from './features/answers/AnswerList';
 import AboutUs from './components/footer/aboutUs/AboutUs';
-import Support from './components/footer/support/Support';
+//import Support from './components/footer/support/Support';
 import Login from './features/auth/Login';
 import Register from './features/auth/Register';
 import TermOfUse from './components/footer/terms/TermOfUse';
@@ -65,7 +65,7 @@ function App(): JSX.Element {
 					{/* Footer */}
 					<Route path="/policy" element={<Policy />} />
 					<Route path="/about-us" element={<AboutUs />} />
-					<Route path="/support" element={<Support />} />
+					{/*<Route path="/support" element={<Support />} />*/}
 					<Route path="/faq" element={<FAQ />} />
 					<Route path="/termOfUse" element={<TermOfUse />} />
 				</Route>

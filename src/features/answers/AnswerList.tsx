@@ -6,7 +6,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
-	correctAnswer,
 	createAnswer,
 	loadAllAnswers,
 	removeAnswer,

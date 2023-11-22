@@ -28,6 +28,7 @@ export default function QuestionEditForm(props: Props): JSX.Element {
 					id: 0,
 					question: '',
 					testId: 0,
+					answerObjects: [],
 				},
 			})
 		);

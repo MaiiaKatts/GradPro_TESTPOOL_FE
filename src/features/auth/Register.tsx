@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
@@ -76,7 +77,13 @@ function Register(): JSX.Element {
 			);
 
 			if (response && response.type === register.fulfilled.type) {
-				if (response.payload && 'message' in response.payload) {
+				//if (response.payload && 'message' in response.payload)
+				if (
+					typeof response.payload === 'object' &&
+					response.payload !== null &&
+					'message' in response.payload &&
+					typeof response.payload.message === 'string'
+				) {
 					if (
 						response.payload.message.includes('409') ||
 						response.payload.message.includes('already exists')
