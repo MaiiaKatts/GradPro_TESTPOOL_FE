@@ -19,7 +19,11 @@ export async function getAllTests(): Promise<Test[]> {
 	return result.json();
 }
 
-export async function createTest(name: string, type: string, level: string): Promise<Test> {
+export async function createTest(
+	name: string,
+	type: string,
+	level: string
+): Promise<Test> {
 	const res = await fetch('/api/tests', {
 		method: 'POST',
 		body: JSON.stringify({ name, type, level }),
