@@ -10,6 +10,7 @@ export default interface Question {
 		answer: string;
 	}[];
 	correctAnswerText?: string;
+	questionText?: string;
 }
 
 export type QuestionId = Question['id'];

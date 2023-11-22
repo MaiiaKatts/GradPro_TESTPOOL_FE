@@ -25,34 +25,42 @@ export async function getAllQuestions(): Promise<Question[]> {
 	return res.json();
 }
 
-/*interface QuestionAnswerPaar {
-	id: QuestionId;
-	answerId: AnswerId;
+export interface CorrectAnswerResponse {
+	questionId: number;
+	correctAnswerId: number;
 	questionText: string;
 	correctAnswerText: string;
-}*/
+}
 
 export async function getQuestionWithCorrectAnswer(
-	questionId: QuestionId
-): Promise<Question> {
-	const res = await fetch(`/api/questions/with-correct-answer/${questionId}`, {
-		method: 'GET',
-		headers: {
-			accept: 'application/json',
-		},
-	});
-	interface Error {
-		message: string;
-		field: string;
-		rejectedValue: string;
-	}
+	questionId: number
+): Promise<CorrectAnswerResponse> {
+	const res = await fetch(
+		`/api/questions/with_correct_answer/{question_id}?question_id=${questionId}`,
+		{
+			method: 'GET',
+			headers: {
+				accept: 'application/json',
+			},
+		}
+	);
+
 	if (res.status >= 400) {
-		const { errors }: { errors: Error[] } = await res.json();
-		errors.forEach((err) => {
-			throw new Error(`${err.field} ${err.rejectedValue} ${err.message}`);
-		});
+		let errorText = `Error fetching correct answer for questionId ${questionId}: Status ${res.status}`;
+
+		try {
+			const errorResponse = await res.json();
+			console.error('Error response:', errorResponse);
+			errorText += `: ${errorResponse.message}`;
+		} catch (e) {
+			// Если не содержит JSON, оригинальное сообщение об ошибке
+		}
+
+		throw new Error(errorText);
 	}
-	return res.json();
+
+	const data: CorrectAnswerResponse = await res.json();
+	return data;
 }
 
 interface QuestionResponse {

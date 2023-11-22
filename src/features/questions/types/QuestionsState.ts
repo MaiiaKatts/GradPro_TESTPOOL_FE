@@ -1,8 +1,9 @@
+import { CorrectAnswerResponse } from '../api';
 import Question from './Question';
 
 export default interface QuestionsState {
 	questions: Question[];
 	randomQuestions: Question[];
-	questionWithCorrectAnswer: Question | null;
+	questionWithCorrectAnswer: CorrectAnswerResponse | null;
 	error?: string;
 }
