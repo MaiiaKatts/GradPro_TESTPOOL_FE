@@ -5,7 +5,7 @@ export default function More(): JSX.Element {
 	return (
 		<div className={styles.supportContainer}>
 			<div className={styles.termsContainer}>
-				<p className={styles.p}>How to Start Preparing:</p>
+				<p className={styles.ph}>How to Start Preparing:</p>
 				<div className={styles.paragraph}>
 					<p className={styles.p}>
 						<span className={styles.boldText}>Choose Your Profile:</span>
@@ -19,7 +19,7 @@ export default function More(): JSX.Element {
 					</p>
 					<p className={styles.p}>
 						<span className={styles.boldText}>Take the Test:</span>
-						Complete 20 questions, each randomly chosen, for a comprehensive
+						Complete 10 questions, each randomly chosen, for a comprehensive
 						assessment of your knowledge.
 					</p>
 					<p className={styles.p}>

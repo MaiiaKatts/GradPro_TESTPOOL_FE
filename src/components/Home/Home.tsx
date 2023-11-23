@@ -36,7 +36,7 @@ export default function Home(): JSX.Element {
 							effective preparation and skill enhancement before your important
 							interview.
 						</p>
-						<p className={styles.p}>Features of Our Site:</p>
+						<p className={styles.ph}>Features of Our Site:</p>
 						<div className={styles.paragraph}>
 							<p className={styles.p}>
 								<span className={styles.boldText}>
@@ -56,7 +56,7 @@ export default function Home(): JSX.Element {
 							</p>
 							<p className={styles.p}>
 								<span className={styles.boldText}>Randomized Tests:</span>
-								Each test consists of 20 randomly selected questions, ensuring a
+								Each test consists of 10 randomly selected questions, ensuring a
 								unique testing experience each time you take a test.
 							</p>
 							<Link to="/more-info" className={styles.moreInfoLink}>

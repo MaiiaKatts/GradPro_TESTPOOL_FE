@@ -20,7 +20,7 @@ export default function Support(): JSX.Element {
 
 	return (
 		<div className={styles.supportContainer}>
-			<h1 className={styles.supportTitle}>Need Help?</h1>
+			<div className={styles.supportTitle}>Need Help?</div>
 			<p className={styles.supportText}>
 				Our team is here to help you with any questions or issues. Fill out the
 				form below and we will get back to you as soon as possible.
