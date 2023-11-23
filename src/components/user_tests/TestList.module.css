@@ -137,7 +137,7 @@
 	text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000;
 }
 
-/* Стили при наведении */
+
 .testLink_BE.active a:hover,
 .testLink_FE.active a:hover,
 .testLink_QA.active a:hover {

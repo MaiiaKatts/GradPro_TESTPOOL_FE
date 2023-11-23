@@ -1,9 +1,10 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { logout } from '../../features/auth/authSlice';
 import { selectUser } from '../../features/auth/selectors';
 import styles from './NavBar.module.css';
+import ProgressBar from '../user_tests/ProgressBar';
 
 function Navbar(): JSX.Element {
 	const dispatch = useAppDispatch();
@@ -28,6 +29,8 @@ function Navbar(): JSX.Element {
 		},
 		[dispatch, navigate]
 	);
+
+	const [showProgressBar, setShowProgressBar] = useState(false);
 
 	return (
 		<nav className={styles.navbar}>
@@ -97,13 +100,30 @@ function Navbar(): JSX.Element {
 
 				{isLoggedIn && !isAdmin && (
 					<div>
-						<NavLink to="/user/progress" className={styles.nav_link_lower}>
+						<div
+							className={styles.nav_link_lower}
+							onMouseEnter={() => setShowProgressBar(true)}
+							onMouseLeave={() => setShowProgressBar(false)}
+						>
 							Progress Bar
-						</NavLink>
-						<NavLink to="/user/results" className={styles.nav_link_lower}>
+							{showProgressBar && (
+								<div className={styles.progressBarContainer}>
+									<ProgressBar />
+								</div>
+							)}
+						</div>
+						<NavLink
+							to="/user/results"
+							className={styles.nav_link_lower}
+							onClick={(e) => e.preventDefault()} // Предотвращение навигации
+						>
 							My Results
 						</NavLink>
-						<NavLink to="/user/rank" className={styles.nav_link_lower}>
+						<NavLink
+							to="/user/rank"
+							className={styles.nav_link_lower}
+							onClick={(e) => e.preventDefault()} // Предотвращение навигации
+						>
 							See the rank
 						</NavLink>
 					</div>

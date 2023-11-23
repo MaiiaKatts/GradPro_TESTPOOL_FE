@@ -20,6 +20,7 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import Question from '../questions/types/Question';
 import { loadQuestionWithCorrectAnswer } from '../questions/questionsSlice';
 import { CorrectAnswerResponse } from '../questions/api';
+import styles from './TestResults.module.css';
 
 interface TestsResultsProps {
 	selectedAnswers: SelectedAnswers;
@@ -264,24 +265,34 @@ export default function TestsResults({
 	}, [filteredQuestions, dispatch]);*/
 
 	return (
-		<div>
-			<h2>Test Results</h2>
+		<div className={styles.container}>
+			<h2 className={styles.heading}>Test Results:</h2>
 			{showOnlyScore &&
 			latestTestResult &&
 			latestTestResult.testId === testId ? (
 				<div key={latestTestResult.id}>
-					<p>Your result: {latestTestResult.score} correct answers</p>
+					<p className={styles.result}>
+						{latestTestResult.score} correct answers
+					</p>
 					{!showDecryption && (
-						<button type="button" onClick={handleShowDecryptionClick}>
-							Show Decryption
-						</button>
+						<div className={styles.buttonContainer}>
+							<button
+								type="button"
+								onClick={handleShowDecryptionClick}
+								className={styles.button}
+							>
+								Show description
+							</button>
+						</div>
 					)}
 					{showDecryption && (
 						<div>
 							{filteredQuestions.map((question) => (
-								<div key={question.id}>
-									<h4>{question.question}</h4>
-									<p>
+								<div key={question.id} className={styles.questionBlock}>
+									<h4 className={styles.questionHeading}>
+										{question.question}
+									</h4>
+									<p className={styles.paragraph}>
 										Your Answer:{' '}
 										{
 											question.answerObjects?.find(
@@ -289,7 +300,9 @@ export default function TestsResults({
 											)?.answer
 										}
 									</p>
-									<p>Correct Answer: {correctAnswers[question.id]}</p>
+									<p className={styles.correct}>
+										Correct Answer: {correctAnswers[question.id]}
+									</p>
 								</div>
 							))}
 						</div>
