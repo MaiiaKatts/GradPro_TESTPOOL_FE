@@ -65,7 +65,12 @@ export default function TestsResults({
 			);
 
 			try {
-				await Promise.all(answerPromises);
+				const results = await Promise.all(answerPromises);
+				console.log('Результаты ответов:', results);
+				const correctAnswersCount = results.filter(
+					(result) => result.payload !== null
+				).length;
+				console.log('Количество правильных ответов:', correctAnswersCount);
 
 				const resultAction = await dispatch(
 					saveTestResult({
@@ -107,40 +112,6 @@ export default function TestsResults({
 		setShowDecryption(true);
 	};
 
-	/*useEffect(() => {
-		const fetchCorrectAnswers = async () => {
-			const correctAnswersMap: { [key: number]: string } = {};
-
-			for (const question of filteredQuestions) {
-				try {
-					const answer = await dispatch(
-						correctAnswer({
-							questionId: question.id,
-							answerId: selectedAnswers[question.id],
-						})
-					).unwrap();
-
-					if (answer.correct) {
-						correctAnswersMap[question.id] = answer.answer;
-					}
-				} catch (error) {
-					console.error(
-						`Error fetching correct answer for question ${question.id}:`,
-						error
-					);
-				}
-			}
-			setCorrectAnswers(correctAnswersMap);
-		};
-
-		if (
-			filteredQuestions.length > 0 &&
-			Object.keys(selectedAnswers).length > 0
-		) {
-			fetchCorrectAnswers();
-		}
-	}, [filteredQuestions, selectedAnswers, dispatch]);*/
-
 	useEffect(() => {
 		const fetchCorrectAnswers = async () => {
 			const questionsWithCorrectAnswers: CorrectAnswerResponse[] =
@@ -179,90 +150,6 @@ export default function TestsResults({
 			fetchCorrectAnswers();
 		}
 	}, [filteredQuestions, dispatch]);
-
-	/*useEffect(() => {
-		const fetchCorrectAnswers = async () => {
-			const questionsWithCorrectAnswers = await Promise.all(
-				filteredQuestions.map(async (question) => {
-					try {
-						const questionWithCorrectAnswer = await dispatch(
-							loadQuestionWithCorrectAnswer(question.id)
-						).unwrap();
-						console.log(
-							'Question with correct answer:',
-							questionWithCorrectAnswer
-						);
-
-						const transformedData = {
-							...questionWithCorrectAnswer,
-							question: questionWithCorrectAnswer.questionText,
-						};
-
-						return transformedData;
-					} catch (error) {
-						console.error('Ошибка при получении правильного ответа:', error);
-						return null;
-					}
-				})
-			);
-
-			const correctAnswersMap = questionsWithCorrectAnswers.reduce<{
-				[key: number]: string;
-			}>((acc, questionWithCorrectAnswer) => {
-				if (
-					questionWithCorrectAnswer &&
-					questionWithCorrectAnswer.correctAnswerText
-				) {
-					acc[questionWithCorrectAnswer.id] =
-						questionWithCorrectAnswer.correctAnswerText;
-				}
-				return acc;
-			}, {});
-
-			setCorrectAnswers(correctAnswersMap);
-		};
-
-		if (filteredQuestions.length > 0) {
-			fetchCorrectAnswers();
-		}
-	}, [filteredQuestions, dispatch]);*/
-
-	/*useEffect(() => {
-		const fetchCorrectAnswers = async () => {
-			const questionsWithCorrectAnswers = await Promise.all(
-				filteredQuestions.map(async (question) => {
-					try {
-						const questionWithCorrectAnswer = await dispatch(
-							loadQuestionWithCorrectAnswer(question.id)
-						).unwrap();
-						return questionWithCorrectAnswer;
-					} catch (error) {
-						console.error('Ошибка при получении правильного ответа:', error);
-						return null;
-					}
-				})
-			);
-
-			const correctAnswersMap = questionsWithCorrectAnswers.reduce<{
-				[key: number]: string;
-			}>((acc, questionWithCorrectAnswer) => {
-				if (
-					questionWithCorrectAnswer &&
-					questionWithCorrectAnswer.correctAnswerText
-				) {
-					acc[questionWithCorrectAnswer.id] =
-						questionWithCorrectAnswer.correctAnswerText;
-				}
-				return acc;
-			}, {});
-
-			setCorrectAnswers(correctAnswersMap);
-		};
-
-		if (filteredQuestions.length > 0) {
-			fetchCorrectAnswers();
-		}
-	}, [filteredQuestions, dispatch]);*/
 
 	return (
 		<div className={styles.container}>

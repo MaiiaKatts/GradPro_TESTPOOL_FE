@@ -44,21 +44,6 @@ export async function getQuestionWithCorrectAnswer(
 			},
 		}
 	);
-
-	if (res.status >= 400) {
-		let errorText = `Error fetching correct answer for questionId ${questionId}: Status ${res.status}`;
-
-		try {
-			const errorResponse = await res.json();
-			console.error('Error response:', errorResponse);
-			errorText += `: ${errorResponse.message}`;
-		} catch (e) {
-			// Если не содержит JSON, оригинальное сообщение об ошибке
-		}
-
-		throw new Error(errorText);
-	}
-
 	const data: CorrectAnswerResponse = await res.json();
 	return data;
 }

@@ -3,8 +3,13 @@ import { useAppSelector } from '../../app/hooks';
 import { RootState } from '../../app/store';
 
 export default function ProgressBar(): JSX.Element {
-	const selectUserProgress = (state: RootState): number => {
+	/*const selectUserProgress = (state: RootState): number => {
 		return state.testsResults.latestTestResult?.progressPercent || 0;
+	};*/
+	const selectUserProgress = (state: RootState): number => {
+		const currentTestResults = state.testsResults.testsResults;
+		const latestTestResult = currentTestResults[currentTestResults.length - 1];
+		return latestTestResult?.progressPercent || 0;
 	};
 
 	const userProgress = useAppSelector(selectUserProgress);

@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-/*import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './Support.module.css';
 
 export default function Support(): JSX.Element {
@@ -7,13 +9,13 @@ export default function Support(): JSX.Element {
 	const [email, setEmail] = useState('');
 	const [message, setMessage] = useState('');
 
-	const handleSubmit = (event) => {
+	const handleSubmit = (event: any) => {
 		event.preventDefault();
 		// код для обработки данных формы
 		console.log(name, email, message);
-		setName('');
-		setEmail('');
-		setMessage('');
+		//setName('');
+		//setEmail('');
+		//setMessage('');
 	};
 
 	return (
@@ -58,7 +60,7 @@ export default function Support(): JSX.Element {
 						<textarea
 							id="message"
 							className={styles.inputField}
-							rows="4"
+							//rows="4"
 							value={message}
 							onChange={(e) => setMessage(e.target.value)}
 							required
@@ -71,4 +73,4 @@ export default function Support(): JSX.Element {
 			</div>
 		</div>
 	);
-}*/
+}
