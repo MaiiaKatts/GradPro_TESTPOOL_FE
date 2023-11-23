@@ -6,10 +6,7 @@ export default function ProgressBar(): JSX.Element {
 	const selectUserProgress = (state: RootState): number => {
 		const currentTestResults = state.testsResults.testsResults;
 		const latestTestResult = currentTestResults[currentTestResults.length - 1];
-		return latestTestResult
-			? parseFloat(latestTestResult.progressPercent.toFixed(2))
-			: 0;
-		//return latestTestResult?.progressPercent || 0;
+		return latestTestResult?.progressPercent || 0;
 	};
 
 	const userProgress = useAppSelector(selectUserProgress);
