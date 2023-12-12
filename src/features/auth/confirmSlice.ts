@@ -4,7 +4,7 @@ import ConfirmState from './types/ConfirmState';
 export const confirmRegistration = createAsyncThunk(
 	'registration/confirm',
 	async (confirmCode: string) => {
-		const response = await fetch(`/your-api-endpoint/confirm/${confirmCode}`);
+		const response = await fetch(`/api/users/confirm/${confirmCode}`);
 		const data = await response.json();
 		return data;
 	}

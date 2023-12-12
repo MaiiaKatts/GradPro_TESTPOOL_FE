@@ -1,46 +1,45 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/named */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Импортируем useNavigate
+import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+export default function Confirmation2(): JSX.Element {
+	const navigate = useNavigate();
+	const location = useLocation();
 
-const Confirmation: React.FC = () => {
-	const [confirm, setConfirm] = useState('');
-	const navigate = useNavigate(); // Инициализируем useNavigate
-
-	async function handleConfirm(): Promise<void> {
+	const confirmRegistration = async (confirmCode: string) => {
+		console.log('Sending confirmation request for code:', confirmCode);
 		try {
 			const response = await fetch(
-				`http://localhost:8080/api/users/confirm/${confirm}`,
-				{
-					headers: { accept: 'application/json' },
-				}
+				`http://localhost:8080/api/users/confirm/${confirmCode}`
 			);
-			if (!response.ok) {
-				throw new Error('Network response was not ok.');
+			if (response.ok) {
+				navigate('/auth/login');
+			} else {
+				throw new Error('Failed to confirm registration');
 			}
-			// Тут может быть дополнительная логика обработки ответа сервера, если это необходимо
-			navigate('/'); // Переход на главную страницу после успешного выполнения запроса
 		} catch (error) {
-			console.error('Failed to confirm:', error);
+			console.error('Error confirming registration:', error);
 		}
-	}
+	};
+
+	useEffect(() => {
+		const params = new URLSearchParams(location.search);
+		const confirmCode = params.get('id');
+		console.log('Confirmation code from URL:', confirmCode);
+
+		if (confirmCode) {
+			confirmRegistration(confirmCode);
+		}
+	}, [navigate, confirmRegistration, location]);
 
 	return (
-		<>
-			<input
-				type="text"
-				value={confirm}
-				onChange={(e) => setConfirm(e.target.value)}
-			/>
-			<button
-				type="button"
-				onClick={handleConfirm} // Теперь здесь прямой вызов функции handleConfirm
-			>
-				Confirm
-			</button>
-		</>
+		<div>
+			{/* Здесь может быть индикатор загрузки или сообщение */}
+			<p>Confirming your registration...</p>
+		</div>
 	);
-};
-
-export default Confirmation;
+}
