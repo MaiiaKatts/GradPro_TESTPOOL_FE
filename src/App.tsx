@@ -5,7 +5,7 @@ import { getUser } from './features/auth/authSlice';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import { selectAuthChecked } from './features/auth/selectors';
 import Layout from './components/layouts/Layout';
-import Confirmation from './features/auth/Confirmation';
+import Confirmation2 from './features/auth/Confirmation2';
 import AnswerList from './features/answers/AnswerList';
 import AboutUs from './components/footer/aboutUs/AboutUs';
 import Support from './components/footer/support/Support';
@@ -49,7 +49,7 @@ function App(): JSX.Element {
 					<Route path="/auth/login" element={<Login />} />
 					<Route path="/auth/register" element={<Register />} />
 					<Route path="/advent_calender" element={<AdventCalendar />} />
-					<Route path="/confirm" element={<Confirmation />} />
+					<Route path="/confirm.html" element={<Confirmation2 />} />
 					{/* user */}
 					<Route path="/user" element={<TestList />} />
 					<Route path="/more-info" element={<More />} />
