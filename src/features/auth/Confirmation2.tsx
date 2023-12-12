@@ -14,7 +14,7 @@ export default function Confirmation2(): JSX.Element {
 		console.log('Sending confirmation request for code:', confirmCode);
 		try {
 			const response = await fetch(
-				`http://localhost:8080/api/users/confirm/${confirmCode}`
+				`https://testpool-app-3g73f.ondigitalocean.app/api/users/confirm/${confirmCode}`
 			);
 			if (response.ok) {
 				navigate('/auth/login');
