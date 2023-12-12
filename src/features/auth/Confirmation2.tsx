@@ -13,7 +13,7 @@ export default function Confirmation2(): JSX.Element {
 	const confirmRegistration = async (confirmCode: string) => {
 		console.log('Sending confirmation request for code:', confirmCode);
 		try {
-			const response = await fetch(`api/users/confirm/${confirmCode}`);
+			const response = await fetch(`/api/users/confirm/${confirmCode}`);
 			if (response.ok) {
 				navigate('/auth/login');
 			} else {
