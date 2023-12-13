@@ -49,7 +49,7 @@ function App(): JSX.Element {
 					<Route path="/auth/login" element={<Login />} />
 					<Route path="/auth/register" element={<Register />} />
 					<Route path="/advent_calender" element={<AdventCalendar />} />
-					<Route path="/confirm" element={<Confirmation2 />} />
+					<Route path="/confirm.html" element={<Confirmation2 />} />
 					{/* user */}
 					<Route path="/user" element={<TestList />} />
 					<Route path="/more-info" element={<More />} />
